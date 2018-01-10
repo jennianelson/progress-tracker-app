@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180110022726) do
 
-  create_table "courses", force: :cascade do |t|
+  create_table "subjects", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
     t.datetime "created_at", null: false
