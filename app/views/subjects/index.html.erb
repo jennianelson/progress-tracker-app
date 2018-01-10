@@ -1,0 +1,8 @@
+<h3>Your Subjects</h3>
+<div>
+    <% if current_user %>
+        <% user_subjects.each do |s| %>
+            <p><%= link_to s.title, subject_path(s) %><p>
+        <% end %>
+    <% end %>
+<div>
