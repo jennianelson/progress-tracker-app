@@ -1,3 +1,5 @@
 <h2>Edit <%= @subject.title %> </h2>
 
 <%= render partial: "form", locals: {subject: @subject} %>
+<br>
+<%= button_to "Delete Subject", subject_path(@subject), method: 'delete' %>

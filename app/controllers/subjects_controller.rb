@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-    before_action :set_subject, only: [:show, :edit, :update, :delete]
+    before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
     def index
     end
@@ -29,6 +29,11 @@ class SubjectsController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        @subject.destroy
+        redirect_to subjects_path
     end
 
     private

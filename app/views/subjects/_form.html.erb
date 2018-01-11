@@ -1,10 +1,8 @@
 <% if subject.errors.any? %>
     <div id="error_explanation">
-        
         <% subject.errors.full_messages.each do |msg| %>
-            <p> <%= msg %>! </p>
+            <p> <i><b><%= msg %></i></b> </p>
         <% end %>
-        
     </div>
 <% end %>
 
