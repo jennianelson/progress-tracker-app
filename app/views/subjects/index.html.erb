@@ -3,7 +3,8 @@
     <%= button_to "Add New Subject", new_subject_path, method: 'get' %>
     <div>
         <% user_subjects.each do |s| %>
-            <p><%= link_to s.title, subject_path(s) %><p>
+            <p><%= link_to s.title, subject_path(s) %> <p>
+
         <% end %>
     <div>
 <% end %>

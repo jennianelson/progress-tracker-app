@@ -1,9 +1,10 @@
 class SubjectsController < ApplicationController
+    before_action :set_subject, only: [:show, :edit, :update, :delete]
+
     def index
     end
 
     def show
-        @subject = Subject.find(params[:id])
     end
 
     def new
@@ -12,13 +13,31 @@ class SubjectsController < ApplicationController
 
     def create
         subject = current_user.subjects.build(subject_params)
-        subject.save
-        redirect_to root_path
+        if subject.save
+            redirect_to root_path
+        else
+            render :new
+        end
+    end
+
+    def edit
+    end
+
+    def update
+        if @subject.update(subject_params)
+            redirect_to subject_path(@subject)
+        else
+            render :edit
+        end
     end
 
     private
 
     def subject_params
         params.require(:subject).permit(:title)
+    end
+
+    def set_subject
+        @subject = Subject.find(params[:id])
     end
 end

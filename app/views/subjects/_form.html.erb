@@ -1,0 +1,15 @@
+<% if subject.errors.any? %>
+    <div id="error_explanation">
+        
+        <% subject.errors.full_messages.each do |msg| %>
+            <p> <%= msg %>! </p>
+        <% end %>
+        
+    </div>
+<% end %>
+
+<%= form_for(subject) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.submit %>
+<% end %>
