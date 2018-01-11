@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root 'subjects#index'
   
   resources :subjects do
-    resources :sections
+    resources :sections, only: [:new, :create]
   end
+
+  resources :sections
 
 end

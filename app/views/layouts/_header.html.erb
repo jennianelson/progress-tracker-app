@@ -1,7 +1,7 @@
 <nav class="">
     <h3><%= link_to "Progress Tracker", root_path %></h3>
     <% if !current_user %>
-        <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "sign in", new_user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
         Hi, <%= current_user.email %>!
         <br>

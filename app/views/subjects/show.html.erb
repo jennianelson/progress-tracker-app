@@ -1,4 +1,8 @@
 <h2><%= @subject.title %></h2>
 <p><%= link_to "Back to All Subjects", subjects_path %></p>
 
-**Form to add units will go here**
+<%= button_to "Add Section", new_subject_section_path(@subject), method: 'get' %>
+
+<% @subject.sections.each do |section| %>
+    <p><%= section.title %> &emsp;edit/delete</p>
+<% end %>
