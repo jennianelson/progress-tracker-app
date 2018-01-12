@@ -1,0 +1,8 @@
+
+<%= render partial: "layouts/errors", locals: {object: @skill} %>
+
+<%= form_for @skill do |f| %>
+    <%= f.text_area :description %> <br>
+    <%= f.hidden_field :section_id %>
+    <%= f.submit %>
+<% end %>

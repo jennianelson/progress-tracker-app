@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   resources :sections, only: [:show, :destroy]
 
+  resources :skills
+
 end

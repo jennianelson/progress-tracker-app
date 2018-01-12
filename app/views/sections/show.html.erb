@@ -1,6 +1,25 @@
 <h2><%= @section.title %></h2>
 <p><%= link_to "Edit", edit_subject_section_path(@section.subject, @section)%> / <%= link_to "Back to all sections", subject_path(@section.subject) %></p>
 
-<h4>Skills</h4>
+<table>
+    <tr>
+        <th>Skill</th>
+        <th>Edit Skill</th>
+        <th>Current Skill Level</th>
+    </tr>
+    <% @skills.each do |skill| %>
+        <% if skill.id != nil %>
+        <tr>
+            <td><%= skill.description %> </td>
+            <td><%= link_to "Edit", edit_skill_path(skill) %></td>
+            <td> skill level </td> 
+        </tr>
+        <% end %>
+    <% end %>
+ </table> <br>
 
-- Add new skill
+<%= form_for @skill do |f| %>
+    <%= f.text_area :description %> <br>
+    <%= f.hidden_field :section_id %>
+    <%= f.submit "Add Skill" %>
+<% end %>
