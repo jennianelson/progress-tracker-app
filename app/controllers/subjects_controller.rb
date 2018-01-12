@@ -5,7 +5,7 @@ class SubjectsController < ApplicationController
     end
 
     def show
-        @section = Section.new
+        # @section = Section.new
     end
 
     def new
@@ -13,9 +13,9 @@ class SubjectsController < ApplicationController
     end
 
     def create
-        subject = current_user.subjects.build(subject_params)
-        if subject.save
-            redirect_to subject_path(subject)
+        @subject = current_user.subjects.build(subject_params)
+        if @subject.save
+            redirect_to subject_path(@subject)
         else
             render :new
         end

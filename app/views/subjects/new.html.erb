@@ -1,4 +1,4 @@
 <h3>Add a New Subject</h3>
 
+<%= render partial: "layouts/errors", locals: {object: @subject} %>
 <%= render partial: "form", locals: {subject: @subject} %>
-    

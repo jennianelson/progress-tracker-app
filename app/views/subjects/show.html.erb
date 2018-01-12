@@ -3,22 +3,8 @@
 
 <ul>
 <% @subject.sections.each do |section| %>
-    <li><%= link_to section.title, section_path(section) %> &emsp;edit/delete</li><br>
+    <li><%= link_to section.title, section_path(section) %> </li> <br>
 <% end %>
 </ul>
 
-<!--
-<% if @section.errors.any? %>
-    <div id="error_explanation">
-        <% @section.errors.full_messages.each do |msg| %>
-            <p> <i><b><%= msg %></i></b> </p>
-        <% end %>
-    </div>
-<% end %>
--->
-
-
-<%= form_for [@subject, @section] do |f| %>
-    <%= f.text_field :title %>
-    <%= f.submit %>
-<% end %>
+<%= button_to "Add Section", new_subject_section_path(@subject), method: 'get' %>
