@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :skills
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
@@ -8,6 +9,6 @@ Rails.application.routes.draw do
     resources :sections, only: [:new, :create]
   end
 
-  resources :sections
+  resources :sections, only: [:show, :edit, :update, :destroy]
 
 end

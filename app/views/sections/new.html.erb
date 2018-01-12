@@ -1,7 +1,7 @@
 <h2>Add a New Section in <%= @subject.title %> </h2>
 
-<%= form_for(@section) do |f| %>
-    <%= f.hidden_field :subject_id %>
+<%= form_for subject_sections_path do |f| %>
+    <%#= f.hidden_field :subject_id %>
     <%= f.label :title %>
     <%= f.text_field :title %>
     <%= f.submit %>

@@ -3,7 +3,11 @@
     <% if !current_user %>
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
-        Hi, <%= current_user.email %>!
+        <% if current_user.username != "" %>
+            Hi, <%= current_user.username %>!
+        <% else %>
+            You are signed in as <%= current_user.email %>.
+        <% end %>
         <br>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
         <br>

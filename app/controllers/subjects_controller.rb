@@ -5,6 +5,7 @@ class SubjectsController < ApplicationController
     end
 
     def show
+        @section = Section.new
     end
 
     def new
