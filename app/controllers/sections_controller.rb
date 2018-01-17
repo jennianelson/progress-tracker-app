@@ -20,9 +20,8 @@ class SectionsController < ApplicationController
     end
 
     def show
-        # binding.pry
         @skill = @section.skills.build
-        @skills = @section.skills unless @section.skills.empty?
+        @skills = @section.skills
     end
 
     def edit

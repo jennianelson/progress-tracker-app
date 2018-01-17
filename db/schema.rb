@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180112164209) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "sections", force: :cascade do |t|
     t.string "title"
     t.integer "subject_id"
