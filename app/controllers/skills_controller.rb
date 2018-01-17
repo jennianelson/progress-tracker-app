@@ -1,6 +1,7 @@
 class SkillsController < ApplicationController
 
     def create
+        # binding.pry
         @skill = Skill.new(skill_params)
         @section = @skill.section
         if @skill.save
