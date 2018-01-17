@@ -6,3 +6,5 @@
     <%= f.hidden_field :section_id %>
     <%= f.submit %>
 <% end %>
+<%= button_to "Delete Skill", skill_path(@skill), method: 'delete' %>
+<%= link_to "Cancel", section_path(@skill.section) %>

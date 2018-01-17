@@ -7,7 +7,8 @@ class SkillsController < ApplicationController
         if @skill.save
             redirect_to section_path(@section)
         else
-            redirect_to section_path(@section), alert: "Skill cannot be blank."
+            render 'sections/show'
+            #why does this go to /skills?
         end
     end
 

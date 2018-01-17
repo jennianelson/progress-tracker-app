@@ -2,3 +2,6 @@
 
 <%= render partial: "layouts/errors", locals: {object: @section} %>
 <%= render partial: "form", locals: {subject: @subject, section: @section} %>
+<br>
+<%= button_to "Delete Section", section_path(@section), method: 'delete' %>
+<%= link_to "Cancel", section_path(@section) %>

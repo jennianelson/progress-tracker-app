@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   root 'subjects#index'
   
   resources :subjects do
-    resources :sections, only: [:new, :create, :edit, :update]
+    resources :sections, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  resources :sections, only: [:show, :destroy]
+  resources :sections, only: [:show]
 
   resources :skills
 

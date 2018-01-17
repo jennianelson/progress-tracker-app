@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
     before_action :set_section, only: [:show, :edit, :update, :destroy]
-    before_action :set_subject, only: [:new, :create, :edit, :update]
+    before_action :set_subject, only: [:new, :create, :update, :destroy]
 
     def new
         if params[:subject_id] && !Subject.exists?(params[:subject_id])
@@ -13,7 +13,7 @@ class SectionsController < ApplicationController
     def create
         @section = @subject.sections.build(section_params)
         if @section.save
-            redirect_to subject_path(@subject)
+            redirect_to section_path(@section)
         else
             render "new"
         end
@@ -21,12 +21,11 @@ class SectionsController < ApplicationController
 
     def show
         @skill = @section.skills.build
-        @skills = @section.skills
     end
 
     def edit
         if params[:subject_id] && !Subject.exists?(params[:subject_id])
-            redirect_to subject_path, alert: "Subject not found."
+            redirect_to section_path(@section), alert: "Associated subject not found."
         end
     end
 
@@ -39,6 +38,8 @@ class SectionsController < ApplicationController
     end
 
     def destroy
+        @section.destroy
+        redirect_to subject_path(@subject)
     end
 
     private
