@@ -1,4 +1,20 @@
 <h3>Add a New Subject</h3>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
-<%= render partial: "form", locals: {subject: @subject} %>
+
+<%= form_for(@subject) do |subject_form| %>
+    <%= subject_form.label :title %>
+    <%= subject_form.text_field :title %>
+    <br> <br>
+    <%= subject_form.fields_for :sections, @sections do |section_form| %>
+      <fieldset>
+        <legend>Add/Edit Section (Optional)</legend>
+        <p>
+            <%= section_form.text_field :title %>
+        </p>
+        
+      </fieldset>
+     <% end %>
+    <br>
+    <%= subject_form.submit %>
+<% end %>

@@ -6,7 +6,8 @@ class SectionsController < ApplicationController
         if params[:subject_id] && !Subject.exists?(params[:subject_id])
             redirect_to subject_path, alert: "Subject not found."
         else
-            @section = Section.new(subject_id: @subject.id)
+            @section = @subject.sections.build
+            # @section = Section.new(subject_id: @subject.id)
         end
     end
 

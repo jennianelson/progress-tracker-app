@@ -17,7 +17,6 @@ class SubjectsController < ApplicationController
     end
 
     def create
-        binding.pry
         @subject = current_user.subjects.build(subject_params)
         if @subject.save
             redirect_to subject_path(@subject)

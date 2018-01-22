@@ -1,6 +1,11 @@
 <h2>Edit <%= @subject.title %> </h2>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
-<%= render partial: "form", locals: {subject: @subject} %>
+
+<%= form_for(@subject) do |subject_form| %>
+    <%= subject_form.label :title %>
+    <%= subject_form.text_field :title %>
+    <%= subject_form.submit %>
+<% end %>
 <br>
 <%= button_to "Delete Subject", subject_path(@subject), method: 'delete' %>
