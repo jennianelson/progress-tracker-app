@@ -1,5 +1,16 @@
-<%= form_for(subject) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.submit %>
+<%= form_for(subject) do |subject_form| %>
+    <%= subject_form.label :title %>
+    <%= subject_form.text_field :title %>
+    <br> <br>
+    <%= subject_form.fields_for :sections, @sections do |section_form| %>
+      <fieldset>
+        <legend>Add Section (Optional)</legend>
+        <p>
+            <%= section_form.text_field :title%>
+        </p>
+        
+      </fieldset>
+     <% end %>
+    <br>
+    <%= subject_form.submit %>
 <% end %>

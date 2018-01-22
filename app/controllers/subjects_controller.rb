@@ -10,9 +10,14 @@ class SubjectsController < ApplicationController
 
     def new
         @subject = Subject.new
+        @sections = 4.times do
+            @subject.sections.build
+        end
+
     end
 
     def create
+        binding.pry
         @subject = current_user.subjects.build(subject_params)
         if @subject.save
             redirect_to subject_path(@subject)
@@ -40,7 +45,7 @@ class SubjectsController < ApplicationController
     private
 
     def subject_params
-        params.require(:subject).permit(:title)
+        params.require(:subject).permit(:title, sections_attributes: [:title])
     end
 
     def set_subject

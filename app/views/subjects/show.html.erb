@@ -1,4 +1,7 @@
 <h2><%= @subject.title %></h2>
+
+<%= button_to "Add Section", new_subject_section_path(@subject), method: 'get' %>
+
 <p><%= link_to "Edit", edit_subject_path(@subject) %> / <%= link_to "Back to All Subjects", subjects_path %></p>
 
 <ul>
@@ -6,5 +9,3 @@
     <li><%= link_to section.title, section_path(section) %> </li> <br>
 <% end %>
 </ul>
-
-<%= button_to "Add Section", new_subject_section_path(@subject), method: 'get' %>
