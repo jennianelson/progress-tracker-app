@@ -1,5 +1,7 @@
 class Subject < ApplicationRecord
-    belongs_to :user
+    has_many :student_subjects
+    has_many :users, through: :student_subjects
+    
     has_many :sections, dependent: :destroy
     # accepts_nested_attributes_for :sections
 

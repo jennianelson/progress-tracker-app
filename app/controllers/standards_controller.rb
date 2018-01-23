@@ -1,5 +1,9 @@
 class SkillsController < ApplicationController
 
+    def new
+        @skill = Skill.new
+    end
+
     def create
         # binding.pry
         @skill = Skill.new(skill_params)

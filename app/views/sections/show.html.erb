@@ -9,6 +9,8 @@
     <%= f.submit "Add Skill or Skill Group" %>
 <% end %>
 
+<%= link_to "Add new skill", new_section_skill_path(@section) %>
+
 <br> 
 <table>
     <tr>
@@ -21,7 +23,7 @@
         <tr>
             <td><%= skill.description %> </td>
             <td><%= link_to "Edit", edit_skill_path(skill) %></td>
-            <td> skill level </td> 
+            <td> Skill Level </td> 
         </tr>
         <% end %>
     <% end %>

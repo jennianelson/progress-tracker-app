@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  has_many :subjects
+  has_many :student_subjects
+  has_many :subjects, through: :student_subjects
+  has_many :student_standards
+  has_many :standards, through: :student_standards
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :trackable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

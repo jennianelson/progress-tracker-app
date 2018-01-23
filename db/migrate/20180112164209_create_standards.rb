@@ -1,6 +1,6 @@
-class CreateSkills < ActiveRecord::Migration[5.1]
+class CreateStandards < ActiveRecord::Migration[5.1]
   def change
-    create_table :skills do |t|
+    create_table :standards do |t|
       t.string :description
       t.integer :section_id
       t.timestamps

@@ -7,7 +7,6 @@ class SectionsController < ApplicationController
             redirect_to subject_path, alert: "Subject not found."
         else
             @section = @subject.sections.build
-            # @section = Section.new(subject_id: @subject.id)
         end
     end
 
