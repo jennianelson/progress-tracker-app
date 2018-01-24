@@ -9,6 +9,7 @@ class SubjectsController < ApplicationController
     end
 
     def new
+        @student_subject = StudentSubject.new
         @subject = Subject.new
         @sections = 4.times do
             @subject.sections.build

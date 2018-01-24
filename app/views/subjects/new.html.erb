@@ -1,4 +1,9 @@
 <h3>Add a New Subject</h3>
+<%= form_for @student_subject do |f| %>
+    <%= f.select("subject_id", Subject.all.collect {|p| [ p.title, p.id ] }, { prompt: "Select a Subject" }) %>
+    <%= f.submit %>
+<% end %>
+<br> <br>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
 
