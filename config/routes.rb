@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   root 'subjects#index'
-
-  resources :student_subjects, only: [:create]
   
   resources :subjects
+
+  resources :student_subjects, only: [:new, :create]
   #   resources :sections, only: [:new, :create, :edit, :update, :destroy]
   # end
 
