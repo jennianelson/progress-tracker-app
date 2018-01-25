@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20180124213421) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "grade"
   end
 
   create_table "users", force: :cascade do |t|

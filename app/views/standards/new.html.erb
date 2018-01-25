@@ -1,0 +1,7 @@
+<h2>Add a New Standard</h2>
+
+<%= form_for @standard do |f| %>
+    <%= f.text_area :description %> <br>
+    <%= f.hidden_field :section_id %> 
+    <%= f.submit %>
+<% end %>

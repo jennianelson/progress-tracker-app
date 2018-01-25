@@ -1,29 +1,29 @@
-class SkillsController < ApplicationController
+class StandardsController < ApplicationController
 
     def new
-        @skill = Skill.new
+        @standard = standard.new
     end
 
     def create
         # binding.pry
-        @skill = Skill.new(skill_params)
-        @section = @skill.section
-        if @skill.save
+        @standard = standard.new(standard_params)
+        @section = @standard.section
+        if @standard.save
             redirect_to section_path(@section)
         else
             render 'sections/show'
-            #why does this go to /skills?
+            #why does this go to /standards?
         end
     end
 
     def edit
-        @skill = Skill.find(params[:id])
+        @standard = standard.find(params[:id])
     end
 
     def update
-        @skill = Skill.find(params[:id])
-        if @skill.update(skill_params)
-            redirect_to section_path(@skill.section)
+        @standard = standard.find(params[:id])
+        if @standard.update(standard_params)
+            redirect_to section_path(@standard.section)
         else
             render :edit
         end
@@ -34,7 +34,7 @@ class SkillsController < ApplicationController
 
     private
 
-    def skill_params
-        params.require(:skill).permit(:description, :section_id)
+    def standard_params
+        params.require(:standard).permit(:description, :section_id)
     end
 end

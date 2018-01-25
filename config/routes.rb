@@ -5,14 +5,17 @@ Rails.application.routes.draw do
   
   root 'subjects#index'
   
-  resources :subjects
+  resources :subjects do
+      resources :sections, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   resources :student_subjects, only: [:new, :create]
-  #   resources :sections, only: [:new, :create, :edit, :update, :destroy]
-  # end
+  
 
-  # resources :sections, only: [:show] do
-  #   resources :skills
-  # end
+  resources :sections, only: [:show] do
+    resources :standards
+  end
+
+  resources :standards
 
 end

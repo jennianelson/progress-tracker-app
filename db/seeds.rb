@@ -8,17 +8,17 @@
 
 User.create(username: "user1", email: "user1@email.com", password: "user1password")
 
-Subject.create([{ title: "Math", grade: "7" }, { title: "English", grade: "7" }, { title: "Civics", grade: "7" }, { title: "Science", grade: "7" }])
-Subject.create([{ title: "Math", grade: "8" }, { title: "English", grade: "8" }, { title: "World History", grade: "8" }, { title: "Science", grade: "8" }])
-Subject.create([{ title: "Math", grade: "9" }, { title: "English", grade: "9" }, { title: "US History", grade: "9" }, { title: "Science", grade: "9" }])
+Subject.create([{ title: "Math7" }, { title: "English7" }, { title: "Civics7" }, { title: "Science7" }])
+Subject.create([{ title: "Math8" }, { title: "English8" }, { title: "World History8" }, { title: "Science8" }])
+Subject.create([{ title: "Math9" }, { title: "English9" }, { title: "US History9" }, { title: "Science9" }])
 
-Section.create(title: "Reading Literature")
-Section.create(title: "Reading Informational Text")
-Section.create(title: "Writing")
-Section.create(title: "Speaking & Listening")
-Section.create(title: "Language")
+# eng7 = Subject.find_by(title: "English7")
 
-Standard.create(description: "Cite several pieces of textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text.", dot_notation: "CCSS.ELA-LITERACY.RL.7.1", subheading: "Key Ideas and Details")
+# eng7.sections.create([{ title: "Reading Literature"}, {title: "Reading Informational Text"}, {title: "Writing"}, {title: "Speaking & Listening"}, {title: "Language"}])
 
-Standard.create(description: "Cite several pieces of textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text.", dot_notation: "CCSS.ELA-LITERACY.RI.7.1", subheading: "Key Ideas and Details")
+# rl = Section.find_by(title: "Reading Literature")
+# rl.standards.create(description: "Cite several pieces of textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text.", dot_notation: "CCSS.ELA-LITERACY.RL.7.1", subheading: "Key Ideas and Details")
+
+# ri = Section.find_by(title: "Reading Informational Text")
+# ri.standards.create(description: "Cite several pieces of textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the text.", dot_notation: "CCSS.ELA-LITERACY.RI.7.1", subheading: "Key Ideas and Details")
 

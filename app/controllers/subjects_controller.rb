@@ -1,3 +1,5 @@
+# CUD for Subjects will be available to Admin only
+
 class SubjectsController < ApplicationController
     before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
@@ -5,7 +7,6 @@ class SubjectsController < ApplicationController
     end
 
     def show
-        # @section = Section.new
     end
 
     def new

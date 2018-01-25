@@ -20,7 +20,7 @@ class SectionsController < ApplicationController
     end
 
     def show
-        @skill = @section.skills.build
+        @standard = @section.standards.build
     end
 
     def edit

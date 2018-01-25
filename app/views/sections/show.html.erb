@@ -1,30 +1,32 @@
 <h2><%= @section.title %></h2>
 <p><%= link_to "Edit", edit_subject_section_path(@section.subject, @section)%> / <%= link_to "Back to all sections", subject_path(@section.subject) %></p>
 
-<%= render partial: "layouts/errors", locals: {object: @skill} %>
-
-<%= form_for @skill do |f| %>
-    <%= f.text_area :description %> <br>
-    <%= f.hidden_field :section_id %> 
-    <%= f.submit "Add Skill or Skill Group" %>
-<% end %>
-
-<%= link_to "Add new skill", new_section_skill_path(@section) %>
-
 <br> 
 <table>
     <tr>
-        <th>Skill</th>
-        <th>Edit Skill</th>
-        <th>Current Skill Level</th>
+        <th>Standard</th>
+        <th>How I'm feeling</th>
+        <th>Comments</th>
+        <th>Evidence</th>
     </tr>
-    <% @section.skills.each do |skill| %>
-        <% if skill.id != nil %>
+    <% @section.standards.each do |standard| %>
+        <% if standard.id != nil %>
         <tr>
-            <td><%= skill.description %> </td>
-            <td><%= link_to "Edit", edit_skill_path(skill) %></td>
-            <td> Skill Level </td> 
+            <td><%= standard.description %> </td>
+            <td>Progress Level</td>
+            <td> Comments </td>
+            <td> Evidence </td>
         </tr>
         <% end %>
     <% end %>
  </table> <br>
+
+--ADMIN--
+<%= form_for @standard do |f| %>
+    <%= f.text_area :description %> <br>
+    <%= f.label :dot_notation %>
+    <%= f.text_field :dot_notation %> <br>
+    <%= f.hidden_field :section_id %> 
+    <%= f.submit "Add Standard" %>
+<% end %>
+----
