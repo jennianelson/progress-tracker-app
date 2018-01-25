@@ -1,0 +1,13 @@
+<h1>Update Progress</h1>
+
+<%= form_for [@standard, @student_standard] do |f| %>
+    <h3>The Standard:</h3>
+    <p><%= @standard.description %></p>
+    <h3>How are you feeling about this skill or concept?</h3>
+        <%= f.select :progress_level, StudentStandard.progress_levels.keys %>
+    <h3>Comments: (optional)</h3>
+        <%= f.text_area :comments %>
+    <h3>What projects, labs, tests, etc. are good examples of what you've learned? (optional)</h3>
+        <%= f.text_area :evidence %> <br>
+    <%= f.submit "Save Progress" %>
+<% end %>

@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   
 
   resources :sections, only: [:show] do
-    resources :standards
+    resources :standards, only:[:new]
   end
 
-  resources :standards
+  resources :standards do 
+    resources :student_standards, only:[:new, :create]
+  end
 
 end
