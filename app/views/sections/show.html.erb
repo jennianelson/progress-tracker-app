@@ -1,11 +1,7 @@
 <h2><%= @section.title %></h2>
+<!--<h3>ADMIN</h3>
 <p><%= link_to "Edit", edit_subject_section_path(@section.subject, @section)%> / <%= link_to "Back to all sections", subject_path(@section.subject) %></p>
-
-<% current_user.standards.each do |stu_stand| %>
-   <%= stu_stand.description %>
-<% end %>
-
-<br> 
+-->
 <table>
     <tr>
         <th>Standard</th>
@@ -14,14 +10,14 @@
         <th>Evidence</th>
         <th>Edit</th>
     </tr>
-    <% @section.standards.each do |standard| %>
-        <% if standard.id != nil %>
+    <% @student_standards.each do |ss| %>
+        <% if ss.id != nil %>
         <tr>
-            <td><%= standard.description %> </td>
-            <td>Progress Level</td>
-            <td> Comments </td>
-            <td> Evidence </td>
-            <td> <%= link_to "Edit", new_standard_student_standard_path(standard) %></td>
+            <td><%= ss.description %> </td>
+                <td><%= ss.progress_level %></td>
+                <td><%= ss.comments %></td>
+                <td><%= ss.evidence %></td>
+                <td>Edit Progress</td>
         </tr>
         <% end %>
     <% end %>
@@ -29,6 +25,8 @@
 
 --ADMIN--
 <%= form_for @standard do |f| %>
+    <%= f.label :subheading %> <br>
+    <%= f.text_field :subheading %> <br>
     <%= f.label :description %> <br>
     <%= f.text_area :description %> <br>
     <%= f.label :dot_notation %> <br>

@@ -21,6 +21,9 @@ class SectionsController < ApplicationController
 
     def show
         @standard = @section.standards.build
+        @student_standards = current_user.student_standards.find_all {|standard| standard.section == @section }
+        
+        # @student_standards = current_user.student_standards
     end
 
     def edit

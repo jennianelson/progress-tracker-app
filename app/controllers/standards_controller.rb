@@ -6,7 +6,7 @@ class StandardsController < ApplicationController
 
     def create
         # binding.pry
-        @standard = standard.new(standard_params)
+        @standard = Standard.new(standard_params)
         @section = @standard.section
         if @standard.save
             redirect_to section_path(@section)
