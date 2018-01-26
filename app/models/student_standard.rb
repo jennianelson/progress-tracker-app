@@ -22,6 +22,10 @@ class StudentStandard < ApplicationRecord
     end
 
     def self.sort_collection(collection)
-        binding.pry
+        collection.sort_by {|ss| ss.dot_notation}
+    end
+
+    def self.collect_subheadings(collection)
+        collection.map {|ss| ss.subheading}.uniq
     end
 end

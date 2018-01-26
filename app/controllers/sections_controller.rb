@@ -22,9 +22,8 @@ class SectionsController < ApplicationController
     def show
         @standard = @section.standards.build
         student_standards = current_user.student_standards.find_all {|standard| standard.section == @section }
-        # binding.pry
-        @sorted_standards = student_standards.sort_by {|ss| ss.dot_notation}
-        @subheadings = @sorted_standards.map {|ss| ss.subheading}.uniq
+        @sorted_standards = StudentStandard.sort_collection(student_standards)
+        @subheadings = StudentStandard.collect_subheadings(@sorted_standards)
     end
 
     def edit

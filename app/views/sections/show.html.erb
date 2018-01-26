@@ -2,29 +2,8 @@
 <!--<h3>ADMIN</h3>
 <p><%= link_to "Edit", edit_subject_section_path(@section.subject, @section)%> / <%= link_to "Back to all sections", subject_path(@section.subject) %></p>
 -->
-<% @subheadings.each do |sh| %>
-    <h3><%= sh %></h3>
-    <table>
-        <tr>
-            <th>Standard</th>
-            <th>How I'm feeling</th>
-            <th>Comments</th>
-            <th>Evidence</th>
-            <th>Edit</th>
-        </tr>
-    <% @sorted_standards.each do |ss| %>
-        <% if ss.subheading == sh %>
-            <tr>
-                <td><%= ss.description %> </td>
-                <td><%= ss.progress_level %></td>
-                <td><%= ss.comments %></td>
-                <td><%= ss.evidence %></td>
-                <td>Edit Progress</td>
-            </tr>
-        <% end %> 
-    <%end%>
-    </table>
-<%end%>
+<%= render partial: "display_student_standards", locals: {subheadings: @subheadings, sorted_standards: @sorted_standards} %>
+
 
  <br> <br> 
 
