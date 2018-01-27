@@ -5,15 +5,24 @@ class StudentStandardsController < ApplicationController
     end
 
     def create
-        # binding.pry
         student_standard = current_user.student_standards.build(student_standard_params)
-        # @student_standard = StudentStandard.new(student_standard_params)
-        # @student_standard.user = current_user
-        
         if student_standard.save
             redirect_to section_path(student_standard.section)
         else
             render :new
+        end
+    end
+
+    def edit
+        @student_standard = StudentStandard.find(params[:id])
+    end
+
+    def update
+        @student_standard = StudentStandard.find(params[:id])
+        if @student_standard.update(student_standard_params)
+            redirect_to section_path(@student_standard.section)
+        else
+            render "sections/edit"
         end
     end
 

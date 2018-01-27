@@ -1,7 +1,6 @@
 <h2>Update Your Progress</h2>
-<h3><i><%= @standard.description %></i></h3>
-<%= form_for [@standard, @student_standard] do |f| %>
-    <%= f.hidden_field :standard_id %>
+<h3><i><%= @student_standard.description %></i></h3>
+<%= form_for [@student_standard] do |f| %>
     <h4>Which of the following best describes your current progress with this skill or concept?</h4>
         <%= f.select :progress_level, StudentStandard.progress_levels.keys %>
     <h4>Comments: (optional)</h4>

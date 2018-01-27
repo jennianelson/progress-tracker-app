@@ -15,7 +15,7 @@
                 <td><%= ss.progress_level %></td>
                 <td><%= ss.comments %></td>
                 <td><%= ss.evidence %></td>
-                <td>Edit Progress</td>
+                <td><%= link_to "Edit Progress", edit_student_standard_path(ss) %></td>
             </tr>
         <% end %> 
     <%end%>
