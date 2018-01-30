@@ -1,11 +1,12 @@
 class StandardsController < ApplicationController
 
     def new
-        @standard = standard.new
+        @standards_hash = Standard.get_standards_hash("http://www.corestandards.org/ELA-Literacy/RL/7/")
+        # binding.pry
+        # @standard = Standard.new
     end
 
     def create
-        # binding.pry
         @standard = Standard.new(standard_params)
         @section = @standard.section
         if @standard.save
