@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   
 
   resources :sections, only: [:show] do
-    resources :standards, only:[:new]
+    resources :standards, only:[:create, :index]
   end
 
-  resources :standards 
+  # resources :standards, only: [:index]
 
 end

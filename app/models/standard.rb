@@ -5,22 +5,22 @@ class Standard < ApplicationRecord
    
     validates :description, presence: true
 
+    def self.filter_by_section(section_id)
+        # binding.pry
+        where(section_id: section_id)
+    end
+
     def self.open_webpage(url)
         Nokogiri::HTML(open(url))
     end
 
     def self.get_standards_hash(url)
         doc = open_webpage(url)
-        doc.css("section").collect do |section|
-            section.css("h4").collect do |t|
-                section.css("div.standard").collect do |s|
-                    { 
-                    :subheading => t.text.gsub(":", ""), 
-                    :dot_notation => s.children[0].text,
-                    :standard => s.children[2].text 
-                    }
-                end
-            end
+        doc.css("div.standard").collect do |s|
+            { 
+            :dot_notation => s.children[0].text,
+            :standard => s.children[2].text 
+            }
         end.flatten
     end
     

@@ -8,14 +8,6 @@
  <br> <br> 
 
 --ADMIN--
-<%= form_for @standard do |f| %>
-    <%= f.label :subheading %> <br>
-    <%= f.text_field :subheading %> <br>
-    <%= f.label :description %> <br>
-    <%= f.text_area :description %> <br>
-    <%= f.label :dot_notation %> <br>
-    <%= f.text_field :dot_notation %> <br>
-    <%= f.hidden_field :section_id %> 
-    <%= f.submit "Add Standard" %>
-<% end %>
+<%= link_to "Show section's Standards", section_standards_path(@section) %>
 ----
+

@@ -1,0 +1,10 @@
+<h1>Standards for <%=@section.title %></h1>
+ADMIN
+<%= button_to "Add all standards to db", section_standards_path(@section) %>
+--
+<!--Use class method to organize -->
+<% @standards.each do |standard| %>
+    <p><b>dot_notation:</b> <%= standard.dot_notation %></p>
+    <p><b>description:</b> <%= standard.description %></p>
+    <br>
+<% end %>
