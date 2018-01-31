@@ -20,7 +20,8 @@ class StudentStandardsController < ApplicationController
     def update
         @student_standard = StudentStandard.find(params[:id])
         if @student_standard.update(student_standard_params)
-            redirect_to section_path(@student_standard.section)
+            #NEED TO FIGURE THIS OUT!
+            redirect_to student_subject_section_path( )
         else
             render "sections/edit"
         end
