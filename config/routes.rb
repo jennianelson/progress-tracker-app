@@ -3,13 +3,15 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  root 'subjects#index'
+  root 'student_subjects#index'
   
-  resources :subjects do
-      resources :sections, only: [:new, :create, :edit, :update, :destroy]
+  resources :subjects
+      # resources :sections, only: [:new, :create, :edit, :update, :destroy]
+
+  resources :student_subjects do
+    resources :sections, only: [:show]
   end
 
-  resources :student_subjects, only: [:new, :create]
   resources :student_standards, only:[:create, :edit, :update]
   
 

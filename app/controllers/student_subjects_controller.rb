@@ -1,31 +1,38 @@
 class StudentSubjectsController < ApplicationController
     
+    def index
+        @student_subjects = current_user.student_subjects
+    end
+
+    def show
+        @student_subject = StudentSubject.find(params[:id])
+    end
+
     def new
-        @student_subject = StudentSubject.new
-        @subjects = Subject.all
+        @student_subject = current_user.student_subjects.build
     end
 
     def create
-        @student_subject = current_user.student_subjects.build(student_subject_params)
+        @student_subject = StudentSubject.new(student_subject_params)
         if @student_subject.save
-
-        # Move this to an instance method in StudentSubject Model
-            @student_subject.sections.each do |section|
-                section.standards.each do |standard|
-                    current_user.student_standards.create(standard_id: standard.id)
-                end
-            end
-        # ----
+            current_user.add_subjects_and_standards(@student_subject)
             redirect_to root_path
         else
             render :new
         end
     end
     
+    def destroy
+        student_subject = StudentSubject.find(params[:id])
+        sections = student_subject.student_subject_sections
+        current_user.destroy_student_standards(sections)
+        student_subject.destroy
+        redirect_to root_path
+    end
 
     private
 
     def student_subject_params
-        params.require(:student_subject).permit(:subject_id)
+        params.require(:student_subject).permit(:subject_id, :user_id)
     end
 end

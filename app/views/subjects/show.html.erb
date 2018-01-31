@@ -1,10 +1,4 @@
-<h2><%= @subject.title %></h2>
-<i><%= link_to "Back to All Subjects", subjects_path %></i>
-<ul>
-<% @subject.sections.each do |section| %>
-    <li><%= link_to section.title, section_path(section) %> </li> <br>
-<% end %>
-</ul>
+
 
 <!-- make partial/layout for this nav links -->
 -----
