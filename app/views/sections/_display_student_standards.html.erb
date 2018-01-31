@@ -1,5 +1,4 @@
-<% subheadings.each do |sh| %>
-    <h3><%= sh %></h3>
+
     <table>
         <tr>
             <th>Standard</th>
@@ -9,7 +8,6 @@
             <th>Edit</th>
         </tr>
     <% sorted_standards.each do |ss| %>
-        <% if ss.subheading == sh %>
             <tr>
                 <td><%= ss.description %> </td>
                 <td><%= ss.progress_level %></td>
@@ -17,7 +15,5 @@
                 <td><%= ss.evidence %></td>
                 <td><%= link_to "Edit Progress", edit_student_standard_path(ss) %></td>
             </tr>
-        <% end %> 
     <%end%>
     </table>
-<%end%>

@@ -21,6 +21,7 @@ class StudentSubjectsController < ApplicationController
             render :new
         end
     end
+    
 
     private
 

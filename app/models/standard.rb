@@ -6,8 +6,11 @@ class Standard < ApplicationRecord
     validates :description, presence: true
 
     def self.filter_by_section(section_id)
-        # binding.pry
         where(section_id: section_id)
+    end
+
+    def self.filter_and_sort(section_id)
+        filter_by_section(section_id).sort_by { |standard| standard.dot_notation }
     end
 
     def self.open_webpage(url)
@@ -16,14 +19,21 @@ class Standard < ApplicationRecord
 
     def self.get_standards_hash(url)
         doc = open_webpage(url)
-        doc.css("div.standard").collect do |s|
+        a1 = doc.css("div.standard").collect do |s|
+            s_size = s.children.size
             { 
             :dot_notation => s.children[0].text,
-            :standard => s.children[2].text 
+            :standard => s.children[1..s_size].text 
             }
-        end.flatten
+        end
+        a2 = doc.css("div.substandard").collect do |ss|
+            ss_size = ss.children.size
+            {
+            :dot_notation => ss.children[0].text,
+            :standard => ss.children[1..ss_size].text 
+            }
+        end
+        (a1 << a2).flatten!
     end
     
 end
- # [a-zA-Z]+\s+(.)+
-        # \d[A-Z]

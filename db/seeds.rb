@@ -13,3 +13,5 @@ Subject.create([{ title: "Math7" }, { title: "English7" }, { title: "Math8" }, {
 eng7 = Subject.find_by(title: "English7")
 
 eng7.sections.create([{ title: "Reading Literature"}, {title: "Reading Informational Text"}, {title: "Writing"}, {title: "Speaking & Listening"}, {title: "Language"}])
+
+# math7.sections.create([{ title: "Ratios & Proportional Relationships"}, {title: "The Number System"}, {title: "Expressions & Equations"}, {title: "Geometry"}, {title: "Statistics & Probability"}])
