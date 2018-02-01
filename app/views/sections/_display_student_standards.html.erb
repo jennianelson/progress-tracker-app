@@ -2,7 +2,7 @@
     <table>
         <tr>
             <th>Standard</th>
-            <th>How I'm feeling</th>
+            <th>Progress Level</th>
             <th>Comments</th>
             <th>Evidence</th>
             <th>Edit</th>
@@ -13,7 +13,7 @@
                 <td><%= ss.progress_level %></td>
                 <td><%= ss.comments %></td>
                 <td><%= ss.evidence %></td>
-                <td><%= link_to "Edit Progress", edit_student_standard_path(ss) %></td>
+                <td><%= link_to "Edit Progress", edit_section_student_standard_path(section, ss) %></td>
             </tr>
     <%end%>
     </table>

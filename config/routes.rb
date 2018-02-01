@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :sections, only: [:show]
   end
   
-  resources :student_standards, only:[:edit, :update]
+  resources :sections, only: [:show] do
+    resources :student_standards, only:[:edit, :update]
+  end
 
 
   #ADMIN

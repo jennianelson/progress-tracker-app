@@ -1,6 +1,8 @@
 <h2>Update Your Progress</h2>
-<h3><i><%= @student_standard.description %></i></h3>
-<%= form_for [@student_standard] do |f| %>
+<h3><i><%= description(@student_standard) %></i></h3>
+
+<%= form_for [@section, @student_standard] do |f| %>
+
     <h4>Which of the following best describes your current progress with this skill or concept?</h4>
         <%= f.select :progress_level, StudentStandard.progress_levels.keys %>
     <h4>Comments: (optional)</h4>
@@ -9,7 +11,3 @@
         <%= f.text_area :evidence %> <br>
     <%= f.submit "Save Progress" %>
 <% end %>
-
-<!--I have a good understanding of supporting analysis of what the text says explicitly; I'm still working on supporting inferences.
-Extended paragraph on Ponyboy from The Outsiders. 
- -->
