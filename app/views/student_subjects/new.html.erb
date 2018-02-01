@@ -4,7 +4,8 @@
 
 <%= form_for @student_subject do |f| %>
     <%= f.select("subject_id", Subject.all.collect {|p| [ p.title, p.id ] }, { prompt: "Select a Subject" }) %>
-    <%#= f.hidden_field :user_id %>
-    <%= f.submit %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit "Add subject" %>
 <% end %>
-<br> <br>
+<br>
+<%= link_to "Cancel", root_path %>

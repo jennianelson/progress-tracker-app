@@ -5,6 +5,10 @@ class Standard < ApplicationRecord
    
     validates :description, presence: true
 
+    # def self.sort_collection(collection)
+    #     collection.sort_by {|ss| ss.dot_notation}
+    # end
+
     def self.filter_by_section(section_id)
         where(section_id: section_id)
     end

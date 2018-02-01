@@ -20,11 +20,8 @@ class SectionsController < ApplicationController
     end
 
     def show
-        @student_subject = StudentSubject.find(params[:student_subject_id])
-        #--Need method or helper for this--
-        student_standards = current_user.student_standards.find_all {|standard| standard.section == @section }
+        student_standards = current_user.filter_student_standards(@section)
         @sorted_standards = StudentStandard.sort_collection(student_standards)
-        # @subheadings = StudentStandard.collect_subheadings(@sorted_standards)
     end
 
     def edit

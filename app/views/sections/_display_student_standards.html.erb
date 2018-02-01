@@ -9,7 +9,7 @@
         </tr>
     <% sorted_standards.each do |ss| %>
             <tr>
-                <td><%= ss.description %> </td>
+                <td><%= description(ss) %> </td>
                 <td><%= ss.progress_level %></td>
                 <td><%= ss.comments %></td>
                 <td><%= ss.evidence %></td>

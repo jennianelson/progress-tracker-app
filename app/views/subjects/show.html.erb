@@ -1,8 +1,7 @@
-
-
-<!-- make partial/layout for this nav links -->
------
-<h3>ADMIN</h3>
-<p><%= link_to "Edit Subject Title", edit_subject_path(@subject) %></p>
-<%= button_to "Add Section", new_subject_section_path(@subject), method: 'get' %>
------
+<h2><%= @subject.title %></h2>
+<i><%= link_to "Back to All Subjects", root_path %></i>
+<ul>
+<% @subject.sections.each do |section| %>
+    <li><%= link_to section.title, subject_section_path(@subject, section) %> </li> <br>
+<% end %>
+</ul>

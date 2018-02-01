@@ -5,26 +5,26 @@ class StudentStandard < ApplicationRecord
     
     enum progress_level: [:beginning, :progressing, :confused, :conquered]
 
-#-----Should these BE HELPERS?-------#
-    def section
-        self.standard.section
+    def self.sort_collection(collection)
+        collection.sort_by {|ss| ss.dot_notation}
     end
 
-    def description
-        self.standard.description
-    end
+#-----Should these BE HELPERS?-------#
+    # def section
+    #     self.standard.section
+    # end
+
+    # def description
+    #     self.standard.description
+    # end
 
     def dot_notation
         self.standard.dot_notation
     end
 
-    def subheading
-        self.standard.subheading
-    end
+    # def subheading
+    #     self.standard.subheading
+    # end
 #______
-
-    def self.sort_collection(collection)
-        collection.sort_by {|ss| ss.dot_notation}
-    end
 
 end

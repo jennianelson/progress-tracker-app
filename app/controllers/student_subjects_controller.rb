@@ -13,13 +13,10 @@ class StudentSubjectsController < ApplicationController
     end
 
     def create
-        @student_subject = current_user.add_subject(params[:student_subject][:subject_id])
-        if @student_subject 
-            if @student_subject.save
-                current_user.add_standards(@student_subject)
-            else
-                render :new
-            end
+    @student_subject = current_user.student_subjects.build(student_subject_params)
+        if @student_subject.save
+            current_user.add_standards(@student_subject)
+            redirect_to root_path
         else
             render :new
         end
@@ -35,7 +32,7 @@ class StudentSubjectsController < ApplicationController
 
     private
 
-    # def student_subject_params
-    #     params.require(:student_subject).permit(:subject_id)
-    # end
+    def student_subject_params
+        params.require(:student_subject).permit(:subject_id, :user_id)
+    end
 end
