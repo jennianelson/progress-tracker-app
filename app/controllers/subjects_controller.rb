@@ -4,6 +4,7 @@ class SubjectsController < ApplicationController
     before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
     def index
+        @subjects = current_user.subjects
     end
 
     def show
@@ -13,7 +14,7 @@ class SubjectsController < ApplicationController
         @subject = Subject.new
         @sections = 4.times do
             @subject.sections.build
-        end
+    end
 
     end
 

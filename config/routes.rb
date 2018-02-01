@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   #STUDENT USER
-  root 'student_subjects#index'
+  # root 'student_subjects#index'
+  root 'subjects#index'
   
-  resources :student_subjects, only: [:index, :show, :new, :create, :destroy] do
+  resources :student_subjects, only: [:new, :create, :destroy]
+
+  resources :subjects, only: [:index, :show] do
     resources :sections, only: [:show]
   end
   

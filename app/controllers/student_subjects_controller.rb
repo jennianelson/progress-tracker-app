@@ -1,22 +1,25 @@
 class StudentSubjectsController < ApplicationController
     
-    def index
-        @student_subjects = current_user.student_subjects
-    end
+    # def index
+    #     @student_subjects = current_user.student_subjects
+    # end
 
-    def show
-        @student_subject = StudentSubject.find(params[:id])
-    end
+    # def show
+    #     @student_subject = StudentSubject.find(params[:id])
+    # end
 
     def new
-        @student_subject = current_user.student_subjects.build
+        @student_subject = StudentSubject.new
     end
 
     def create
-        @student_subject = StudentSubject.new(student_subject_params)
-        if @student_subject.save
-            current_user.add_subjects_and_standards(@student_subject)
-            redirect_to root_path
+        @student_subject = current_user.add_subject(params[:student_subject][:subject_id])
+        if @student_subject 
+            if @student_subject.save
+                current_user.add_standards(@student_subject)
+            else
+                render :new
+            end
         else
             render :new
         end
@@ -32,7 +35,7 @@ class StudentSubjectsController < ApplicationController
 
     private
 
-    def student_subject_params
-        params.require(:student_subject).permit(:subject_id, :user_id)
-    end
+    # def student_subject_params
+    #     params.require(:student_subject).permit(:subject_id)
+    # end
 end

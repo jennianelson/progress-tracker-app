@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      student_subject:
+        user_id: "You"
