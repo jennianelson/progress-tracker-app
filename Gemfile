@@ -16,6 +16,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'httparty'
 
 group :production do 
   gem 'pg', '~> 0.18.4'

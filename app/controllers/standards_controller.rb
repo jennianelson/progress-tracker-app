@@ -1,8 +1,17 @@
 class StandardsController < ApplicationController
-
+    require 'json'
     def index
-        @section = Section.find(params[:section_id])
-        @standards = Standard.filter_and_sort(params[:section_id])
+        result = HTTParty.get('http://api.commonstandardsproject.com/api/v1/standard_sets/B838B98D043045748F3814B9E43CAC85_D2505664_grade-07',
+        :headers => {'Content-Type' => 'application/json', 'Api-key' => 'KeVHcV7nEnj4PGEGaSdovabT'} )
+        @standards = JSON.parse result.to_s
+        # @section = Section.find(params[:section_id])
+        # @standards = Standard.filter_and_sort(params[:section_id])
+
+        # <%# @standards.each do |standard| %>
+        #      <p><b>dot_notation:</b> <%= standard.dot_notation %></p>
+        #     <p><b>description:</b> <%= standard.description %></p>
+        #     <br>
+        # <%# end %>
     end
 
     def create
