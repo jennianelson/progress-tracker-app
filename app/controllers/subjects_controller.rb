@@ -12,11 +12,14 @@ class SubjectsController < ApplicationController
     end
 
     def new
+        set_id = "jurisdictions/B838B98D043045748F3814B9E43CAC85"
+        subjects = parse_api(set_id)
+        @subjects = subjects["data"]["standardSets"]
+
         @subject = Subject.new
         @sections = 4.times do
             @subject.sections.build
-    end
-
+        end
     end
 
     def create

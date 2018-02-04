@@ -1,6 +1,7 @@
-
-<% @standards["data"]["standards"].each do |id| %>
+<% @standards.each do |id| %>
     <% id.each do |attributes| %>
-       <p> <%= attributes["description"] %> </p>
+        <% if attributes.include?("statementNotation") && attributes["statementNotation"].include?("7.") %>
+            <p> <%= attributes["statementNotation"] %> <%= attributes["description"] %></p>
+        <% end %>
     <% end %>
 <% end %>
