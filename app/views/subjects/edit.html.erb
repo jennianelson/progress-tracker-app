@@ -5,6 +5,8 @@
 <%= form_for(@subject) do |subject_form| %>
     <%= subject_form.label :title %>
     <%= subject_form.text_field :title %>
+    <%= subject_form.label :set_id, "Set ID" %>
+    <%= subject_form.text_field :set_id %>
     <%= subject_form.submit %>
 <% end %>
 <br>

@@ -5,12 +5,17 @@
 <%= form_for(@subject) do |subject_form| %>
     <%= subject_form.label :title %>
     <%= subject_form.text_field :title %>
+    <%= subject_form.label :set_id, "Set ID" %>
+    <%= subject_form.text_field :set_id %>
     <br> <br>
     <%= subject_form.fields_for :sections, @sections do |section_form| %>
       <fieldset>
         <legend>Add/Edit Section (Optional)</legend>
         <p>
+            <%= section_form.label :title %>
             <%= section_form.text_field :title %>
+            <%= section_form.label :abbreviation %>
+            <%= section_form.text_field :abbreviation %>
         </p>
         
       </fieldset>

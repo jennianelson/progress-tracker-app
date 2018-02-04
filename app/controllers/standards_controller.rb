@@ -1,8 +1,8 @@
 class StandardsController < ApplicationController
     require 'json'
     def index
-        set_id = "standard_sets/B838B98D043045748F3814B9E43CAC85_D2505664_grade-07"
-        standards = parse_api(set_id)
+        @subject = Subject.find(params[:subject_id])
+        standards = parse_api(@subject.set_id)
         @standards = standards["data"]["standards"].sort        
         # binding.pry
         # @section = Section.find(params[:section_id])
@@ -15,7 +15,7 @@ class StandardsController < ApplicationController
         # @standards_hash.each do |hash|
         #     Standard.create(dot_notation: hash[:dot_notation], description: hash[:standard], section_id: params[:section_id])
         # end
-        redirect_to section_standards_path(@section)
+        # redirect_to section_standards_path(@section)
     end
 
     def edit

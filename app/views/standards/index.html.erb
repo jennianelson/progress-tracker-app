@@ -1,9 +1,31 @@
 
+<%= @subject.set_id %>
 
 <% @standards.each do |id| %>
     <% id.each do |attributes| %>
-        <% if attributes.include?("statementNotation") && attributes["statementNotation"].include?("7.") %>
-            <p> <%= attributes["statementNotation"] %> <%= attributes["description"] %></p>
+        <% if attributes.include?("statementNotation") && !attributes["statementNotation"].include?("CC") %>
+            <p> <%= attributes["statementNotation"] %> <%= attributes["description"] %> <%= attributes["comments"] if attributes["comments"] %></p>
         <% end %>
     <% end %>
 <% end %>
+
+<table>
+    <thead>
+        <tr>
+            <th>Standard</th>
+            <th>Section</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @standards.each do |id| %>
+            <% id.each do |attributes| %>
+                <% if attributes.include?("statementNotation") && !attributes["statementNotation"].include?("CC") %>
+        <tr>
+            <td><%= attributes["statementNotation"] %> <%= attributes["description"] %></td>
+            <td> <%= find_section(attributes["statementNotation"]).title if find_section(attributes["statementNotation"]) %> </td>
+        </tr>
+        <% end %>
+    <% end %>
+<% end %>
+    </tbody>
+</table>

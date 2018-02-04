@@ -1,4 +1,7 @@
 <%= form_for [subject, section] do |f| %>
+    <%= f.label :title %>
     <%= f.text_field :title %>
+    <%= f.label :abbreviation %>
+    <%= f.text_field :abbreviation %>
     <%= f.submit %>
 <% end %>
