@@ -1,13 +1,8 @@
 class SectionsController < ApplicationController
     before_action :set_section, only: [:show, :edit, :update, :destroy]
-    before_action :set_subject, only: [:new, :create, :update, :destroy]
+    # before_action :set_subject, only: [:new, :create, :update, :destroy]
 
     def new
-        if params[:subject_id] && !Subject.exists?(params[:subject_id])
-            redirect_to subject_path, alert: "Subject not found."
-        else
-            @section = @subject.sections.build
-        end
     end
 
     def create
@@ -20,7 +15,9 @@ class SectionsController < ApplicationController
     end
 
     def show
-        student_standards = current_user.filter_student_standards(@section)
+        @subject = Subject.find(params[:subject_id])
+        student_standards = StudentStandard.filter_by_section(@section)
+        # binding.pry
         @sorted_standards = StudentStandard.sort_collection(student_standards)
     end
 
@@ -53,7 +50,7 @@ class SectionsController < ApplicationController
         @section = Section.find(params[:id])
     end
 
-    def set_subject
-        @subject = Subject.find(params[:subject_id])
-    end
+    # def set_subject
+    #     @subject = Subject.find(params[:subject_id])
+    # end
 end

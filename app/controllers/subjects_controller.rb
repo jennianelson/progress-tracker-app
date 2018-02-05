@@ -4,7 +4,8 @@ class SubjectsController < ApplicationController
     before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
     def index
-        @subjects = current_user.subjects
+        @subjects = Subject.all
+        @user_subjects = current_user.subjects
     end
 
     def show
@@ -13,9 +14,6 @@ class SubjectsController < ApplicationController
 
     def new
         @subject = Subject.new
-        @sections = 6.times do
-            @subject.sections.build
-        end
     end
 
     def create
@@ -39,14 +37,16 @@ class SubjectsController < ApplicationController
     end
 
     def destroy
-        @subject.destroy
+        student_subject = current_user.student_subjects.find {|ss| ss.subject == @subject}
+        StudentStandard.find_and_destroy(@subject.sections)
+        student_subject.destroy
         redirect_to subjects_path
     end
 
     private
 
     def subject_params
-        params.require(:subject).permit(:title, sections_attributes: [:title])
+        params.require(:subject).permit(:title, :set_id, sections_attributes: [:title])
     end
 
     def set_subject

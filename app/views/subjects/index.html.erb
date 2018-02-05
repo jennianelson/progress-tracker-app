@@ -1,9 +1,11 @@
  <h1>Your Subjects</h1>
-    <%= button_to "Add New Subject", new_student_subject_path, method: 'get' %>
+        <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), include_blank: true %>
+        <%= submit_tag "Add Subject"%>
+    <br>
     <br>
     <div>
-        <% @subjects.each do |s| %>
+        <% @user_subjects.each do |s| %>
             <%= link_to s.title, subject_path(s) %>
-            <%= button_to "Delete  #{s.title}", student_subject_path(s), method: :delete %> <br>
+            <%= button_to "Remove  #{s.title}", subject_path(s), method: :delete %> <br>
         <% end %>
     <div>

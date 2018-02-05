@@ -23,28 +23,31 @@ class User < ApplicationRecord
   #   # end
   # end
 
-  def filter_student_standards(section)
-    self.student_standards.find_all {|ss| ss.standard.section == section }
+  # def filter_student_standards(subject)
+  #   subject.sections.map do |section|
+  #     self.student_standards.find_all {|ss| ss.standard.section == section }
+  #   end
+  # end
+
+  def add_standards(subject)
+
+    # student_subject.subject.sections.each do |section|
+    #     section.standards.each do |standard|
+    #         self.student_standards.create(standard_id: standard.id)
+    #     end
+    #   end
   end
 
-  def add_standards(student_subject)
-    student_subject.subject.sections.each do |section|
-        section.standards.each do |standard|
-            self.student_standards.create(standard_id: standard.id)
-        end
-      end
-  end
-
-  def destroy_student_standards(sections)
-    sections.each do |section|
-        section.standards.each do |standard|
-            standard.student_standards.each do|ss| 
-              if ss.user_id == self.id
-                ss.destroy
-              end
-            end
-        end
-    end
-end
+#   def destroy_student_standards(sections)
+#     sections.each do |section|
+#         section.standards.each do |standard|
+#             standard.student_standards.each do|ss| 
+#               if ss.user_id == self.id
+#                 ss.destroy
+#               end
+#             end
+#         end
+#     end
+# end
 
 end

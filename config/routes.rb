@@ -5,23 +5,23 @@ Rails.application.routes.draw do
   #STUDENT USER
   root 'subjects#index'
 
-  resources :subjects, only: [:new, :create]
+  # resources :subjects, only: [:new, :create]
   
-  resources :student_subjects, only: [:new, :create, :destroy]
+  # resources :student_subjects, only: [:new, :create, :destroy]
 
-  resources :subjects, only: [:index, :show] do
+  resources :subjects, only: [:create, :index, :show, :destroy] do
     resources :sections, only: [:show]
   end
   
-  resources :sections, only: [:show] do
+  resources :sections, only: [:show] do 
     resources :student_standards, only:[:edit, :update]
   end
 
 
   #ADMIN
-  resources :subjects, only: [:new, :create, :edit, :update, :destroy] do
-    resources :standards, only: [:index]
-  end
+  # resources :subjects, only: [:new, :create, :edit, :update, :destroy] do
+  #   resources :standards, only: [:index]
+  # end
   # resources :sections, only: [:new, :create, :edit, :update, :destroy]
 
   # resources :sections, only: [:show] do

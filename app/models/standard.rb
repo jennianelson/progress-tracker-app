@@ -12,7 +12,7 @@ class Standard < ApplicationRecord
     def self.filter_and_sort(section_id)
         filter_by_section(section_id).sort_by { |standard| standard.dot_notation }
     end
-
+    
     # def self.open_webpage(url)
     #     Nokogiri::HTML(open(url))
     # end
