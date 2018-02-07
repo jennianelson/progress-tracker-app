@@ -40,7 +40,7 @@ class SubjectsController < ApplicationController
 
     def destroy
         student_subject = current_user.student_subjects.find {|ss| ss.subject == @subject}
-        StudentStandard.find_and_destroy(@subject.sections)
+        # StudentStandard.find_and_destroy(@subject.sections)
         student_subject.destroy
         redirect_to subjects_path
     end

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
 
   #ADMIN
+  resources :standards, only: [:new, :create, :index]
+
   # resources :subjects, only: [:new, :create, :edit, :update, :destroy] do
   #   resources :standards, only: [:index]
   # end
