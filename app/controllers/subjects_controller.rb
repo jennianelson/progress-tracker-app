@@ -12,16 +12,18 @@ class SubjectsController < ApplicationController
         @subject = Subject.find(params[:id])
     end
 
-    def new
-        @subject = Subject.new
-    end
+    # def new
+    #     @subject = Subject.new
+    # end
 
     def create
-        @subject = current_user.subjects.build(subject_params)
-        if @subject.save
+        # binding.pry
+        @subject = Subject.find_by(set_id: params[:subjects])
+        if @subject
+            current_user.subjects << @subject
             redirect_to subject_path(@subject)
         else
-            render :new
+            redirect_to root_path, alert: "Subject not found"
         end
     end
 
