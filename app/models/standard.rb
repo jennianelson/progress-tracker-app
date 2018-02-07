@@ -1,5 +1,6 @@
 class Standard < ApplicationRecord
     belongs_to :section
+    belongs_to :subject
     has_many :student_standards, dependent: :destroy
     has_many :users, through: :student_standards
    
