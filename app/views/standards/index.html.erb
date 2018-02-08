@@ -1,31 +1,23 @@
-
-<%= @subject.set_id %>
-
-<% @standards.each do |id| %>
-    <% id.each do |attributes| %>
-        <% if attributes.include?("statementNotation") && !attributes["statementNotation"].include?("CC") %>
-            <p> <%= attributes["statementNotation"] %> <%= attributes["description"] %> <%= attributes["comments"] if attributes["comments"] %></p>
-        <% end %>
-    <% end %>
+<%= form_tag ('/standards'), method: "get" do %>
+    <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), include_blank: true %>
+    <%= submit_tag "Filter by subject" %>
 <% end %>
 
 <table>
     <thead>
         <tr>
             <th>Standard</th>
+            <th>Subject</th>
             <th>Section</th>
         </tr>
     </thead>
     <tbody>
-        <% @standards.each do |id| %>
-            <% id.each do |attributes| %>
-                <% if attributes.include?("statementNotation") && !attributes["statementNotation"].include?("CC") %>
+        <% @standards.each do |s| %>
         <tr>
-            <td><%= attributes["statementNotation"] %> <%= attributes["description"] %></td>
-            <td> <%= find_section(attributes["statementNotation"]).title if find_section(attributes["statementNotation"]) %> </td>
+            <td><%= s.dot_notation %> <%= s.description %></td>
+            <td><%= subject_title(s) %></td>
+            <td> <%= section_title(s) %> </td>
         </tr>
         <% end %>
-    <% end %>
-<% end %>
     </tbody>
 </table>

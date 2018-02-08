@@ -19,4 +19,8 @@ class Subject < ApplicationRecord
     #     end
     # end
 
+    def self.subjects_with_standards
+        joins(:standards).distinct
+    end
+
 end

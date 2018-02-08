@@ -11,8 +11,20 @@ class Standard < ApplicationRecord
         where(section_id: section_id)
     end
 
-    def self.filter_and_sort(section_id)
-        filter_by_section(section_id).sort_by { |standard| standard.dot_notation }
+    def self.filter_by_subject(subject_id)
+        where(subject_id: subject_id)
+    end
+
+    def self.sort_by_notation
+        all.sort_by { |standard| standard.dot_notation }
+    end
+
+    def self.filter_display(params)
+        if params["subjects"] 
+            @standards = Standard.filter_by_subject(params["subjects"]).sort_by_notation
+        else
+            @standards = Standard.sort_by_notation
+        end
     end
 
     def self.get_section_id(attributes)
@@ -20,20 +32,26 @@ class Standard < ApplicationRecord
     end
 
     def self.get_standards_hash(standards)
-        standards.each do |id|
-            id.each do |attributes|
-                #not iterating over right key yet
-                binding.pry
-                section = get_section_id(attributes)
-                if section
-                    {
-                        :description => attributes["description"],
-                        :section_id => section.id,
-                        :dot_notation => attributes["statementNotation"]
-                    }
+        standards.collect do |id|
+            id.collect do |a|
+                if a["statementNotation"] && !a["statementNotation"].include?("CC")
+                    section = get_section_id(a)
+                    if section
+                        if a["comments"]
+                            comments = a["comments"].join
+                        else
+                            comments = ""
+                        end
+                        {
+                            :description => a["description"] + comments,
+                            :section_id => section.id,
+                            :dot_notation => a["statementNotation"],
+                            :subject_id => section.subject_id
+                        }
+                    end
                 end
             end
-        end
+        end.flatten.compact
     end
     
     # def self.open_webpage(url)

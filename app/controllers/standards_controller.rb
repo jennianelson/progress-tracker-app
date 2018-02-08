@@ -1,10 +1,8 @@
 class StandardsController < ApplicationController
     require 'json'
     def index
-        # @standards = standards["data"]["standards"].sort     
-        # binding.pry
-        # @section = Section.find(params[:section_id])
-        # @standards = Standard.filter_and_sort(params[:section_id])
+        @subjects = Subject.subjects_with_standards
+        @standards = Standard.filter_display(params)
     end
 
     def new
@@ -13,15 +11,13 @@ class StandardsController < ApplicationController
 
     def create
         standards = parse_api(params[:subjects])
-        standards_hash = Standard.get_standards_hash(standards)
+        @standards = standards["data"]["standards"].sort 
+        standards_hash = Standard.get_standards_hash(@standards)
         binding.pry
-
-
-        # @standards_hash = Standard.get_standards_hash("http://www.corestandards.org/ELA-Literacy/L/7/")
-        # @standards_hash.each do |hash|
-        #     Standard.create(dot_notation: hash[:dot_notation], description: hash[:standard], section_id: params[:section_id])
-        # end
-        # redirect_to section_standards_path(@section)
+        standards_hash.each do |hash|
+            Standard.create(dot_notation: hash[:dot_notation], description: hash[:description], section_id: hash[:section_id], subject_id: hash[:subject_id])
+        end
+        redirect_to standards_path
     end
 
     def edit
