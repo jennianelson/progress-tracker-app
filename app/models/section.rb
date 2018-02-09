@@ -4,7 +4,7 @@ class Section < ApplicationRecord
 
     validates :title, presence: true
 
-    def self.find_by_notation(statementNotation)
-        all.find { |s| statementNotation.include?(s.abbreviation) if s.abbreviation}
+    def self.find_by_notation(statementNotation, subject)
+        all.find { |s| s.subject_id == subject.id && statementNotation.include?(s.abbreviation) }
     end
 end

@@ -1,7 +1,8 @@
 <%= form_tag ('/standards'), method: "get" do %>
-    <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), include_blank: true %>
-    <%= submit_tag "Filter by subject" %>
+    <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), prompt: "Display All" %>
+    <%= submit_tag "Filter" %>
 <% end %>
+<br>
 
 <table>
     <thead>

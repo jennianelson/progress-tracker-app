@@ -15,27 +15,24 @@ class Standard < ApplicationRecord
         where(subject_id: subject_id)
     end
 
-    def self.sort_by_notation
-        all.sort_by { |standard| standard.dot_notation }
+    def self.sort_by_subject_and_notation
+        order(:subject_id, :dot_notation)
     end
 
     def self.filter_display(params)
-        if params["subjects"] 
-            @standards = Standard.filter_by_subject(params["subjects"]).sort_by_notation
-        else
-            @standards = Standard.sort_by_notation
+        # binding.pry
+        if !params["subjects"].empty?
+            filter_by_subject(params["subjects"]).sort_by_subject_and_notation
+        elsif !params["subjects"] || params["subjects"].empty?
+            sort_by_subject_and_notation
         end
     end
 
-    def self.get_section_id(attributes)
-        Section.find_by_notation(attributes["statementNotation"])
-    end
-
-    def self.get_standards_hash(standards)
+    def self.get_standards_hash(standards, subject)
         standards.collect do |id|
             id.collect do |a|
                 if a["statementNotation"] && !a["statementNotation"].include?("CC")
-                    section = get_section_id(a)
+                    section = Section.find_by_notation(a["statementNotation"], subject)
                     if section
                         if a["comments"]
                             comments = a["comments"].join

@@ -10,12 +10,13 @@ class StandardsController < ApplicationController
     end
 
     def create
-        standards = parse_api(params[:subjects])
-        @standards = standards["data"]["standards"].sort 
-        standards_hash = Standard.get_standards_hash(@standards)
-        binding.pry
+        parsed_api = parse_api(params[:subjects])
+        standards = parsed_api["data"]["standards"].sort
+        subject = Subject.find_by(set_id: params[:subjects])
+        standards_hash = Standard.get_standards_hash(standards, subject)
+        # binding.pry #when section names are the same as in other subjects, the new standard gets assigned to the wrong subject
         standards_hash.each do |hash|
-            Standard.create(dot_notation: hash[:dot_notation], description: hash[:description], section_id: hash[:section_id], subject_id: hash[:subject_id])
+            Standard.create(dot_notation: hash[:dot_notation], description: hash[:description], section_id: hash[:section_id], subject_id: subject.id)
         end
         redirect_to standards_path
     end
