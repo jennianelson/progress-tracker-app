@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   
   # resources :student_subjects, only: [:new, :create, :destroy]
 
-  resources :subjects, only: [:create, :index, :show, :destroy] do
-    resources :sections, only: [:show]
-  end
+  resources :subjects, only: [:create, :index, :show, :destroy]
   
   resources :sections, only: [:show] do 
     resources :student_standards, only:[:edit, :update]

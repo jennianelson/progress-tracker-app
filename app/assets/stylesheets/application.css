@@ -14,7 +14,30 @@
  *= require_self
  */
 
-      table {
+ #student_standards {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#student_standards td, #student_standards th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#student_standards tr:nth-child(even){background-color: #f2f2f2;}
+
+#student_standards tr:hover {background-color: #ddd;}
+
+#student_standards th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+      /* table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
@@ -33,7 +56,7 @@
       textarea {
         width: 50%;
         height: 50px;
-      }
+      } */
 
       /* div.field_with_errors {
         border: 1px solid red;

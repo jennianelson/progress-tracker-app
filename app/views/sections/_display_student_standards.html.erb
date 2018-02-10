@@ -1,6 +1,7 @@
 
-    <table>
+    <table id= "student_standards">
         <tr>
+            <th>Number</th>
             <th>Standard</th>
             <th>Progress Level</th>
             <th>Comments</th>
@@ -9,11 +10,12 @@
         </tr>
     <% student_standards.each do |ss| %>
             <tr>
+                <td><%= dot_notation(ss) %></td>
                 <td><%= description(ss) %> </td>
                 <td><%= ss.progress_level %></td>
                 <td><%= ss.comments %></td>
                 <td><%= ss.evidence %></td>
-                <td>Edit Progress</td>
+                <td><%= link_to "Edit Progress", edit_section_student_standard_path(@section, ss)%></td>
             </tr>
     <%end%>
     </table>
