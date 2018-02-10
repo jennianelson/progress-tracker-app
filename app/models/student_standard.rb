@@ -1,7 +1,6 @@
 class StudentStandard < ApplicationRecord
     belongs_to :standard
     belongs_to :user
-    belongs_to :student_subject
     # helper_method :subheading, :description
     
     enum progress_level: [:beginning, :progressing, :confused, :conquered]
@@ -14,9 +13,8 @@ class StudentStandard < ApplicationRecord
         self.standard.section
     end
 
-    def self.filter_by_section(section)
-        self.select { |ss| ss.ss_standard_section == section }
-        # binding.pry
+    def self.filter_by_section(section_id)
+        self.select {|ss| ss.ss_standard_section.id == section_id}
     end
 
     def self.find_and_destroy(sections)

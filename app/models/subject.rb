@@ -19,7 +19,7 @@ class Subject < ApplicationRecord
     #     end
     # end
 
-    def self.subjects_with_standards
+    def self.find_subjects_with_standards
         joins(:standards).distinct
     end
 

@@ -7,13 +7,13 @@
             <th>Evidence</th>
             <th>Edit</th>
         </tr>
-    <% sorted_standards.each do |ss| %>
+    <% student_standards.each do |ss| %>
             <tr>
                 <td><%= description(ss) %> </td>
                 <td><%= ss.progress_level %></td>
                 <td><%= ss.comments %></td>
                 <td><%= ss.evidence %></td>
-                <td><%= link_to "Edit Progress", edit_section_student_standard_path(section, ss) %></td>
+                <td>Edit Progress</td>
             </tr>
     <%end%>
     </table>

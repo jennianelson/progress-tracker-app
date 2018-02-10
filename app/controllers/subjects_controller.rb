@@ -6,6 +6,15 @@ class SubjectsController < ApplicationController
     def index
         @subjects = Subject.all
         @user_subjects = current_user.subjects
+        if params[:subjects]
+            @subject = Subject.find_by(set_id: params[:subjects])
+            if @subject
+                current_user.add_subject_and_standards(@subject)
+                render :index
+            else
+                render :index, alert: "Subject not found"
+            end
+        end
     end
 
     def show
@@ -17,14 +26,6 @@ class SubjectsController < ApplicationController
     # end
 
     def create
-        # binding.pry
-        @subject = Subject.find_by(set_id: params[:subjects])
-        if @subject
-            current_user.subjects << @subject
-            redirect_to subject_path(@subject)
-        else
-            redirect_to root_path, alert: "Subject not found"
-        end
     end
 
     def edit

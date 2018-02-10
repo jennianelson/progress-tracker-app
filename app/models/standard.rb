@@ -21,10 +21,11 @@ class Standard < ApplicationRecord
 
     def self.filter_display(params)
         # binding.pry
-        if !params["subjects"].empty?
-            filter_by_subject(params["subjects"]).sort_by_subject_and_notation
-        elsif !params["subjects"] || params["subjects"].empty?
+        if !params["subjects"] || params["subjects"].empty?
             sort_by_subject_and_notation
+        elsif
+            !params["subjects"].empty?
+            filter_by_subject(params["subjects"]).sort_by_subject_and_notation
         end
     end
 

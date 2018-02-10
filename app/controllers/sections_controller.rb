@@ -16,9 +16,8 @@ class SectionsController < ApplicationController
 
     def show
         @subject = Subject.find(params[:subject_id])
-        student_standards = StudentStandard.filter_by_section(@section)
+        @student_standards = StudentStandard.filter_by_section(@section.id)
         # binding.pry
-        @sorted_standards = StudentStandard.sort_collection(student_standards)
     end
 
     def edit

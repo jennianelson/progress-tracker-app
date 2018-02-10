@@ -16,26 +16,19 @@ class User < ApplicationRecord
     end
   end
 
-  # def add_subject(subject_id)
-  #   # student_subject = self.student_subjects.find {|ss| ss.subject.id == subject_id.to_i }
-  #   # if !student_subject
-  #     self.student_subjects.build(subject_id: subject_id, user_id: self.id)
-  #   # end
-  # end
-
   # def filter_student_standards(subject)
   #   subject.sections.map do |section|
   #     self.student_standards.find_all {|ss| ss.standard.section == section }
   #   end
   # end
 
-  def add_standards(subject)
-
-    # student_subject.subject.sections.each do |section|
-    #     section.standards.each do |standard|
-    #         self.student_standards.create(standard_id: standard.id)
-    #     end
-    #   end
+  def add_subject_and_standards(subject)
+    self.subjects << subject
+    self.standards << subject.standards
+    # subject.standards.each do |standard|
+    #   binding.pry
+    #   self.student_standards.build(standard_id: standard.id)
+    # end
   end
 
 #   def destroy_student_standards(sections)

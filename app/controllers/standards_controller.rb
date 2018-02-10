@@ -1,7 +1,7 @@
 class StandardsController < ApplicationController
     require 'json'
     def index
-        @subjects = Subject.subjects_with_standards
+        @subjects = Subject.find_subjects_with_standards
         @standards = Standard.filter_display(params)
     end
 
@@ -14,7 +14,6 @@ class StandardsController < ApplicationController
         standards = parsed_api["data"]["standards"].sort
         subject = Subject.find_by(set_id: params[:subjects])
         standards_hash = Standard.get_standards_hash(standards, subject)
-        # binding.pry #when section names are the same as in other subjects, the new standard gets assigned to the wrong subject
         standards_hash.each do |hash|
             Standard.create(dot_notation: hash[:dot_notation], description: hash[:description], section_id: hash[:section_id], subject_id: subject.id)
         end
