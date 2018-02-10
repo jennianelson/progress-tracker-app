@@ -23,4 +23,8 @@ class Subject < ApplicationRecord
         joins(:standards).distinct
     end
 
+    def self.find_subjects_without_standards
+        includes(:standards).where(standards: {id: nil})
+    end
+
 end

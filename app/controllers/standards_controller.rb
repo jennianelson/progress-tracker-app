@@ -6,7 +6,7 @@ class StandardsController < ApplicationController
     end
 
     def new
-        @subjects = Subject.all
+        @subjects = Subject.find_subjects_without_standards
     end
 
     def create

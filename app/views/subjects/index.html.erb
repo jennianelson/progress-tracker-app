@@ -8,6 +8,6 @@
     <div>
         <% @user_subjects.each do |s| %>
             <%= link_to s.title, subject_path(s) %>
-            <%= button_to "Remove  #{s.title}", subject_path(s), method: :delete %> <br>
+            <br> <br>
         <% end %>
     <div>
