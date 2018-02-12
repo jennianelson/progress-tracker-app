@@ -1,7 +1,6 @@
 class StudentStandard < ApplicationRecord
     belongs_to :standard
     belongs_to :user
-    # helper_method :subheading, :description
     
     enum progress_level: [:beginning, :progressing, :confused, :conquered]
 
@@ -16,9 +15,5 @@ class StudentStandard < ApplicationRecord
     def self.filter_by_section(section_id)
         joins(:standard).where(standards: { section: section_id })
     end
-
-    # def dot_notation
-    #     self.standard.dot_notation
-    # end
 
 end
