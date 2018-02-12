@@ -6,6 +6,7 @@ class SubjectsController < ApplicationController
     def index
         @subjects = Subject.all
         @user_subjects = current_user.subjects
+        
         #Should all of this go in student_subject#create?
         if params[:subjects]
             @subject = Subject.find_by(set_id: params[:subjects])
