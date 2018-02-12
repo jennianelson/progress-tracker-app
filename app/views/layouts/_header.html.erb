@@ -1,5 +1,5 @@
 <nav class="">
-    <h3><%= link_to "Progress Tracker", root_path %></h3> 
+    <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "My Subjects", subjects_path %> | </p> 
     <% if !current_user %>
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
@@ -12,5 +12,5 @@
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
         <br>
     <% end %>
-    <p><%= link_to "My Subjects", subjects_path %> | </p>
+    
 </nav>

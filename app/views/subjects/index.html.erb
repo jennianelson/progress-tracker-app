@@ -1,9 +1,13 @@
- <h1>Your Subjects</h1>
+ <h1>My Subjects</h1>
         <%= form_tag ('/'), method: 'get' do %>
             <%= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>
             <%= submit_tag "Add Subject"%>
         <% end %>
-    <br>
+
+    <% if policy(@subject).create? %>
+        <%= button_to "Create a New Subject", new_subject_path, method: 'get' %>
+    <% end %>
+
     <br>
     <div>
         <% @user_subjects.each do |s| %>

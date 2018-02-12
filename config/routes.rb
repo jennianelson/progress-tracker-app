@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   
   #STUDENT USER
   root 'subjects#index'
-
-  # resources :subjects, only: [:new, :create]
   
   # resources :student_subjects, only: [:new, :create, :destroy]
 
@@ -17,7 +15,11 @@ Rails.application.routes.draw do
 
 
   #ADMIN
-  resources :standards, only: [:new, :create, :index]
+
+scope '/teacher' do
+  resources :standards
+  resources :subjects, only: [:new, :create, :edit, :destroy]
+end
 
   # resources :subjects, only: [:new, :create, :edit, :update, :destroy] do
   #   resources :standards, only: [:index]

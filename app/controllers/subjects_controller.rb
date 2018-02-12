@@ -6,12 +6,13 @@ class SubjectsController < ApplicationController
     def index
         @subjects = Subject.all
         @user_subjects = current_user.subjects
+        authorize Subject
         
         #Should all of this go in student_subject#create?
         if params[:subjects]
-            @subject = Subject.find_by(set_id: params[:subjects])
-            if @subject
-                current_user.add_subject_and_standards(@subject)
+            user_subject = Subject.find_by(set_id: params[:subjects])
+            if user_subject
+                current_user.add_subject_and_standards(user_subject)
                 render :index
             else
                 render :index, alert: "Subject not found"
@@ -20,15 +21,15 @@ class SubjectsController < ApplicationController
     end
 
     def show
-        @subject = Subject.find(params[:id])
     end
 
-    # def new
-    #     @subject = Subject.new
-    # end
+    def new
+        @subject = Subject.new
+    end
 
-    # def create
-    # end
+    def create
+        authorize Subject
+    end
 
     # def edit
     # end

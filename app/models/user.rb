@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   enum role: [:student, :teacher, :admin]
+  after_initialize :set_default_role, :if => :new_record?
 
   has_many :student_subjects, dependent: :destroy
   has_many :subjects, through: :student_subjects
@@ -9,6 +10,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
+
+  def set_default_role
+    self.role ||= :student
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
