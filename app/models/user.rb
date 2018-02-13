@@ -22,10 +22,10 @@ class User < ApplicationRecord
     end
   end
 
-  def add_subject_and_standards(subject)
-      self.subjects << subject
-      self.standards << subject.standards
-  end
+  # def add_subject_and_standards(subject)
+  #     self.subjects << subject
+  #     self.standards << subject.standards
+  # end
 
 
 end

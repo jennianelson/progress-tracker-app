@@ -1,5 +1,5 @@
 <nav class="">
-    <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "My Subjects", subjects_path %> | </p> 
+    <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "My Subjects", student_subjects_path %> | </p> 
     <% if !current_user %>
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
