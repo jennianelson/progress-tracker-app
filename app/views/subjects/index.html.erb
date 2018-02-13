@@ -4,7 +4,8 @@
             <%= submit_tag "Add Subject"%>
         <% end %>
 
-    <% if policy(@subject).create? %>
+    <% if policy(Subject).create? %>
+    <%# if current_user.teacher? || current_user.admin? %>
         <%= button_to "Create a New Subject", new_subject_path, method: 'get' %>
     <% end %>
 

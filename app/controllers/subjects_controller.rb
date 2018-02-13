@@ -6,7 +6,6 @@ class SubjectsController < ApplicationController
     def index
         @subjects = Subject.all
         @user_subjects = current_user.subjects
-        authorize Subject
         
         #Should all of this go in student_subject#create?
         if params[:subjects]
@@ -21,6 +20,7 @@ class SubjectsController < ApplicationController
     end
 
     def show
+        
     end
 
     def new
@@ -28,19 +28,21 @@ class SubjectsController < ApplicationController
     end
 
     def create
-        authorize Subject
+        @subject = Subject.new(subject_params)
+
     end
 
-    # def edit
-    # end
+    def edit
+    end
 
-    # def update
-    #     if @subject.update(subject_params)
-    #         redirect_to subject_path(@subject)
-    #     else
-    #         render :edit
-    #     end
-    # end
+    def update
+        authorize @subject
+        if @subject.update(subject_params)
+            redirect_to subject_path(@subject)
+        else
+            render :edit
+        end
+    end
 
     # def destroy
     #     student_subject = current_user.student_subjects.find {|ss| ss.subject == @subject}

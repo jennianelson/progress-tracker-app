@@ -10,4 +10,8 @@ class SubjectPolicy < ApplicationPolicy
         user.teacher? || user.admin?
     end
 
+    def update?
+        user.teacher? || user.admin?
+    end
+
 end
