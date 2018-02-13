@@ -1,38 +1,32 @@
 class StudentSubjectsController < ApplicationController
     
-    # def index
-    #     @student_subjects = current_user.student_subjects
-    # end
-
-    # def show
-    #     @student_subject = StudentSubject.find(params[:id])
-    # end
-
-    def new
+    def index
+        @subjects = Subject.find_subjects_with_standards
         @student_subject = StudentSubject.new
     end
 
     def create
-    @student_subject = current_user.student_subjects.build(student_subject_params)
+        @subject = Subject.find(student_subject_params[:subject_id])
+        @student_subject = current_user.student_subjects.build(student_subject_params)
         if @student_subject.save
-            current_user.add_standards(@student_subject)
+            current_user.standards << @subject.standards
             redirect_to root_path
         else
-            render :new
+            render :index
         end
     end
     
-    def destroy
-        student_subject = StudentSubject.find(params[:id])
-        sections = student_subject.student_subject_sections
-        current_user.destroy_student_standards(sections)
-        student_subject.destroy
-        redirect_to root_path
-    end
+    # def destroy
+    #     student_subject = StudentSubject.find(params[:id])
+    #     sections = student_subject.student_subject_sections
+    #     current_user.destroy_student_standards(sections)
+    #     student_subject.destroy
+    #     redirect_to root_path
+    # end
 
     private
 
     def student_subject_params
-        params.require(:student_subject).permit(:subject_id, :user_id)
+        params.require(:student_subject).permit(:subject_id)
     end
 end

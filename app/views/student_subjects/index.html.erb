@@ -1,9 +1,19 @@
  <h1>Your Subjects</h1>
-    <%= button_to "Add New Subject", new_student_subject_path, method: 'get' %>
+
+<%= render partial: "layouts/errors", locals: {object: @student_subject} %>
+
+<% if @subjects %>
+    <%= form_for @student_subject do |f| %>
+        <%= f.select :subject_id, @subjects.map {|s| [s.title, s.id] }, include_blank: true %>
+        <%= f.submit "Add Subject"%>
+    <% end %>
+<% else %>
+    <%= button_to "Ok!", root_path, method: 'get' %>
     <br>
-    <div>
-        <% @student_subjects.each do |s| %>
-            <%= link_to subject_title(s), student_subject_path(s) %>
-            <%= button_to "Delete  #{subject_title(s)}", student_subject_path(s), method: :delete %> <br>
-        <% end %>
-    <div>
+<% end %>
+<br>
+
+<% user_subjects.each do |s| %>
+    <%= link_to s.title, subject_path(s) %>
+    <br> <br>
+<% end %>

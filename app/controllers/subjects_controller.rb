@@ -1,22 +1,8 @@
-# CUD for Subjects will be available to Admin only
-
 class SubjectsController < ApplicationController
     before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
     def index
         @subjects = Subject.all
-        @user_subjects = current_user.subjects
-        
-        #Should all of this go in student_subject#create?
-        if params[:subjects]
-            user_subject = Subject.find_by(set_id: params[:subjects])
-            if user_subject
-                current_user.add_subject_and_standards(user_subject)
-                render :index
-            else
-                render :index, alert: "Subject not found"
-            end
-        end
     end
 
     def show
@@ -29,7 +15,6 @@ class SubjectsController < ApplicationController
 
     def create
         @subject = Subject.new(subject_params)
-
     end
 
     def edit

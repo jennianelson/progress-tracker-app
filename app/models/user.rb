@@ -23,8 +23,8 @@ class User < ApplicationRecord
   end
 
   def add_subject_and_standards(subject)
-    self.subjects << subject
-    self.standards << subject.standards
+      self.subjects << subject
+      self.standards << subject.standards
   end
 
 
