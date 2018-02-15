@@ -1,5 +1,25 @@
  <h1>All Subjects</h1>
 
 <% if policy(Subject).create? %>
-    <%= button_to "Create a New Subject", new_subject_path, method: 'get' %>
+    <%= button_to "Add a New Subject", new_subject_path, method: 'get' %>
 <% end %>
+<br>
+<h3>Subjects Already Added</h3>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Sections</th>
+    </tr>
+    <% @subjects.each do |subject|%>
+    <tr>
+        <td> <%= subject.title %></td>
+        <td>
+            <ul>
+                <% subject.sections.each do |section| %>
+                    <li><%= section.title %></li>
+                <% end %>
+            </ul>
+        </td>
+    </tr>
+<% end %>
+</table>

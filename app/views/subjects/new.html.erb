@@ -1,26 +1,10 @@
 <h3>Add a New Subject</h3>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
-
-<%= form_tag '/subjects' do %>
-    <%= select_tag 'subject[:set_id]', options_for_select(@subjects_array) %>
-    <%#= subject_form.label :title %>
-    <%#= subject_form.text_field :title %>
+<% if @subject.errors.any? %>
+    <%=link_to "OK", new_subject_path%>
+<% else %>
+    <%= render partial: "form", locals: {subject: @subject} %>
+<%end%>
     
-    <%#= subject_form.text_field :set_id %>
-    <br> <br>
-    <%#= subject_form.fields_for :sections, @sections do |section_form| %>
-      <fieldset>
-        <legend>Add/Edit Section (Optional)</legend>
-        <p>
-            <%#= section_form.label :title %>
-            <%#= section_form.text_field :title %>
-            <%#= section_form.label :abbreviation %>
-            <%#= section_form.text_field :abbreviation %>
-        </p>
-        
-      </fieldset>
-     <%# end %>
-    <br>
-    <%= submit_tag "Submit" %>
-<% end %>
+    

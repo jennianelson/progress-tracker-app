@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery 
     #took out with: :exception
   before_action :authenticate_user!
+  helper_method :parse_api
   
   def after_sign_in_path_for(resource)
     request.env['omniauth.origin'] || root_path
@@ -13,7 +14,5 @@ class ApplicationController < ActionController::Base
     :headers => {'Content-Type' => 'application/json', 'Api-key' => 'KeVHcV7nEnj4PGEGaSdovabT'} )
     JSON.parse standard_set.to_s
   end
-
-  
 
 end

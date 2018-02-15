@@ -1,6 +1,6 @@
 <h1>Add Standards</h1>
 
 <%= form_tag ('/standards') do %>
-            <%= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>
-            <%= submit_tag "Choose Subject"%>
+    <%= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>
+    <%= submit_tag "Choose Subject"%>
 <% end %>

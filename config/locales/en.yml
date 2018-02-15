@@ -37,3 +37,9 @@ en:
     attributes:
       student_subject:
         user_id: "You"
+
+en:
+  activerecord:
+    attributes:
+      subject:
+        set_id: "Subject"

@@ -9,19 +9,18 @@ class SubjectsController < ApplicationController
     end
 
     def new
-        # binding.pry
         @subject = Subject.new
-        subjects = parse_api("jurisdictions", "B838B98D043045748F3814B9E43CAC85")["data"]["standardSets"]
-        # @subjects_array = subjects.map do |s|
-        #      { title: s["title"] + s["subject"],
-        #         set_id: s["id"] }
-        # end
-        @subjects_array = subjects.map { |s| [ s["title"] + " " + s["subject"], s["id"] ] }
-        
+        5.times { @subject.sections.build } 
     end
 
     def create
+        # binding.pry
         @subject = Subject.new(subject_params)
+        if @subject.save
+            redirect_to subjects_path
+        else
+            render :new
+        end
     end
 
     def edit
@@ -46,7 +45,7 @@ class SubjectsController < ApplicationController
     private
 
     def subject_params
-        params.require(:subject).permit(:title, :set_id, sections_attributes: [:title])
+        params.require(:subject).permit(:title, :set_id, sections_attributes: [:title, :abbreviation])
     end
 
     def set_subject

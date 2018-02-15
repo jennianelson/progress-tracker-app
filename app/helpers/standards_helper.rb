@@ -7,4 +7,8 @@ module StandardsHelper
     def subject_title(standard)
         standard.subject.title
     end
+
+    def standards_array
+        
+    end
 end

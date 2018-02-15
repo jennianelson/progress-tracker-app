@@ -1,0 +1,23 @@
+<%= form_for subject do |f| %>
+        <%= f.select :set_id, options_for_select(subjects_array), prompt: "Choose Subject" %> <br> <br>
+        <fieldset>
+        <legend>Subject Title</legend>
+        <%= f.label :title, "What would you like to name this subject?" %>
+        <%= f.text_field :title %>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Add Sections</legend>
+            <b>*Note: Abbreviations must match what is in the official notation of the standard.  For example, the notation for a Speaking &amp; Listening standard in English Language Arts would be something like "SL.1.2," so the abbreviation is "SL."  </b>
+        <%= f.fields_for :sections do |section_form| %>
+            <p>
+                <%= section_form.label :title %>
+                <%= section_form.text_field :title %>
+                <%= section_form.label :abbreviation %>
+                <%= section_form.text_field :abbreviation %>
+            </p>
+        <% end %>
+        </fieldset>
+        <br>
+        <%= f.submit %>
+<% end %>
