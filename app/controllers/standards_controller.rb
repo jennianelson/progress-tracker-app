@@ -10,7 +10,7 @@ class StandardsController < ApplicationController
     end
 
     def create
-        parsed_api = parse_api(params[:subjects])
+        parsed_api = parse_api("standards_sets", params[:subjects])
         standards = parsed_api["data"]["standards"].sort
         subject = Subject.find_by(set_id: params[:subjects])
         standards_hash = Standard.get_standards_hash(standards, subject)

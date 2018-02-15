@@ -9,7 +9,15 @@ class SubjectsController < ApplicationController
     end
 
     def new
+        # binding.pry
         @subject = Subject.new
+        subjects = parse_api("jurisdictions", "B838B98D043045748F3814B9E43CAC85")["data"]["standardSets"]
+        # @subjects_array = subjects.map do |s|
+        #      { title: s["title"] + s["subject"],
+        #         set_id: s["id"] }
+        # end
+        @subjects_array = subjects.map { |s| [ s["title"] + " " + s["subject"], s["id"] ] }
+        
     end
 
     def create

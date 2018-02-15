@@ -2,24 +2,25 @@
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
 
-<%= form_for(@subject) do |subject_form| %>
-    <%= subject_form.label :title %>
-    <%= subject_form.text_field :title %>
-    <%= subject_form.label :set_id, "Set ID" %>
-    <%= subject_form.text_field :set_id %>
+<%= form_tag '/subjects' do %>
+    <%= select_tag 'subject[:set_id]', options_for_select(@subjects_array) %>
+    <%#= subject_form.label :title %>
+    <%#= subject_form.text_field :title %>
+    
+    <%#= subject_form.text_field :set_id %>
     <br> <br>
-    <%= subject_form.fields_for :sections, @sections do |section_form| %>
+    <%#= subject_form.fields_for :sections, @sections do |section_form| %>
       <fieldset>
         <legend>Add/Edit Section (Optional)</legend>
         <p>
-            <%= section_form.label :title %>
-            <%= section_form.text_field :title %>
-            <%= section_form.label :abbreviation %>
-            <%= section_form.text_field :abbreviation %>
+            <%#= section_form.label :title %>
+            <%#= section_form.text_field :title %>
+            <%#= section_form.label :abbreviation %>
+            <%#= section_form.text_field :abbreviation %>
         </p>
         
       </fieldset>
-     <% end %>
+     <%# end %>
     <br>
-    <%= subject_form.submit %>
+    <%= submit_tag "Submit" %>
 <% end %>
