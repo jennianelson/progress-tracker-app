@@ -1,12 +1,16 @@
 <nav class="">
-    <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "My Subjects", student_subjects_path %> | </p> 
+<% if policy(Subject).create? %>
+    <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "All Subjects", subjects_path %> | </p> 
+<% else %>
+    <p><b><%= link_to "Progress Tracker", root_path %></b></p>
+<% end %>
     <% if !current_user %>
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
         <% if current_user.username %>
             Hi, <b><%= current_user.username %>!</b>
         <% else %>
-            You are signed in as <b><%= current_user.email %></b>.
+            You are signed in as <b><%= current_user.email %> (<%= current_user.role.titleize %>)</b>.
         <% end %>
         <br>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
