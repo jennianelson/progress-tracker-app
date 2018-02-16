@@ -11,4 +11,7 @@
     <%= subject_form.submit %>
 <% end %>
 <br>
-<%= button_to "Delete Subject", subject_path(@subject), method: 'delete' %>
+<% if policy(@subject).destroy? %>
+    <%= form_tag "/teacher/subjects/#{@subject.id}", method: "delete" %>
+    <%= submit_tag "Delete Subject" %>
+<% end %>

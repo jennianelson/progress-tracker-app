@@ -14,4 +14,8 @@ class SubjectPolicy < ApplicationPolicy
         user.teacher? || user.admin?
     end
 
+    def destroy?
+        user.teacher? || user.admin?
+    end
+
 end

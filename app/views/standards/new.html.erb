@@ -1,6 +1,19 @@
-<h1>Add Standards</h1>
+<h1>Add Standards to <%=@subject.title%></h1>
 
-<%= form_tag ('/standards') do %>
-    <%= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>
-    <%= submit_tag "Choose Subject"%>
+<ul>
+<% @standards.each do |standard| %>
+    <% standard.each do |a| %>
+        <% if a["statementLabel"] == "Content Standard" %>
+        <li><%= a["description"] %> <%= a["comments"] if a["comments"] %></li>
+        <% end %>
+    <% end %>
 <% end %>
+</ul>
+<%= form_tag standards_path %>
+    <%= hidden_field_tag 'subject_id', @subject.id %>
+    <%= submit_tag %>
+
+<%#= form_tag ('/standards') do %>
+    <%#= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>
+    <%#= submit_tag "Choose Subject"%>
+<%# end %>

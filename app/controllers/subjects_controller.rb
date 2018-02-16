@@ -14,10 +14,10 @@ class SubjectsController < ApplicationController
     end
 
     def create
-        # binding.pry
         @subject = Subject.new(subject_params)
+        authorize @subject
         if @subject.save
-            redirect_to subjects_path
+            redirect_to new_subject_standard_path(@subject)
         else
             render :new
         end
@@ -35,12 +35,11 @@ class SubjectsController < ApplicationController
         end
     end
 
-    # def destroy
-    #     student_subject = current_user.student_subjects.find {|ss| ss.subject == @subject}
-    #     # StudentStandard.find_and_destroy(@subject.sections)
-    #     student_subject.destroy
-    #     redirect_to subjects_path
-    # end
+    def destroy
+        authorize @subject
+        @subject.destroy
+        redirect_to subjects_path
+    end
 
     private
 
@@ -52,3 +51,5 @@ class SubjectsController < ApplicationController
         @subject = Subject.find(params[:id])
     end
 end
+
+# <option value="B838B98D043045748F3814B9E43CAC85_D1000255_grade-06">Grade 6 Science (2005)</option>

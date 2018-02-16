@@ -30,6 +30,7 @@ class Standard < ApplicationRecord
     end
 
     def self.get_standards_hash(standards, subject)
+        binding.pry
         standards.collect do |id|
             id.collect do |a|
                 if a["statementNotation"] && !a["statementNotation"].include?("CC")

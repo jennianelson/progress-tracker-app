@@ -12,7 +12,12 @@
     </tr>
     <% @subjects.each do |subject|%>
     <tr>
-        <td> <%= subject.title %></td>
+        <td> <% if policy(subject).update? %>
+                <%= link_to subject.title, edit_subject_path(subject) %>
+            <% else %>
+                <%= subject.title %>
+            <% end %>
+        </td>
         <td>
             <ul>
                 <% subject.sections.each do |section| %>
