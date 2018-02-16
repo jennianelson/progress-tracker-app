@@ -8,7 +8,13 @@ module StandardsHelper
         standard.subject.title
     end
 
-    def standards_array
-        
+    def display_standard_text(a)
+        if a["description"] && a["statementLabel"] != "Disciplinary Core Idea" && a["statementLabel"] != "Domain" 
+            if a["comments"]
+                puts "#{a["description"]}"+ "#{a["comments"]}"
+            else
+                a["description"]
+            end
+        end
     end
 end

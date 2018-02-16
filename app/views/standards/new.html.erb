@@ -3,15 +3,21 @@
 <ul>
 <% @standards.each do |standard| %>
     <% standard.each do |a| %>
-        <% if a["statementLabel"] == "Content Standard" %>
-        <li><%= a["description"] %> <%= a["comments"] if a["comments"] %></li>
-        <% end %>
+        <%# if a["description"] && a["statementLabel"] != "Disciplinary Core Idea" && a["statementLabel"] != "Domain"%>
+        <li> <%= display_standard_text(a) %> </li> <br>
+        <%# end %>
     <% end %>
 <% end %>
 </ul>
 <%= form_tag standards_path %>
     <%= hidden_field_tag 'subject_id', @subject.id %>
-    <%= submit_tag %>
+    <% @standards.each do |standard| %>
+        <% standard.each do |a| %>
+        <%= text_area_tag 'standard' %>
+           <% end %>
+    <% end %>
+    <%= submit_tag "Add These Standards"%>
+     
 
 <%#= form_tag ('/standards') do %>
     <%#= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>

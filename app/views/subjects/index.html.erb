@@ -13,7 +13,8 @@
     <% @subjects.each do |subject|%>
     <tr>
         <td> <% if policy(subject).update? %>
-                <%= link_to subject.title, edit_subject_path(subject) %>
+                <%= link_to subject.title, subject_path(subject) %> <br> <br>
+                <i><%= link_to "Add Standards", new_subject_standard_path(subject)%></i>
             <% else %>
                 <%= subject.title %>
             <% end %>
