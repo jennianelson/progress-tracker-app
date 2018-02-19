@@ -29,29 +29,42 @@ class Standard < ApplicationRecord
         end
     end
 
-    def self.get_standards_hash(standards, subject)
-        binding.pry
-        standards.collect do |id|
-            id.collect do |a|
-                if a["statementNotation"] && !a["statementNotation"].include?("CC")
-                    section = Section.find_by_notation(a["statementNotation"], subject)
-                    if section
-                        if a["comments"]
-                            comments = a["comments"].join
-                        else
-                            comments = ""
-                        end
-                        {
-                            :description => a["description"] + comments,
-                            :section_id => section.id,
-                            :dot_notation => a["statementNotation"],
-                            :subject_id => section.subject_id
-                        }
+    def self.get_standards_array(standards)
+        standards.collect do |standard|
+            standard.collect do |a|
+                if a["description"] && a["statementLabel"] != "Disciplinary Core Idea" && a["statementLabel"] != "Domain" 
+                    if a["comments"]
+                        puts "#{a["description"]}"+ "#{a["comments"]}"
+                    else
+                        a["description"]
                     end
                 end
             end
         end.flatten.compact
     end
+    # def self.get_standards_hash(standards, subject)
+    #     binding.pry
+    #     standards.collect do |id|
+    #         id.collect do |a|
+    #             if a["statementNotation"] && !a["statementNotation"].include?("CC")
+    #                 section = Section.find_by_notation(a["statementNotation"], subject)
+    #                 if section
+    #                     if a["comments"]
+    #                         comments = a["comments"].join
+    #                     else
+    #                         comments = ""
+    #                     end
+    #                     {
+    #                         :description => a["description"] + comments,
+    #                         :section_id => section.id,
+    #                         :dot_notation => a["statementNotation"],
+    #                         :subject_id => section.subject_id
+    #                     }
+    #                 end
+    #             end
+    #         end
+    #     end.flatten.compact
+    # end
     
     # def self.open_webpage(url)
     #     Nokogiri::HTML(open(url))

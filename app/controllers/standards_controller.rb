@@ -9,7 +9,9 @@ class StandardsController < ApplicationController
         @subject = Subject.find(params[:subject_id])
         parsed_api = parse_api("standard_sets", @subject.set_id)
         # binding.pry
-        @standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
+        standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
+        @standards_array = Standard.get_standards_array(standards)
+        @sections = @subject.sections
         # @subjects = Subject.find_subjects_without_standards
     end
 

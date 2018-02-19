@@ -1,22 +1,16 @@
 <h1>Add Standards to <%=@subject.title%></h1>
-
-<ul>
-<% @standards.each do |standard| %>
-    <% standard.each do |a| %>
-        <%# if a["description"] && a["statementLabel"] != "Disciplinary Core Idea" && a["statementLabel"] != "Domain"%>
-        <li> <%= display_standard_text(a) %> </li> <br>
-        <%# end %>
-    <% end %>
-<% end %>
-</ul>
 <%= form_tag standards_path %>
     <%= hidden_field_tag 'subject_id', @subject.id %>
-    <% @standards.each do |standard| %>
-        <% standard.each do |a| %>
-        <%= text_area_tag 'standard' %>
-           <% end %>
+    <% @standards_array.each do |standard| %>
+        <%= label_tag 'standard[dot_notation]', "Notation" %>
+        <%= text_field_tag 'standard[dot_notation]' %> <br>
+        <%= label_tag "Choose Section" %>
+        <%= select_tag 'standard[section]', options_from_collection_for_select(@sections, "id", "title") %> <br>
+        <%= label_tag 'standard[description]', "Description:" %> <br>
+        <%= text_area_tag 'standard[description]', standard %> <br>
+         <br>
     <% end %>
-    <%= submit_tag "Add These Standards"%>
+<%= submit_tag "Add These Standards"%>
      
 
 <%#= form_tag ('/standards') do %>
