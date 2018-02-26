@@ -6,6 +6,13 @@ class Standard < ApplicationRecord
     has_many :users, through: :student_standards
    
     validates :description, presence: true
+    # accepts_nested_attributes_for :standards
+
+    def standards_attributes=(standards_attributes)
+        standards_attributes.each do |i, standard_hash|
+            Standard.create(standard_hash)
+        end
+    end
 
     def self.filter_by_section(section_id)
         where(section_id: section_id)

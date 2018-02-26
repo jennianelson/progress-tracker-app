@@ -51,5 +51,3 @@ class SubjectsController < ApplicationController
         @subject = Subject.find(params[:id])
     end
 end
-
-# <option value="B838B98D043045748F3814B9E43CAC85_D1000255_grade-06">Grade 6 Science (2005)</option>

@@ -8,29 +8,28 @@ class StandardsController < ApplicationController
     def new
         @subject = Subject.find(params[:subject_id])
         parsed_api = parse_api("standard_sets", @subject.set_id)
-        # binding.pry
         standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
         @standards_array = Standard.get_standards_array(standards)
+        @standard = Standard.new
         @sections = @subject.sections
-        # @subjects = Subject.find_subjects_without_standards
     end
 
     def create
-        binding.pry
-        subject = Subject.find(params[:subject_id])
-        standards_hash = Standard.get_standards_hash(standards, subject)
-        standards_hash.each do |hash|
-            Standard.create(dot_notation: hash[:dot_notation], description: hash[:description], section_id: hash[:section_id], subject_id: subject.id)
+        @subject = Subject.find(standard_params["standards_attributes"]["0"]["subject_id"])
+        Standard.new(standard_params)
+        if @subject.standards
+            redirect_to standards_path
+        else
+            redirect_to new_subject_standard_path(@subject)
         end
-        redirect_to standards_path
     end
 
     def edit
-        @standard = standard.find(params[:id])
+        @standard = Standard.find(params[:id])
     end
 
     def update
-        @standard = standard.find(params[:id])
+        @standard = Standard.find(params[:id])
         if @standard.update(standard_params)
             redirect_to section_path(@standard.section)
         else
@@ -44,6 +43,6 @@ class StandardsController < ApplicationController
     private
 
     def standard_params
-        params.require(:standard).permit(:description, :dot_notation, :subheading, :section_id)
+        params.require(:standard).permit(standards_attributes: [:description, :dot_notation, :section_id, :subject_id])
     end
 end

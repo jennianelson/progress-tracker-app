@@ -1,19 +1,21 @@
 <h1>Add Standards to <%=@subject.title%></h1>
-<%= form_tag standards_path %>
-    <%= hidden_field_tag 'subject_id', @subject.id %>
-    <% @standards_array.each do |standard| %>
-        <%= label_tag 'standard[dot_notation]', "Notation" %>
-        <%= text_field_tag 'standard[dot_notation]' %> <br>
-        <%= label_tag "Choose Section" %>
-        <%= select_tag 'standard[section]', options_from_collection_for_select(@sections, "id", "title") %> <br>
-        <%= label_tag 'standard[description]', "Description:" %> <br>
-        <%= text_area_tag 'standard[description]', standard %> <br>
-         <br>
+<% if @subject.standards.empty? %>
+    <%= form_for @standard do |f| %>
+        <% @standards_array.each_with_index do |standard, index| %>
+            <%= f.fields_for :standards_attributes do |s| %>
+                <b><%= s.label "[#{index}][dot_notation]", "Notation:" %></b>
+                <%= s.text_field "[#{index}][dot_notation]" %>  <br>
+                <b><%= s.label "[#{index}][section_id]", "Section:" %></b>
+                <%= s.select "[#{index}][section_id]", options_from_collection_for_select(@sections, "id", "title") %> <br>
+                <b><%= s.label "[#{index}][description]", "Description:" %></b>
+                <%= standard %> <br>
+                <%= s.hidden_field "[#{index}][description]", :value => standard %>
+                <%= s.hidden_field "[#{index}][subject_id]", value: @subject.id %>
+            <% end %>
+        <% end %>
+        <br>
+        <%= f.submit "Add These Standards"%>
     <% end %>
-<%= submit_tag "Add These Standards"%>
-     
-
-<%#= form_tag ('/standards') do %>
-    <%#= select_tag "subjects", options_from_collection_for_select(@subjects, "set_id", "title"), include_blank: true %>
-    <%#= submit_tag "Choose Subject"%>
-<%# end %>
+<% else %>
+<h2>Standards have already been added to this subject. Click on the Subject to view its sections and standards.</h2>
+<% end %>
