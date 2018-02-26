@@ -13,7 +13,7 @@
 <% end %>
 <br>
 
-<% user_subjects.each do |s| %>
-    <%= link_to s.title, subject_path(s) %>
+<% user_subjects.each do |ss| %>
+    <%= link_to student_subject_title(ss), student_subject_path(ss) %>
     <br> <br>
 <% end %>

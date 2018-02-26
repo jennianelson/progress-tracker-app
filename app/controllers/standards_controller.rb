@@ -18,7 +18,7 @@ class StandardsController < ApplicationController
         @subject = Subject.find(standard_params["standards_attributes"]["0"]["subject_id"])
         Standard.new(standard_params)
         if @subject.standards
-            redirect_to standards_path
+            redirect_to subject_path(@subject)
         else
             redirect_to new_subject_standard_path(@subject)
         end

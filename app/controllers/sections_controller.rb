@@ -16,6 +16,8 @@ class SectionsController < ApplicationController
     def show
         student_standards = StudentStandard.filter_by_section(@section.id)
         @student_standards = StudentStandard.sort_by_dot_notation(student_standards)
+        subject = @section.subject
+        @student_subject = StudentSubject.find_by(subject_id: subject.id)
     end
 
     # def edit

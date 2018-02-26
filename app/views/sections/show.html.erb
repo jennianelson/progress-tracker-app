@@ -1,5 +1,6 @@
 <h1><%= @section.title %></h1>
-<p><i><%= link_to "Back to all sections", subject_path(@section.subject) %></i></p>
+
+<p><i><%= link_to "Back to all sections", student_subject_path(@student_subject) %></i></p>
 
 <%= render partial: "display_student_standards", locals: {student_standards: @student_standards, section: @section} %>
 

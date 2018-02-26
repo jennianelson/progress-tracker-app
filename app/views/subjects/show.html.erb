@@ -3,8 +3,12 @@
         <%= link_to "Edit Subject", edit_subject_path(@subject) %> | 
 <% end %>
 <%= link_to "Back to All Subjects", root_path %> </i>
-<ul>
+
 <% @subject.sections.each do |section| %>
-    <li><h4><%= link_to section.title, section_path(section) %> <h4></li>
+    <h3><%= section.title %></h3>
+    <% section.standards.each do |standard| %>
+    <ul>
+        <li><%= standard.dot_notation %> <%= standard.description %></li>
+    </ul>
+    <% end %>
 <% end %>
-</ul>

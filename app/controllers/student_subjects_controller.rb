@@ -5,6 +5,10 @@ class StudentSubjectsController < ApplicationController
         @student_subject = StudentSubject.new
     end
 
+    def show
+        @student_subject = StudentSubject.find(params[:id])
+    end
+
     def create
         @subject = Subject.find(student_subject_params[:subject_id])
         @student_subject = current_user.student_subjects.build(student_subject_params)
