@@ -14,7 +14,9 @@
     <tr>
         <td> <% if policy(subject).update? %>
                 <%= link_to subject.title, subject_path(subject) %> <br> <br>
-                <i><%= link_to "Add Standards", new_subject_standard_path(subject)%></i>
+                <% if subject.standards.empty? %>
+                    <i><%= link_to "Add Standards", new_subject_standard_path(subject)%></i>
+                <% end %>
             <% else %>
                 <%= subject.title %>
             <% end %>

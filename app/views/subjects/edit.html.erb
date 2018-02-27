@@ -1,11 +1,11 @@
 <h2>Edit <%= @subject.title %> </h2>
 <% if policy(@subject).destroy? %>
-    <%= form_tag "/teacher/subjects/#{@subject.id}", method: "delete" %>
-    <%= submit_tag "Delete Subject" %>
+    <%= button_to "Delete Subject", subject_path, method: "delete" %>
 <% end %>
 <br><br>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
+
 <% if @subject.errors.any? %>
     <%=link_to "OK", edit_subject_path(@subject)%>
 <% else %>

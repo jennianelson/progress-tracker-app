@@ -1,25 +1,8 @@
 <h1>Add Standards to <%=@subject.title%></h1>
 <% if @subject.standards.empty? %>
-    <%= form_for @standard do |f| %>
-        <% @standards_array.each_with_index do |standard, index| %>
-        <fieldset>
-            <%= f.fields_for :standards_attributes do |s| %>
-                <b><%= s.label "[#{index}][dot_notation]", "Notation:" %></b>
-                <%= s.text_field "[#{index}][dot_notation]" %>  <br>
-                <b><%= s.label "[#{index}][section_id]", "Section:" %></b>
-                <%= s.select "[#{index}][section_id]", options_from_collection_for_select(@sections, "id", "title") %> <br>
-                <b><%= s.label "[#{index}][description]", "Description:" %></b>
-                <%= standard %> <br> <br>
-                <i><%= s.label "[#{index}][include]", "Do not include this standard" %></i>
-                <%= s.radio_button "[#{index}][include]", "include" %> <br>
-                <%= s.hidden_field "[#{index}][description]", :value => standard %>
-                <%= s.hidden_field "[#{index}][subject_id]", value: @subject.id %>
-            <% end %>
-        </fieldset>
-        <% end %>
-        <br>
-        <%= f.submit "Add These Standards"%>
-    <% end %>
+
+    <%= render partial: "form", locals: {standard: @standard, standards_array: @standards_array, sections: @sections, subject: @subject} %>
+
 <% else %>
-<h2>Standards have already been added to this subject. Click on the Subject to view its sections and standards.</h2>
+<h2>Standards have already been added to this subject.</h2>
 <% end %>

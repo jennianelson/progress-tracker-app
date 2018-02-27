@@ -1,6 +1,6 @@
 <h2><%= @subject.title %></h2>
 <i><% if policy(@subject).update? %>
-        <%= link_to "Edit Subject", edit_subject_path(@subject) %> | 
+        <%= link_to "Edit Subject", edit_subject_path(@subject) %> | <%= link_to "Edit Standards", edit_subject_standard_path(@subject) %> |
 <% end %>
 <%= link_to "Back to All Subjects", subjects_path %> </i>
 

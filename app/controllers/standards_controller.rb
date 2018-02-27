@@ -43,6 +43,6 @@ class StandardsController < ApplicationController
     private
 
     def standard_params
-        params.require(:standard).permit(standards_attributes: [:description, :dot_notation, :section_id, :subject_id])
+        params.require(:standard).permit(standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
     end
 end

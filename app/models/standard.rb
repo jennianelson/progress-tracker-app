@@ -10,7 +10,9 @@ class Standard < ApplicationRecord
 
     def standards_attributes=(standards_attributes)
         standards_attributes.each do |i, standard_hash|
-            Standard.create(standard_hash)
+            if !standard_hash["include"]
+                Standard.create(standard_hash)
+            end
         end
     end
 
@@ -41,7 +43,7 @@ class Standard < ApplicationRecord
             standard.collect do |a|
                 if a["description"] && a["statementLabel"] != "Disciplinary Core Idea" && a["statementLabel"] != "Domain" 
                     if a["comments"]
-                        puts "#{a["description"]}"+ "#{a["comments"]}"
+                        "#{a["description"]};" + " #{a["comments"][0]}"
                     else
                         a["description"]
                     end

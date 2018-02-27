@@ -26,6 +26,7 @@ class SubjectsController < ApplicationController
 
     def edit
         authorize @subject
+        5.times { @subject.sections.build } 
     end
 
     def update
