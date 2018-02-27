@@ -1,17 +1,15 @@
 <h2>Edit <%= @subject.title %> </h2>
-
-<%= render partial: "layouts/errors", locals: {object: @subject} %>
-
-<%= form_for(@subject) do |subject_form| %>
-    <%= subject_form.label :title %>
-    <%= subject_form.text_field :title %>
-    <%= subject_form.label :set_id, "Set ID" %>
-    <%= subject_form.text_field :set_id %>
-   
-    <%= subject_form.submit %>
-<% end %>
-<br>
 <% if policy(@subject).destroy? %>
     <%= form_tag "/teacher/subjects/#{@subject.id}", method: "delete" %>
     <%= submit_tag "Delete Subject" %>
 <% end %>
+<br><br>
+
+<%= render partial: "layouts/errors", locals: {object: @subject} %>
+<% if @subject.errors.any? %>
+    <%=link_to "OK", edit_subject_path(@subject)%>
+<% else %>
+    <%= form_for @subject do |f| %>
+        <%= render partial: "form", locals: {f: f} %>
+    <% end %>
+<%end%>

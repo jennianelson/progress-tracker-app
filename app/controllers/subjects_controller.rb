@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
     before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
     def index
-        @subjects = Subject.all
+        @subjects = Subject.all.sort_by { |s| s.set_id }
     end
 
     def show
@@ -10,6 +10,7 @@ class SubjectsController < ApplicationController
 
     def new
         @subject = Subject.new
+        authorize @subject
         5.times { @subject.sections.build } 
     end
 
@@ -24,6 +25,7 @@ class SubjectsController < ApplicationController
     end
 
     def edit
+        authorize @subject
     end
 
     def update
@@ -50,4 +52,5 @@ class SubjectsController < ApplicationController
     def set_subject
         @subject = Subject.find(params[:id])
     end
+
 end

@@ -1,8 +1,12 @@
-<h3>Add a New Subject</h3>
+<h1>Add a New Subject</h1>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
+
 <% if @subject.errors.any? %>
     <%=link_to "OK", new_subject_path%>
 <% else %>
-    <%= render partial: "form", locals: {subject: @subject} %>
+    <%= form_for @subject do |f| %>
+        <%= f.select :set_id, options_for_select(subjects_array), prompt: "Choose Subject" %> <br> <br>
+        <%= render partial: "form", locals: {f: f} %>
+    <% end %>
 <%end%>

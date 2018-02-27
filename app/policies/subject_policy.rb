@@ -6,7 +6,15 @@ class SubjectPolicy < ApplicationPolicy
         @subject = subject
     end
 
+    def new?
+        user.teacher? || user.admin?
+    end
+
     def create?
+        user.teacher? || user.admin?
+    end
+
+    def edit?
         user.teacher? || user.admin?
     end
 

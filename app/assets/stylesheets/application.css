@@ -13,15 +13,24 @@
  *= require_tree .
  *= require_self
  */
- #error_explanation {
+
+ #flash_alert, #flash_notice {
+  color: green;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 16pt;
+}
+
+ #error_explanation, #flash_error {
   color: red;
   font-weight: bold;
   font-style: italic;
+  font-size: 16pt;
 }
 
-.field_with_errors {
+/* .field_with_errors {
   border: 1px solid red;
-}
+} */
 
  #student_standards {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;

@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   root 'student_subjects#index'
   
   resources :student_subjects, only: [:index, :show, :create]
-
-  # resources :subjects, only: [:show]
   
   resources :sections, only: [:show] do 
     resources :student_standards, only:[:edit, :update]
@@ -18,7 +16,7 @@ Rails.application.routes.draw do
 
 scope '/teacher' do
   resources :standards, only: [:index, :create, :update]
-  resources :subjects, only: [:index, :show, :new, :create, :edit, :destroy] do 
+  resources :subjects do 
       resources :standards, only: [:show, :new, :edit]
   end
 end

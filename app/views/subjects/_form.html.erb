@@ -1,5 +1,4 @@
-<%= form_for subject do |f| %>
-        <%= f.select :set_id, options_for_select(subjects_array), prompt: "Choose Subject" %> <br> <br>
+
         <fieldset>
         <legend>Subject Title</legend>
         <%= f.label :title, "What would you like to name this subject?" %>
@@ -7,7 +6,7 @@
         </fieldset>
         <br>
         <fieldset>
-            <legend>Add Sections</legend>
+            <legend>Sections</legend>
             <%= f.fields_for :sections do |section_form| %>
             <p>
                 <%= section_form.label :title %>
@@ -16,5 +15,4 @@
             <% end %>
         </fieldset>
         <br>
-        <%= f.submit "Create Subject" %>
-<% end %>
+        <%= f.submit %>

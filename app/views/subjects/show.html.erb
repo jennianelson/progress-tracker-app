@@ -2,7 +2,7 @@
 <i><% if policy(@subject).update? %>
         <%= link_to "Edit Subject", edit_subject_path(@subject) %> | 
 <% end %>
-<%= link_to "Back to All Subjects", root_path %> </i>
+<%= link_to "Back to All Subjects", subjects_path %> </i>
 
 <% @subject.sections.each do |section| %>
     <h3><%= section.title %></h3>

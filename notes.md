@@ -1,10 +1,4 @@
 2/26
-    Need to clean up routes:
-    Student
-        Home: Student Subject index
-        Student subject show
-        
-
-    Teacher
-
-    Admin
+    Admin/teacher should be able to add standards for any subject but need to test more
+    Student only has access to student subjects, student standards routes
+        Task: Dot notation sorting is no longer working--need to come up with a different way to sort correctly

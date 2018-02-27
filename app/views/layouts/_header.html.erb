@@ -10,7 +10,7 @@
         <% if current_user.username %>
             Hi, <b><%= current_user.username %>!</b>
         <% else %>
-            You are signed in as <b><%= current_user.email %> (<%= current_user.role.titleize %>)</b>.
+            You are a <%= current_user.role %> signed in as <b><%= current_user.email %></b>.
         <% end %>
         <br>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
