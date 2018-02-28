@@ -1,16 +1,20 @@
- <h1>All Subjects</h1>
-
+ <h1>Subjects</h1>
 <% if policy(Subject).create? %>
     <%= button_to "Add a New Subject", new_subject_path, method: 'get' %>
 <% end %>
 <br>
-<h3>Subjects Already Added</h3>
+<h3>Click on a subject in the table or choose from the dropdown menu to go to that subject's page.</h3>
+<%= form_tag subjects_path, method: "get" do %>
+    <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), prompt: "Choose a subject's page" %>
+    <%= submit_tag "Go" %>
+<% end %>
+<br>
 <table>
     <tr>
         <th>Title</th>
         <th>Sections</th>
     </tr>
-    <% @subjects.each do |subject|%>
+        <% @subjects.each do |subject|%>
     <tr>
         <td> <% if policy(subject).update? %>
                 <%= link_to subject.title, subject_path(subject) %> <br> <br>
@@ -29,5 +33,6 @@
             </ul>
         </td>
     </tr>
-<% end %>
+    <% end %>
+
 </table>

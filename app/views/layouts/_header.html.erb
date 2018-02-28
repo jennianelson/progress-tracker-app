@@ -3,7 +3,7 @@
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
          <% if policy(Subject).create? %>
-            <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "All Subjects", subjects_path %> | <%= link_to "Standards List", standards_path %></p> 
+            <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "All Subjects", subjects_path %></p>
         <% else %>
             <p><b><%= link_to "Progress Tracker", root_path %></b></p>
         <% end %>

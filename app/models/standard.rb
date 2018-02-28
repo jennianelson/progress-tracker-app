@@ -29,7 +29,6 @@ class Standard < ApplicationRecord
     end
 
     def self.filter_display(params)
-        # binding.pry
         if !params["subjects"] || params["subjects"].empty?
             sort_by_subject_and_notation
         elsif

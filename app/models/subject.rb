@@ -20,6 +20,19 @@ class Subject < ApplicationRecord
         end
     end
 
+    def self.filter_subject_display(params)
+        if !params["subjects"] || params["subjects"].empty?
+            sort_by_set_id
+        elsif
+            !params["subjects"].empty?
+            find(params["subjects"])
+        end
+    end
+
+    def self.sort_by_set_id
+        order(:set_id)
+    end
+
     def self.find_subjects_with_standards
         joins(:standards).distinct
     end

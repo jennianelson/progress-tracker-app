@@ -1,6 +1,9 @@
 class StudentSubjectsController < ApplicationController
     
     def index
+        if !current_user.student?
+            redirect_to subjects_path
+        end
         @subjects = Subject.find_subjects_with_standards
         @student_subject = StudentSubject.new
     end
