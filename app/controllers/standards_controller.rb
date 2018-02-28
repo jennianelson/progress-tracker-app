@@ -31,7 +31,7 @@ class StandardsController < ApplicationController
     def update
         @standard = Standard.find(params[:id])
         if @standard.update(standard_params)
-            redirect_to section_path(@standard.section)
+            redirect_to subject_path(@standard.subject)
         else
             render :edit
         end
@@ -43,6 +43,6 @@ class StandardsController < ApplicationController
     private
 
     def standard_params
-        params.require(:standard).permit(standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
+        params.require(:standard).permit(:description, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
     end
 end

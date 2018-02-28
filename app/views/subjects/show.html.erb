@@ -1,14 +1,15 @@
 <h2><%= @subject.title %></h2>
 <i><% if policy(@subject).update? %>
-        <%= link_to "Edit Subject", edit_subject_path(@subject) %> | <%= link_to "Edit Standards", edit_subject_standard_path(@subject) %> |
+        <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
 <% end %>
 <%= link_to "Back to All Subjects", subjects_path %> </i>
 
 <% @subject.sections.each do |section| %>
     <h3><%= section.title %></h3>
-    <% section.standards.each do |standard| %>
+    <% sort_standards(section.standards).each do |standard| %>
     <ul>
-        <li><%= standard.dot_notation %> <%= standard.description %></li>
+        <li><%= standard.dot_notation %> <%= standard.description %> 
+        <%= link_to "edit", edit_subject_standard_path(@subject, standard) %> </li>
     </ul>
     <% end %>
 <% end %>

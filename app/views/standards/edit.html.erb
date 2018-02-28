@@ -1,10 +1,10 @@
-
+<h2>Edit Standard</h2>
 <%= render partial: "layouts/errors", locals: {object: @standard} %>
 
 <%= form_for @standard do |f| %>
     <%= f.text_area :description %> <br>
-    <%= f.hidden_field :section_id %>
     <%= f.submit %>
 <% end %>
+<br>
 <%= button_to "Delete standard", standard_path(@standard), method: 'delete' %>
-<%= link_to "Cancel", section_path(@standard.section) %>
+<%= link_to "Cancel", subject_path(@standard.subject) %>
