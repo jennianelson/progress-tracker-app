@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
     has_many :sections, dependent: :destroy
-    accepts_nested_attributes_for :sections
+    accepts_nested_attributes_for :sections, allow_destroy: true
     has_many :standards
     
     has_many :student_subjects, dependent: :destroy
@@ -11,9 +11,18 @@ class Subject < ApplicationRecord
 
     def sections_attributes=(section_attributes)
         section_attributes.each do |i, section_hash|
-            if section_hash[:title].present?
-            section = Section.find_or_create_by(title: section_hash[:title])
-                if !self.sections.include?(section)
+            if section_hash[:id].present?
+                if section_hash[:title].empty?
+                    section = Section.find(section_hash[:id])
+                    section.destroy
+                else
+                    section = Section.find(section_hash[:id])
+                    section.title = section_hash[:title]
+                    section.save
+                end
+            else
+                if section_hash[:title].present?
+                    section = Section.create(title: section_hash[:title])
                     self.sections << section
                 end
             end

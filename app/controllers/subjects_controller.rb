@@ -30,10 +30,11 @@ class SubjectsController < ApplicationController
 
     def edit
         authorize @subject
-        5.times { @subject.sections.build } 
+        5.times { @subject.sections.build }
     end
 
     def update
+        # binding.pry
         authorize @subject
         if @subject.update(subject_params)
             redirect_to subject_path(@subject)
@@ -51,7 +52,7 @@ class SubjectsController < ApplicationController
     private
 
     def subject_params
-        params.require(:subject).permit(:title, :set_id, sections_attributes: [:title, :abbreviation])
+        params.require(:subject).permit(:title, :set_id, sections_attributes: [:title, :id, :subject_id])
     end
 
     def set_subject
