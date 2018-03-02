@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
     has_many :sections, dependent: :destroy
-    accepts_nested_attributes_for :sections, allow_destroy: true
+    # accepts_nested_attributes_for :sections, allow_destroy: true
     has_many :standards
     
     has_many :student_subjects, dependent: :destroy

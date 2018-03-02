@@ -6,7 +6,6 @@ class Standard < ApplicationRecord
     has_many :users, through: :student_standards
    
     validates :description, presence: true
-    # accepts_nested_attributes_for :standards
 
     def standards_attributes=(standards_attributes)
         standards_attributes.each do |i, standard_hash|
@@ -50,51 +49,5 @@ class Standard < ApplicationRecord
             end
         end.flatten.compact
     end
-    # def self.get_standards_hash(standards, subject)
-    #     binding.pry
-    #     standards.collect do |id|
-    #         id.collect do |a|
-    #             if a["statementNotation"] && !a["statementNotation"].include?("CC")
-    #                 section = Section.find_by_notation(a["statementNotation"], subject)
-    #                 if section
-    #                     if a["comments"]
-    #                         comments = a["comments"].join
-    #                     else
-    #                         comments = ""
-    #                     end
-    #                     {
-    #                         :description => a["description"] + comments,
-    #                         :section_id => section.id,
-    #                         :dot_notation => a["statementNotation"],
-    #                         :subject_id => section.subject_id
-    #                     }
-    #                 end
-    #             end
-    #         end
-    #     end.flatten.compact
-    # end
-    
-    # def self.open_webpage(url)
-    #     Nokogiri::HTML(open(url))
-    # end
 
-    # def self.get_standards_hash(url)
-    #     doc = open_webpage(url)
-    #     a1 = doc.css("div.standard").collect do |s|
-    #         s_size = s.children.size
-    #         { 
-    #         :dot_notation => s.children[0].text,
-    #         :standard => s.children[1..s_size].text 
-    #         }
-    #     end
-    #     a2 = doc.css("div.substandard").collect do |ss|
-    #         ss_size = ss.children.size
-    #         {
-    #         :dot_notation => ss.children[0].text,
-    #         :standard => ss.children[1..ss_size].text 
-    #         }
-    #     end
-    #     (a1 << a2).flatten!
-    # end
-    
 end

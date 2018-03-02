@@ -1,9 +1,15 @@
 2/26
     Admin/teacher should be able to add standards for any subject but need to test more
     Student only has access to student subjects, student standards routes
-        Task: Dot notation sorting is no longer working--need to come up with a different way to sort correctly
+        /Task: Dot notation sorting is no longer working--need to come up with a different way to sort correctly
 2/27            *Fixed this by use dashes instead of dots
-    Task: Ability to edit standards and sections
+    /Task: Ability to edit standards and sections 
+        /*Not thrilled about the way standards can be edited; need ability to both edit description, and add more standards from API
+           /*On the right track here.  Admin can add more standards in section edit.
+3/1
+    Task: Need to keep students from editing other students's standards and subjects!
+    /Task: Keep working on Section edit with nested form to add standards. Trying to use checkboxes
+        *Ready to work on update action
 
 
 Admin Routes

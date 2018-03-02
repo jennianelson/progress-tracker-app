@@ -1,8 +1,9 @@
 <h2>Edit <%= @subject.title %> </h2>
+<%= link_to "Cancel", subject_path(@subject) %> <br> <br>
 <% if policy(@subject).destroy? %>
     <%= button_to "Delete Subject", subject_path, method: "delete" %>
 <% end %>
-<br><br>
+<br>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
 

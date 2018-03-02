@@ -1,17 +1,5 @@
 class SectionsController < ApplicationController
-    before_action :set_section, only: [:show, :edit, :update, :destroy]
-
-    # def new
-    # end
-
-    # def create
-    #     @section = @subject.sections.build(section_params)
-    #     if @section.save
-    #         redirect_to section_path(@section)
-    #     else
-    #         render "new"
-    #     end
-    # end
+    before_action :set_section
 
     def show
         student_standards = StudentStandard.filter_by_section(@section.id)
@@ -20,36 +8,34 @@ class SectionsController < ApplicationController
         @student_subject = StudentSubject.find_by(subject_id: subject.id)
     end
 
-    # def edit
-    #     if params[:subject_id] && !Subject.exists?(params[:subject_id])
-    #         redirect_to section_path(@section), alert: "Associated subject not found."
-    #     end
-    # end
+    def edit
+        @subject = @section.subject
+        parsed_api = parse_api("standard_sets", @subject.set_id)
+        standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
+        standards_array = Standard.get_standards_array(standards)
+        description_array = @subject.standards.map {|standard| standard.description}
+        @standards = standards_array.select do |description|
+            description_array.exclude?(description)
+        end
+        # binding.pry
+        # @standards.each do |description|
+        #     @section.standards.build(description: description)
+        # end
+    end
 
-    # def update
-    #     if @section.update(section_params)
-    #         redirect_to section_path(@section)
-    #     else
-    #         render :edit
-    #     end
-    # end
-
-    # def destroy
-    #     @section.destroy
-    #     redirect_to subject_path(@subject)
-    # end
+    def update
+        binding.pry
+        redirect_to edit_section_path(@section)
+    end
 
     private
-
-    # def section_params
-    #     params.require(:section).permit(:title)
-    # end
+    
+    def section_params
+        params.require(:section).permit(standards_attributes: [:description, :dot_notation])
+    end
 
     def set_section
         @section = Section.find(params[:id])
     end
 
-    # def set_subject
-    #     @subject = Subject.find(params[:subject_id])
-    # end
 end

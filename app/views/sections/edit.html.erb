@@ -1,7 +1,10 @@
-<h2>Edit "<%= @section.title %>" Section </h2>
-
-<%= render partial: "layouts/errors", locals: {object: @section} %>
-<%= render partial: "form", locals: {subject: @subject, section: @section} %>
-<br>
-<%= button_to "Delete Section", section_path(@section), method: 'delete' %>
-<%= link_to "Cancel", section_path(@section) %>
+<h1>Edit <%=@section.title %></h1>
+<p>Check the box if the text is a standard you would like to add to this section.</p>
+<%= form_for @section do |f| %>
+    <% @standards.each_with_index do |description, index| %>
+    <%= check_box_tag "section[standards_attributes][#{index}][description]", description %> 
+    <%= label_tag "section[standards_attributes][#{index}][description]", description %><br>
+    <% end %>
+    <br>
+<%= f.submit %>
+<% end %>

@@ -5,7 +5,7 @@
 <%= link_to "Back to All Subjects", subjects_path %> </i>
 
 <% @subject.sections.each do |section| %>
-    <h3><%= section.title %></h3>
+    <h3><%= section.title %> <i><%= link_to "Add standards to this section", edit_section_path(section) %></i></h3>
     <% sort_standards(section.standards).each do |standard| %>
     <ul>
         <li><%= standard.dot_notation %> <%= standard.description %> 
