@@ -9,6 +9,6 @@ module StandardsHelper
     end
 
     def sort_standards(standards)
-        standards.sort_by {|s| s.dot_notation}
+        standards.sort_by {|s| s.dot_notation.to_i}
     end
 end

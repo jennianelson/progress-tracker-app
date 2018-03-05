@@ -1,3 +1,20 @@
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Standard Text</th>
+    </tr>
+    
+    <% @standards_not_added.each_with_index do |description, index| %>
+    <tr>
+        <td><%= text_field_tag "section[standards_attributes][#{index}][dot_notation]" %></td>
+        <td>
+        <%= check_box_tag "section[standards_attributes][#{index}][description]", description %> 
+        <%= label_tag "section[standards_attributes][#{index}][description]", description %>
+        </td>
+    </tr>
+    <% end %>
+</table>
+
 2/26
     Admin/teacher should be able to add standards for any subject but need to test more
     Student only has access to student subjects, student standards routes

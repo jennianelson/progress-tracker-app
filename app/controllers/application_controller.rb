@@ -14,9 +14,23 @@ class ApplicationController < ActionController::Base
   def parse_api(resource, set_id)
     standard_set = HTTParty.get("http://api.commonstandardsproject.com/api/v1/#{resource}/#{set_id}",
     :headers => {'Content-Type' => 'application/json', 'Api-key' => 'KeVHcV7nEnj4PGEGaSdovabT'} )
-    JSON.parse standard_set.to_s
+    JSON.parse(standard_set.to_s)
   end
-  
+
+  def get_standards_array(parsed_api)
+    standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
+      standards.map do |standard|
+        a = standard[1]
+          if a["depth"] > 0
+              if a["comments"]
+                "#{a["description"]}--" + " #{a["comments"][0]}"
+              else
+                a["description"]
+              end
+          end
+      end.compact
+    end
+ 
   private
 
   def user_not_authorized

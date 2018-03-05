@@ -1,5 +1,5 @@
 class StandardsController < ApplicationController
-    require 'json'
+    # require 'json'
     def index
         @subjects = Subject.find_subjects_with_standards
         @standards = Standard.filter_display(params)
@@ -7,9 +7,7 @@ class StandardsController < ApplicationController
 
     def new
         @subject = Subject.find(params[:subject_id])
-        parsed_api = parse_api("standard_sets", @subject.set_id)
-        standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
-        @standards_array = Standard.get_standards_array(standards)
+        @standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
         @standard = Standard.new
         @sections = @subject.sections
     end
@@ -17,10 +15,11 @@ class StandardsController < ApplicationController
     def create
         @subject = Subject.find(standard_params["standards_attributes"]["0"]["subject_id"])
         Standard.new(standard_params)
-        if @subject.standards
+        if @subject.standards.present?
             redirect_to subject_path(@subject)
         else
-            redirect_to new_subject_standard_path(@subject)
+            render :new
+            # redirect_to new_subject_standard_path(@subject)
         end
     end
 
@@ -43,6 +42,6 @@ class StandardsController < ApplicationController
     private
 
     def standard_params
-        params.require(:standard).permit(:description, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
+        params.require(:standard).permit(:description, :dot_notation, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
     end
 end

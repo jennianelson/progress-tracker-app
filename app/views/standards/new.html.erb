@@ -1,4 +1,6 @@
 <h1>Add Standards to <%=@subject.title%></h1>
+<%= render partial: "layouts/errors", locals: {object: @standard} %>
+
 <% if @subject.standards.empty? %>
 
     <%= render partial: "form", locals: {standard: @standard, standards_array: @standards_array, sections: @sections, subject: @subject} %>

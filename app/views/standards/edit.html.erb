@@ -2,6 +2,8 @@
 <%= render partial: "layouts/errors", locals: {object: @standard} %>
 
 <%= form_for @standard do |f| %>
+    <%= f.label :dot_notation, "Number:" %>
+    <%= f.text_field :dot_notation %> <br>
     <%= f.text_area :description %> <br>
     <%= f.submit %>
 <% end %>

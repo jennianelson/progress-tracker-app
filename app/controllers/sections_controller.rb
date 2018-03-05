@@ -10,28 +10,27 @@ class SectionsController < ApplicationController
 
     def edit
         @subject = @section.subject
-        parsed_api = parse_api("standard_sets", @subject.set_id)
-        standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
-        standards_array = Standard.get_standards_array(standards)
+        # 3.times {@section.standards.build}
+        standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
         description_array = @subject.standards.map {|standard| standard.description}
-        @standards = standards_array.select do |description|
+        @standards_not_added = standards_array.select do |description|
             description_array.exclude?(description)
         end
-        # binding.pry
-        # @standards.each do |description|
-        #     @section.standards.build(description: description)
-        # end
     end
 
     def update
-        binding.pry
-        redirect_to edit_section_path(@section)
+        @subject = @section.subject
+        if @section.update(section_params)
+            redirect_to subject_path(@subject)
+        else
+            render :edit
+        end
     end
 
     private
     
     def section_params
-        params.require(:section).permit(standards_attributes: [:description, :dot_notation])
+        params.require(:section).permit(standards_attributes: [:description, :dot_notation, :subject_id])
     end
 
     def set_section

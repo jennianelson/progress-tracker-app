@@ -5,7 +5,7 @@ class Standard < ApplicationRecord
     has_many :student_standards, dependent: :destroy
     has_many :users, through: :student_standards
    
-    validates :description, presence: true
+    validates :description, :dot_notation, presence: true
 
     def standards_attributes=(standards_attributes)
         standards_attributes.each do |i, standard_hash|
@@ -35,19 +35,4 @@ class Standard < ApplicationRecord
             filter_by_subject(params["subjects"]).sort_by_subject_and_notation
         end
     end
-
-    def self.get_standards_array(standards)
-        standards.collect do |standard|
-            standard.collect do |a|
-                if a["description"] && a["statementLabel"] != "Disciplinary Core Idea" && a["statementLabel"] != "Domain" 
-                    if a["comments"]
-                        "#{a["description"]};" + " #{a["comments"][0]}"
-                    else
-                        a["description"]
-                    end
-                end
-            end
-        end.flatten.compact
-    end
-
 end
