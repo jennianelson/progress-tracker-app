@@ -6,7 +6,7 @@
 <h3>Click on a subject in the table or choose from the dropdown menu to go to that subject's page.</h3>
 <%= form_tag subjects_path, method: "get" do %>
     <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), prompt: "Choose a subject's page" %>
-    <%= submit_tag "Go" %>
+    <%= submit_tag "Go", class: "go" %>
 <% end %>
 <br>
 <table>

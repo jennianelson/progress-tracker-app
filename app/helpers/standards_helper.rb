@@ -1,5 +1,4 @@
 module StandardsHelper
-    require 'bigdecimal'
 
     def section_title(standard)
         standard.section.title

@@ -10,7 +10,6 @@ class SectionsController < ApplicationController
 
     def edit
         @subject = @section.subject
-        # 3.times {@section.standards.build}
         standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
         description_array = @subject.standards.map {|standard| standard.description}
         @standards_not_added = standards_array.select do |description|

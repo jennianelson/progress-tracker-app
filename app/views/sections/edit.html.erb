@@ -1,22 +1,27 @@
-<h1>Edit "<%=@section.title %>" Section in <%=@subject.title %></h1>
-<p>Check the standards that you would like to add to this section.</p>
+<h1>Edit "<%=@section.title %>" section in <%=@subject.title %></h1>
+<% if @standards_not_added.empty? %>
+    <h3><i>All available standards have been added.</i></h3>
+    <%= button_to "Back", subject_path(@subject), method: "get" %>
+<% else %>
+    <p>Check the standards that you would like to add to this section.</p>
 
-<%= form_for @section do |f| %>
-    <table>
-    <tr>
-        <th>Number</th>
-        <th>Standard Text</th>
-    </tr>
-    <% @standards_not_added.each_with_index do |description, index| %>
-    <tr>
-        <td><%= text_field_tag "section[standards_attributes][#{index}][dot_notation]" %></td>
-        <td>
-        <%= check_box_tag "section[standards_attributes][#{index}][description]", description %> 
-        <%= label_tag "section[standards_attributes][#{index}][description]", description %>
-        <%= hidden_field_tag "section[standards_attributes][#{index}][subject_id]", @subject.id %>
-        </td>
-    </tr>
+    <%= form_for @section do |f| %>
+        <table>
+        <tr>
+            <th>Number</th>
+            <th>Standard Text</th>
+        </tr>
+        <% @standards_not_added.each_with_index do |description, index| %>
+        <tr>
+            <td><%= text_field_tag "section[standards_attributes][#{index}][dot_notation]" %></td>
+            <td>
+            <%= check_box_tag "section[standards_attributes][#{index}][description]", description %> 
+            <%= label_tag "section[standards_attributes][#{index}][description]", description %>
+            <%= hidden_field_tag "section[standards_attributes][#{index}][subject_id]", @subject.id %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    <%= f.submit %>
     <% end %>
-</table>
-<%= f.submit %>
 <% end %>

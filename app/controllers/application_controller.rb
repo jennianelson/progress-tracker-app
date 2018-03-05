@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery 
     #took out with: :exception
   before_action :authenticate_user!
-  helper_method :parse_api
+  # helper_method :parse_api
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
