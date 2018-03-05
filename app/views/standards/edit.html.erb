@@ -1,12 +1,15 @@
 <h2>Edit Standard</h2>
+<p><%= link_to "Cancel", subject_path(@standard.subject) %></p>
+
 <%= render partial: "layouts/errors", locals: {object: @standard} %>
 
 <%= form_for @standard do |f| %>
     <%= f.label :dot_notation, "Number:" %>
     <%= f.text_field :dot_notation %> <br>
     <%= f.text_area :description %> <br>
+    <%= f.label :section_id, "Change Section" %>
+    <%= f.collection_select(:section_id, @subject.sections, :id, :title) %> <br>
     <%= f.submit %>
 <% end %>
 <br>
-<%= button_to "Delete standard", standard_path(@standard), method: 'delete' %>
-<%= link_to "Cancel", subject_path(@standard.subject) %>
+<%= button_to "Delete standard", standard_path(@standard), method: 'delete', class: "delete" %>

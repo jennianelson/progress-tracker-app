@@ -25,6 +25,7 @@ class StandardsController < ApplicationController
 
     def edit
         @standard = Standard.find(params[:id])
+        @subject = @standard.subject
     end
 
     def update
@@ -42,6 +43,6 @@ class StandardsController < ApplicationController
     private
 
     def standard_params
-        params.require(:standard).permit(:description, :dot_notation, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
+        params.require(:standard).permit(:description, :dot_notation, :section_id, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
     end
 end

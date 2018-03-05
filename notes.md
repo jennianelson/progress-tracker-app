@@ -1,20 +1,3 @@
-<table>
-    <tr>
-        <th>Number</th>
-        <th>Standard Text</th>
-    </tr>
-    
-    <% @standards_not_added.each_with_index do |description, index| %>
-    <tr>
-        <td><%= text_field_tag "section[standards_attributes][#{index}][dot_notation]" %></td>
-        <td>
-        <%= check_box_tag "section[standards_attributes][#{index}][description]", description %> 
-        <%= label_tag "section[standards_attributes][#{index}][description]", description %>
-        </td>
-    </tr>
-    <% end %>
-</table>
-
 2/26
     Admin/teacher should be able to add standards for any subject but need to test more
     Student only has access to student subjects, student standards routes
@@ -22,12 +5,11 @@
 2/27            *Fixed this by use dashes instead of dots
     /Task: Ability to edit standards and sections 
         /*Not thrilled about the way standards can be edited; need ability to both edit description, and add more standards from API
-           /*On the right track here.  Admin can add more standards in section edit.
+           /*Admin can add more standards in section edit.
 3/1
     Task: Need to keep students from editing other students's standards and subjects!
     /Task: Keep working on Section edit with nested form to add standards. Trying to use checkboxes
-        *Ready to work on update action
-
+        /*Ready to work on update action
 
 Admin Routes
     Subject Index(root): /subjects      subjects_path
