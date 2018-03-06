@@ -1,16 +1,22 @@
 <h1>Edit <%= @subject.title %></h1>
 
 <i><%= link_to "Cancel", subject_path(@subject) %></i>
-<% if policy(@subject).destroy? %>
-    <i> | <%= link_to "Delete", subject_path, :data => { :confirm => "Are you sure you want to delete #{@subject.title}? This action cannot be undone." }, method: "delete", class: "delete" %></i>
-<% end %>
+
+    <% if policy(@subject).destroy? %>
+        <i> | <%= link_to "Delete", subject_path, :data => { :confirm => "Are you sure you want to delete #{@subject.title}? This action cannot be undone." }, method: "delete", class: "delete" %></i>
+    <% end %>
+
  <br> <br>
+
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
 
 <% if @subject.errors.any? %>
     <%=link_to "OK", edit_subject_path(@subject)%>
 <% else %>
     <%= form_for @subject do |f| %>
-        <%= render partial: "form", locals: {f: f} %>
+        <%= render layout: "subjects/form", locals: {f: f} do %>
+            <legend><b>Edit Sections</b></legend>
+            <b>*Note: Removing a section will also remove all standards associated. Any student progress associated with these standards will also be deleted.</b>
+        <% end %>
     <% end %>
 <%end%>

@@ -1,7 +1,7 @@
 <h1>Edit "<%=@section.title %>" section in <%=@subject.title %></h1>
+<%= button_to "Back", subject_path(@subject), method: "get" %>
 <% if @standards_not_added.empty? %>
     <h3><i>All available standards have been added.</i></h3>
-    <%= button_to "Back", subject_path(@subject), method: "get" %>
 <% else %>
     <p>Check the standards that you would like to add to this section.</p>
 

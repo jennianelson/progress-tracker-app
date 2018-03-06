@@ -7,6 +7,8 @@
 <% else %>
     <%= form_for @subject do |f| %>
         <%= f.select :set_id, options_for_select(subjects_array), prompt: "Choose Subject" %> <br> <br>
-        <%= render partial: "form", locals: {f: f} %>
+        <%= render layout: "subjects/form", locals: {f: f} do %>
+            <legend><b>Add Sections</b></legend>
+        <% end %>
     <% end %>
 <%end%>

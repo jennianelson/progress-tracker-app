@@ -1,12 +1,12 @@
 
         <fieldset>
-        <legend>Subject Title</legend>
+        <legend><b>Subject Title</b></legend>
         <%= f.label :title, "What would you like to name this subject?" %>
         <%= f.text_field :title %>
         </fieldset>
         <br>
         <fieldset>
-            <legend>Sections</legend>
+            <%= yield %>
             <%= f.fields_for :sections do |section_form| %>
             <p>
                 <%= section_form.label :title %>

@@ -9,8 +9,11 @@ module StandardsHelper
     end
 
     def sort_standards(standards)
-        # binding.pry
-        standards.sort_by { |s| s.dot_notation }
+        if standards.first.asn_id !=0
+            standards.sort_by { |s| s.asn_id }
+        else
+            standards.sort_by { |s| s.dot_notation }
+        end
     end
 
     def display_sub_standard(standard)
