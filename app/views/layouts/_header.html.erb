@@ -3,7 +3,7 @@
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
          <% if current_user.admin? %>
-            <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "All Users", users_path %></p>
+            <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "Manage Users", users_path %></p>
         <% else %>
             <p><b><%= link_to "Progress Tracker", root_path %></b></p>
         <% end %>

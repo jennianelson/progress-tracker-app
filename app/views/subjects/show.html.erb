@@ -5,11 +5,11 @@
 <%= link_to "Back to All Subjects", subjects_path %> </i>
 
 <% @subject.sections.each do |section| %>
-    <h3><%= section.title %> <i><%= link_to "Add standards to this section", edit_section_path(section) %></i></h3>
+    <h3><%= section.title %> <i><%= link_to "Add standards to this section", edit_section_path(section) if policy(@subject).update? %></i></h3>
     <% sort_standards(section.standards).each do |standard| %>
     <ul>
         <li style="<%= display_sub_standard(standard) %>"> <%= standard.dot_notation %> <%= standard.description %> 
-        <%= link_to "edit", edit_subject_standard_path(@subject, standard) %></li>
+        <%= link_to "edit", edit_subject_standard_path(@subject, standard) if policy(@subject).update?%></li>
     </ul>
     <% end %>
 <% end %>

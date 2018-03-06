@@ -1,6 +1,5 @@
-<h2>Edit <%= object.title %> </h2>
-<i><%= link_to "Cancel", object_path %> |
+<i><%= link_to "Cancel", object_path %></i>
 <% if policy(object).destroy? %>
-    <%= link_to "Delete #{object.title}", object_path, :data => { :confirm => "Are you sure?" }, method: "delete", class: "delete" %></i>
+    <i> | <%= link_to "Delete", object_path, :data => { :confirm => "Are you sure?" }, method: "delete", class: "delete" %></i>
 <% end %>
 <br>

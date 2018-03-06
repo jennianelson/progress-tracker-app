@@ -11,10 +11,8 @@ class SectionsController < ApplicationController
     def edit
         @subject = @section.subject
         standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
-        description_array = @subject.standards.map {|standard| standard.description}
-        @standards_not_added = standards_array.select do |description|
-            description_array.exclude?(description)
-        end
+
+        @standards_not_added = Section.find_standards_not_added(standards_array, @subject)
     end
 
     def update
@@ -29,7 +27,7 @@ class SectionsController < ApplicationController
     private
     
     def section_params
-        params.require(:section).permit(standards_attributes: [:description, :dot_notation, :subject_id])
+        params.require(:section).permit(standards_attributes: [:description, :dot_notation, :subject_id, :asn_id])
     end
 
     def set_section

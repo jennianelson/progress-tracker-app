@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   #ADMIN
 
 scope '/teacher' do
-  resources :standards, only: [:index, :create, :update]
+  resources :standards, only: [:index, :create, :update, :destroy]
   resources :subjects do 
       resources :standards, only: [:show, :new, :edit]
   end

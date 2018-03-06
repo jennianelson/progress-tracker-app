@@ -1,7 +1,10 @@
+<h1>Edit <%= @subject.title %></h1>
 
-<%= render partial: "layouts/edit_links", locals: { object: @subject, object_path: subject_path } %>
-<br>
-
+<i><%= link_to "Cancel", subject_path(@subject) %></i>
+<% if policy(@subject).destroy? %>
+    <i> | <%= link_to "Delete", subject_path, :data => { :confirm => "Are you sure you want to delete #{@subject.title}? This action cannot be undone." }, method: "delete", class: "delete" %></i>
+<% end %>
+ <br> <br>
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
 
 <% if @subject.errors.any? %>

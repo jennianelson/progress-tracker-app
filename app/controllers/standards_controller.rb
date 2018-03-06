@@ -1,5 +1,5 @@
 class StandardsController < ApplicationController
-    # require 'json'
+  
     def index
         @subjects = Subject.find_subjects_with_standards
         @standards = Standard.filter_display(params)
@@ -19,7 +19,6 @@ class StandardsController < ApplicationController
             redirect_to subject_path(@subject)
         else
             render :new
-            # redirect_to new_subject_standard_path(@subject)
         end
     end
 
@@ -38,11 +37,14 @@ class StandardsController < ApplicationController
     end
 
     def destroy
+        @standard = Standard.find(params[:id])
+        @standard.destroy
+        redirect_to root_path
     end
 
     private
 
     def standard_params
-        params.require(:standard).permit(:description, :dot_notation, :section_id, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id])
+        params.require(:standard).permit(:description, :dot_notation, :section_id, :asn_id, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id, :asn_id])
     end
 end

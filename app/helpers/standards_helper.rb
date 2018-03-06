@@ -9,6 +9,7 @@ module StandardsHelper
     end
 
     def sort_standards(standards)
+        # binding.pry
         standards.sort_by { |s| s.dot_notation }
     end
 

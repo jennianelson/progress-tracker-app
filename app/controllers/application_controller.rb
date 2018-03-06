@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery 
     #took out with: :exception
   before_action :authenticate_user!
-  # helper_method :parse_api
+  helper_method :parse_api
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -23,9 +23,9 @@ class ApplicationController < ActionController::Base
         a = standard[1]
           if a["depth"] > 0
               if a["comments"]
-                "#{a["description"]}--" + " #{a["comments"][0]}"
+                { description: "#{a["description"]}--" + " #{a["comments"][0]}", asn_id: a["asnIdentifier"] }
               else
-                a["description"]
+                { description: a["description"], asn_id: a["asnIdentifier"] }
               end
           end
       end.compact

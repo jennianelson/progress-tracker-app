@@ -1,16 +1,17 @@
 <%= form_for standard do |f| %>
-        <% standards_array.each_with_index do |standard, index| %>
+        <% standards_array.each_with_index do |standard_hash, index| %>
         <fieldset>
             <%= f.fields_for :standards_attributes do |s| %>
                 <i><%= s.label "[#{index}][include]", "Check if you DO NOT want to include this standard." %></i>
                 <%= check_box_tag "standard[standards_attributes][[#{index}][include]]", "no" %> <br>
-                <b><%= s.label "[#{index}][dot_notation]", "Notation:" %></b>
+                <b><%= s.label "[#{index}][dot_notation]", "Number:" %></b>
                 <%= s.text_field "[#{index}][dot_notation]" %>  <br>
                 <b><%= s.label "[#{index}][section_id]", "Section:" %></b>
                 <%= s.select "[#{index}][section_id]", options_from_collection_for_select(sections, "id", "title") %> <br>
                 <b><%= s.label "[#{index}][description]", "Description:" %></b>
-                <%= standard %>
-                <%= s.hidden_field "[#{index}][description]", :value => standard %>
+                <%= standard_hash[:description] %>
+                <%= s.hidden_field "[#{index}][description]", :value => standard_hash[:description] %>
+                <%= s.hidden_field "[#{index}][asn_id]", :value => standard_hash[:asn_id] %>
                 <%= s.hidden_field "[#{index}][subject_id]", value: subject.id %>
             <% end %>
         </fieldset>

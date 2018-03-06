@@ -11,7 +11,16 @@ class Section < ApplicationRecord
             end
         end
     end
-    # def self.find_by_notation(statementNotation, subject)
-    #     all.find { |s| s.subject_id == subject.id && statementNotation.include?(s.abbreviation) }
-    # end
+
+    def self.find_standards_not_added(standards_array, subject)
+        description_array = subject.standards.map {|standard| standard.description}
+        standards_array.select do |standard_hash|
+            description_array.exclude?(standard_hash[:description])
+        end
+    end
+
+    # description_array = @subject.standards.map {|standard| standard.description}
+        # @standards_not_added = standards_array.select do |description|
+        #     description_array.exclude?(description)
+        # end
 end
