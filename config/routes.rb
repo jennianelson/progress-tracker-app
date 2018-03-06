@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
 scope '/teacher' do
   resources :standards, only: [:index, :create, :update]
-  # resources :sections, only: [:edit, :update]
   resources :subjects do 
       resources :standards, only: [:show, :new, :edit]
   end

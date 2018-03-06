@@ -9,7 +9,7 @@ module StandardsHelper
     end
 
     def sort_standards(standards)
-        standards.sort_by {|s| s.dot_notation}
+        standards.sort_by { |s| s.dot_notation }
     end
 
     def display_sub_standard(standard)
