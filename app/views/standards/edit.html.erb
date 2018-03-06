@@ -1,12 +1,13 @@
-<h2>Edit Standard</h2>
+<h2>Edit <%= section_title(@standard) %> Standard</h2>
 
 <i><%= link_to "Cancel", subject_path(@subject) %></i>
 <% if policy(@standard).destroy? %>
-    <i> | <%= link_to "Delete", standard_path, :data => { :confirm => "Are you sure you want to delete this standard? This action cannot be undone." } }, method: "delete", class: "delete" %></i>
+    <i> | <%= link_to "Delete", standard_path, :data => { :confirm => "Are you sure you want to delete this standard? This action cannot be undone." }, method: "delete", class: "delete" %></i>
 <% end %>
 <%= render partial: "layouts/errors", locals: {object: @standard} %>
 <br> <br>
 <%= form_for @standard do |f| %>
+    <%= f.text_field :asn_id %>
     <%= f.label :dot_notation, "Number:" %>
     <%= f.text_field :dot_notation %> <br>
     <%= f.text_area :description %> <br>

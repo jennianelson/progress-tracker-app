@@ -39,7 +39,7 @@ class StandardsController < ApplicationController
     def destroy
         @standard = Standard.find(params[:id])
         @standard.destroy
-        redirect_to root_path
+        redirect_to subject_path(@standard.subject)
     end
 
     private
