@@ -1,7 +1,7 @@
 class StudentSubjectsController < ApplicationController
     
     def index
-        if !current_user.student?
+        if current_user.admin?
             redirect_to subjects_path
         end
         @subjects = Subject.find_subjects_with_standards
@@ -14,13 +14,17 @@ class StudentSubjectsController < ApplicationController
     end
 
     def create
-        @subject = Subject.find(student_subject_params[:subject_id])
-        @student_subject = current_user.student_subjects.build(student_subject_params)
-        if @student_subject.save
-            current_user.standards << @subject.standards
+        if params[:student_subject][:subject_id].empty?
             redirect_to root_path
         else
-            render :index
+            subject = Subject.find(student_subject_params[:subject_id])
+            @student_subject = current_user.student_subjects.build(student_subject_params)
+            if @student_subject.save
+                current_user.standards << subject.standards
+                redirect_to root_path
+            else
+                render :index
+            end
         end
     end
     

@@ -5,7 +5,7 @@
 <% if @subjects %>
     <%= form_for @student_subject do |f| %>
         <%= f.select :subject_id, @subjects.map {|s| [s.title, s.id] }, include_blank: true %>
-        <%= f.submit "Add Subject"%>
+        <%= f.submit "Add Subject" %>
     <% end %>
 <% else %>
     <%= button_to "Ok!", root_path, method: 'get' %>
@@ -13,7 +13,7 @@
 <% end %>
 <br>
 
-<% user_subjects.each do |ss| %>
-    <%= link_to student_subject_title(ss), student_subject_path(ss) %>
+<% current_user.student_subjects.each do |ss| %>
+    <%= link_to student_subject_title(ss), student_subject_path(ss) if ss.id %>
     <br> <br>
 <% end %>

@@ -5,7 +5,9 @@ class UsersController < ApplicationController
         authorize User
     end
 
-    
+    def show
+    end
+
     def update
       @user = User.find(params[:id])
       authorize @user
