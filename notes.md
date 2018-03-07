@@ -7,9 +7,21 @@
         /*Not thrilled about the way standards can be edited; need ability to both edit description, and add more standards from API
            /*Admin can add more standards in section edit.
 3/1
-    Task: Need to keep students from editing other students's standards and subjects!
+    /Task: Need to keep students from editing other students's standards and subjects!
     /Task: Keep working on Section edit with nested form to add standards. Trying to use checkboxes
         /*Ready to work on update action 
+
+3/7
+    Task: Create user show where admin can remove student_subjects from students
+        STUDENT STANDARDS ARE BEING ORPHANED!
+
+Authorization:
+    ADMIN: 
+        -Create, edit, delete all subjects and sections
+        -Create, edit, delete standards
+        -Change user roles
+        -Delete student subjects
+
 
 Admin Routes
     Subject Index(root): /subjects              subjects_path

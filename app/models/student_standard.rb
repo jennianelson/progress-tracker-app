@@ -1,6 +1,7 @@
 class StudentStandard < ApplicationRecord
     belongs_to :standard
     belongs_to :user
+    belongs_to :student_subject
     
     enum progress_level: [:beginning, :progressing, :confused, :conquered]
 
