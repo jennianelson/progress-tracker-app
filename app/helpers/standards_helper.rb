@@ -9,15 +9,15 @@ module StandardsHelper
     end
 
     def sort_standards(standards)
-        if standards.first.asn_id !=0
+        if standards.first.asn_id
             standards.sort_by { |s| s.asn_id }
         else
             standards.sort_by { |s| s.dot_notation }
         end
     end
 
-    def display_sub_standard(standard)
-        'margin-left: 15px; list-style-type:circle;' if standard.dot_notation =~ /[a-z]/
+    def standard_display_styles(standard)
+        'margin-left: 35px; list-style-type:circle;' if standard.dot_notation =~ /[a-z]/
     end
 end
 

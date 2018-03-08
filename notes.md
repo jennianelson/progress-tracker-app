@@ -20,8 +20,19 @@
 3/8
     BONUS Task: Color code student_standard progress_level enum
     /Task: Teachers can view student progress 
-        Check: Could the teacher potentially get "lost" in some other student's stuff?
+        Check: Could the teacher potentially get "lost" in some other student's stuff?f
     Task: Clean up authorizations (what teachers can do specificially)
+
+
+<% if standard.dot_notation =~ /[a-z]/ %>
+                <li style= "margin-left: 30px; list-style-type:disc;">
+                <%= standard.dot_notation %> <%= standard.description %>
+                <%= link_to "edit", edit_subject_standard_path(@subject, standard) if policy(@subject).update? %>
+                </li>
+            <% else %>
+                <%= standard.dot_notation %> <%= standard.description %>
+                <%= link_to "edit", edit_subject_standard_path(@subject, standard) if policy(@subject).update? %>
+            <% end %>
 
 Authorization:
     ADMIN: 
