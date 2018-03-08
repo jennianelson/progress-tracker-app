@@ -2,10 +2,8 @@ class SectionsController < ApplicationController
     before_action :set_section
 
     def show
-        student_standards = StudentStandard.filter_by_section(@section.id)
-        @student_standards = StudentStandard.sort_by_dot_notation(student_standards)
-        subject = @section.subject
-        @student_subject = StudentSubject.find_by(subject_id: subject.id)
+        @student_standards = StudentStandard.find_by_user_and_section(current_user, @section)
+        @student_subject = @student_standards.first.student_subject
     end
 
     def edit
