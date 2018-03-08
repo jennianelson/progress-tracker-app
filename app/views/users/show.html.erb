@@ -1,10 +1,18 @@
-<h3>User: <%= @user.email %></h3>
+<h3>Student: <%= @user.email %></h3>
 
-<h3>User's Subjects:</h3>
+<h3>Student's Subjects:</h3>
+<p>Click on a section to view student's progress.</p>
 <table>
         <% @user.student_subjects.each do |ss| %>
             <tr>
-                <td><%= student_subject_title(ss) %></td>
+                <td>
+                    <%= student_subject_title(ss) %>
+                    <ul>
+                        <% student_subject_sections(ss).each do |section| %>
+                            <li><%= link_to section.title, section_path(section) %></li>
+                        <% end %>
+                    </ul>
+                </td>
                 <td><%= link_to "delete", student_subject_path(ss), :data => { :confirm => "Are you sure? Deleting this subject will also delete the student's progress with the standards in this subject." }, method: "delete" %></td>
             </tr>
         <% end %>

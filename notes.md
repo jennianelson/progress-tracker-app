@@ -14,9 +14,14 @@
 3/7
     /Task: Create user show where admin can remove student_subjects from students
         /STUDENT STANDARDS ARE BEING ORPHANED!
-    Task: Change student_subject show table to just include progress.
-        Task: Add student_standard show page for student to add comments, project notes etc.
+    /Task: Change student_subject show table to just include progress.
+        /Task: Add student_standard show page for student to add comments, project notes etc.
+
+3/8
     BONUS Task: Color code student_standard progress_level enum
+    /Task: Teachers can view student progress 
+        Check: Could the teacher potentially get "lost" in some other student's stuff?
+    Task: Clean up authorizations (what teachers can do specificially)
 
 Authorization:
     ADMIN: 
