@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   resources :sections, only: [:show, :edit, :update] do 
     #section edit and update belong in admin routes but won't work there
-    resources :student_standards, only:[:edit, :update]
+    resources :student_standards, only:[:show, :edit, :update]
   end
 
 

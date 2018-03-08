@@ -47,11 +47,7 @@
   font-size: 16pt;
 }
 
-/* .field_with_errors {
-  border: 1px solid red;
-} */
-
- #student_standards {
+ #student_standards table, #student_standard_show table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -62,9 +58,9 @@
   padding: 8px;
 }
 
-#student_standards tr:nth-child(even){background-color: #f2f2f2;}
+#student_standards tr:nth-child(even), #student_standard_show tr:nth-child(even) {background-color: #f2f2f2;}
 
-#student_standards tr:hover {background-color: #ddd;}
+#student_standards tr:hover, #student_standard_show tr:hover {background-color: #ddd;}
 
 #student_standards th {
   padding-top: 12px;
@@ -72,6 +68,10 @@
   text-align: left;
   background-color: #4CAF50;
   color: white;
+}
+
+#student_standard_show th {
+  width: 20%
 }
 
 table {
@@ -93,4 +93,4 @@ tr:nth-child(even) {
 textarea {
   width: 50%;
   height: 50px;
-} */
+}

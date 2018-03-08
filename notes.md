@@ -12,8 +12,11 @@
         /*Ready to work on update action 
 
 3/7
-    Task: Create user show where admin can remove student_subjects from students
-        STUDENT STANDARDS ARE BEING ORPHANED!
+    /Task: Create user show where admin can remove student_subjects from students
+        /STUDENT STANDARDS ARE BEING ORPHANED!
+    Task: Change student_subject show table to just include progress.
+        Task: Add student_standard show page for student to add comments, project notes etc.
+    BONUS Task: Color code student_standard progress_level enum
 
 Authorization:
     ADMIN: 

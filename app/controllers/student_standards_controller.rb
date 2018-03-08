@@ -13,6 +13,11 @@ class StudentStandardsController < ApplicationController
     #     end
     # end
 
+    def show
+        @section = Section.find(params[:section_id])
+        @student_standard = StudentStandard.find(params[:id])
+    end
+
     def edit
         @section = Section.find(params[:section_id])
         @student_standard = StudentStandard.find(params[:id])
@@ -22,7 +27,7 @@ class StudentStandardsController < ApplicationController
         @section = Section.find(params[:section_id])
         @student_standard = StudentStandard.find(params[:id])
         if @student_standard.update(student_standard_params)
-            redirect_to section_path(@section)
+            redirect_to section_student_standard_path(@section, @student_standard)
         else
             render "sections/edit"
         end
