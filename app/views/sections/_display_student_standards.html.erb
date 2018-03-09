@@ -4,14 +4,12 @@
             <th>Number</th>
             <th>Standard</th>
             <th>Progress Level</th>
-            <th>Edit</th>
         </tr>
     <% student_standards.each do |ss| %>
             <tr>
                 <td><%= dot_notation(ss) %></td>
-                <td><%= description(ss) %> <%= link_to "View", section_student_standard_path(section, ss) %></td>
-                <td><%= ss.progress_level %></td>
-                <td><%= link_to "Edit Progress", edit_section_student_standard_path(section, ss)%></td>
+                <td><%= description(ss) %> <%= link_to "View", section_student_standard_path(section, ss) if ss.progress_level %></td>
+                <td><%= progress_column_options(ss, section) %></td>
             </tr>
-    <%end%>
+    <% end %>
     </table>

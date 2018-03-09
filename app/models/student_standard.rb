@@ -7,7 +7,7 @@ class StudentStandard < ApplicationRecord
 
     def self.find_by_user_and_section(current_user, section)
         student_standards = StudentStandard.where(user: current_user)
-        student_standards.joins(:standard).where(standards: { section: section} )
+        student_standards.joins(:standard).where(standards: { section: section} ).order('standards.dot_notation')
     end
 
 end

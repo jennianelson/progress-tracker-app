@@ -5,9 +5,10 @@
 
     <h4>Which of the following best describes your current progress with this skill or concept?</h4>
         <%= f.select :progress_level, StudentStandard.progress_levels.keys %>
-    <h4>Comments: (optional)</h4>
+    <h4>Comments:</h4>
+    <p>For example, how would you explain this skill or concept?</p>
         <%= f.text_area :comments %>
-    <h4>What projects, labs, tests, etc. are good examples of what you've learned? (optional)</h4>
+    <h4>What projects, labs, tests, etc. are good examples of what you've learned?</h4>
         <%= f.text_area :evidence %> <br>
     <%= f.submit "Save Progress" %>
 <% end %>
