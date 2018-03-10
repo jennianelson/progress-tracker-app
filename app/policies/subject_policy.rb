@@ -7,23 +7,23 @@ class SubjectPolicy < ApplicationPolicy
     end
 
     def new?
-        user.teacher? || user.admin?
+        user.admin?
     end
 
     def create?
-        user.teacher? || user.admin?
+        user.admin?
     end
 
     def edit?
-        user.teacher? || user.admin?
+        user.admin?
     end
 
     def update?
-        user.teacher? || user.admin?
+        user.admin?
     end
 
     def destroy?
-        user.teacher? || user.admin?
+        user.admin?
     end
 
 end

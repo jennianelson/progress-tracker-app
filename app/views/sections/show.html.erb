@@ -1,4 +1,7 @@
 <h1><%= @section.title %></h1>
+<% if current_user.teacher? %>
+    <%= student_subject_username(@student_subject) %>
+<% end %>
 
 <p><i><%= link_to "Back to all sections", student_subject_path(@student_subject) %></i></p>
 

@@ -7,7 +7,7 @@ class StandardPolicy < ApplicationPolicy
     end
 
     def update?
-        user.teacher? || user.admin?
+        user.admin?
     end
 
     def destroy?
