@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
     before_action :set_section
 
     def show
-        @student_standards = StudentStandard.find_by_user_and_section(current_user, @section)
+        @student_standards = StudentStandard.user_and_section(current_user, @section)
         @student_subject = @student_standards.first.student_subject
     end
 

@@ -10,18 +10,18 @@ Please follow the instructions below to clone the Progress Tracker App repositor
 
 #### Admin: 
 
-  *Responsible for creating, updataing, and deleting subjects, sections, and standards from the app's database.
-  *Can delete student-owned subjects and standards
-  *Can change a user's permissions or delete a user's account.
+  * Responsible for creating, updataing, and deleting subjects, sections, and standards from the app's database.
+  * Can delete student-owned subjects and standards
+  * Can change a user's permissions or delete a user's account.
 
 #### Student: 
 
-  *Can add subjects from the database to his/her personal homepage.  This creates a unique copy of the subject and the standards for the student.  
-  *Can choose a "Progress "Level" and add comments and learning evidence for each standard.
+  * Can add subjects from the database to his/her personal homepage.  This creates a unique copy of the subject and the standards for the student.  
+  * Can choose a "Progress "Level" and add comments and learning evidence for each standard.
 
 #### Teacher:
 
-  *Can do whatever a student can and also view the progress of individual students.
+  * Can do whatever a student can and also view the progress of individual students.
 
 ## Installation
 

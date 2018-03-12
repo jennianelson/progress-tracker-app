@@ -1,7 +1,7 @@
 class Section < ApplicationRecord
     belongs_to :subject
     has_many :standards, dependent: :destroy
-    accepts_nested_attributes_for :standards
+    # accepts_nested_attributes_for :standards
     validates :title, presence: true
 
     def standards_attributes=(standards_attributes)
@@ -12,6 +12,7 @@ class Section < ApplicationRecord
         end
     end
 
+    #Try to use active record queries?
     def self.find_standards_not_added(standards_array, subject)
         description_array = subject.standards.map {|standard| standard.description}
         standards_array.select do |standard_hash|
@@ -19,8 +20,4 @@ class Section < ApplicationRecord
         end
     end
 
-    # description_array = @subject.standards.map {|standard| standard.description}
-        # @standards_not_added = standards_array.select do |description|
-        #     description_array.exclude?(description)
-        # end
 end
