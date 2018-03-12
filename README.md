@@ -6,20 +6,20 @@ As a former middle school English teacher, I often wished for a tool that allowe
 
 Please follow the instructions below to clone the Progress Tracker App repository, start the server, and navigate to http://localhost:3000 in your browser. At the landing page you have the option to Sign in via Facebook, or sign up with an email and password. Once logged in, a student user will be redirected to their personal homepage.
 
-###User Roles/Permissions:
+### User Roles/Permissions:
 
-####Admin: 
+#### Admin: 
 
   *Responsible for creating, updataing, and deleting subjects, sections, and standards from the app's database.
   *Can delete student-owned subjects and standards
   *Can change a user's permissions or delete a user's account.
 
-####Student: 
+#### Student: 
 
   *Can add subjects from the database to his/her personal homepage.  This creates a unique copy of the subject and the standards for the student.  
   *Can choose a "Progress "Level" and add comments and learning evidence for each standard.
 
-####Teacher:
+#### Teacher:
 
   *Can do whatever a student can and also view the progress of individual students.
 
