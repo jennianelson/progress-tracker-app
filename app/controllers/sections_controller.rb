@@ -2,14 +2,13 @@ class SectionsController < ApplicationController
     before_action :set_section
 
     def show
-        @student_standards = StudentStandard.user_and_section(current_user, @section)
-        @student_subject = @student_standards.first.student_subject
+        @student_subject = StudentSubject.find(params[:student_subject_id])
+        @student_standards = @student_subject.student_standards.section(@section)
     end
 
     def edit
         @subject = @section.subject
         standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
-
         @standards_not_added = Section.find_standards_not_added(standards_array, @subject)
     end
 

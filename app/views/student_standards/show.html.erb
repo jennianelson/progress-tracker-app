@@ -1,13 +1,18 @@
 <h1>Learning Progress</h1>
-<h3 align= "center"><i><%= description(@student_standard) %></i></h3>
+<h3>
+    Section: <i><%= section(@student_standard).title %></i>
+    <br> <br>
+    Standard: <i><%= description(@student_standard) %></i>
+</h3>
+
 <table id= "student_standard_show">
     <tr>
         <th><b>Current Progress Level</b></th>
-        <td><%= @student_standard.progress_level.titleize if @student_standard.progress_level%> </td>
+        <td> <%= @student_standard.progress_level.titleize if @student_standard.progress_level %> </td>
     </tr>
     <tr>
         <th><b>Comments</b></th>
-        <td><%= @student_standard.comments %></td> <br>
+        <td> <%= @student_standard.comments %> </td> <br>
     </tr>
     <tr>
         <th><b>Evidence of Learning</b></th>
@@ -15,5 +20,6 @@
     </tr>
 </table>
 <br>
-<p><i><%= link_to "Edit", edit_section_student_standard_path(@section, @student_standard), method: 'get' %> 
-| <%= link_to "Back to All Standards", section_path(@section) %></i></p>
+
+<p><i><%= link_to "Edit", edit_student_standard_path(@student_standard), method: 'get' %> 
+| <%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, section(@student_standard)) %></i></p>

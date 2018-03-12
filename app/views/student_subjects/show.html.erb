@@ -2,6 +2,6 @@
 <i><%= link_to "Back to All Subjects", student_subjects_path %></i>
 <ul>
 <% student_subject_sections(@student_subject).each do |section| %>
-    <li><%= link_to section.title, section_path(section) %> </li> <br>
+    <li><%= link_to section.title, student_subject_section_path(@student_subject, section) %> </li> <br>
 <% end %>
 </ul>

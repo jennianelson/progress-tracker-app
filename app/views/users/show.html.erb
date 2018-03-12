@@ -9,11 +9,11 @@
                     <%= student_subject_title(ss) %>
                     <ul>
                         <% student_subject_sections(ss).each do |section| %>
-                            <li><%= link_to section.title, section_path(section) %></li>
+                            <li><%= link_to section.title, student_subject_section_path(ss, section) %></li>
                         <% end %>
                     </ul>
                 </td>
-                <td><%= link_to "delete", student_subject_path(ss), :data => { :confirm => "Are you sure? Deleting this subject will also delete the student's progress with the standards in this subject." }, method: "delete" %></td>
+                <td><%= link_to "delete", student_subject_path(ss), :data => { :confirm => "Are you sure? Deleting this subject will also delete the student's progress with the standards in this subject." }, method: "delete" if policy(@user).update? %></td>
             </tr>
         <% end %>
 </table>

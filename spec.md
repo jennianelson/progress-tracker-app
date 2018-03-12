@@ -95,7 +95,7 @@
     * /subjects/new
         * Displays validation errors if subject dropdown and/or subject title is blank.
 
-###Confirm:
+### Confirm:
 - [ ] The application is pretty DRY
 - [ ] Limited logic in controllers
 - [ ] Views use helper methods if appropriate

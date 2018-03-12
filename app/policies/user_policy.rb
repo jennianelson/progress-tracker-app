@@ -5,9 +5,11 @@ class UserPolicy
       @current_user = current_user
       @user = model
     end
+
+    #Add class Scope to show teacher only student users
   
     def index?
-      current_user.admin?
+      current_user.admin? || current_user.teacher?
     end
 
     def show?
