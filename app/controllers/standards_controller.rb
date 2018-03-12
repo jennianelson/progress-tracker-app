@@ -14,11 +14,11 @@ class StandardsController < ApplicationController
 
     def create
         @subject = Subject.find(standard_params["standards_attributes"]["0"]["subject_id"])
-        Standard.new(standard_params)
+        @standard = Standard.new(standard_params)
         if @subject.standards.present?
             redirect_to subject_path(@subject)
         else
-            render :new
+            redirect_to new_standard_path, alert: "Unable to add standards."
         end
     end
 
