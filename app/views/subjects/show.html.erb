@@ -1,8 +1,10 @@
 <h2><%= @subject.title %></h2>
-<i><% if policy(@subject).update? %>
-        <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
-<% end %>
-<%= link_to "Back to All Subjects", subjects_path %> </i>
+<i>
+    <% if policy(@subject).update? %>
+            <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
+    <% end %>
+    <%= link_to "Back to All Subjects", subjects_path %> 
+</i>
 
 <% @subject.sections.each do |section| %>
     <h3><%= section.title %> <i><%= link_to "Add standards to this section", edit_section_path(section) if policy(@subject).update? %></i></h3>

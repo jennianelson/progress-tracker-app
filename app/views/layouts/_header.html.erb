@@ -1,20 +1,10 @@
-<nav class="">
+<nav class="navbar">
     <% if !current_user %>
         <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
     <% else %>
-         <% if current_user.admin? || current_user.teacher? %>
-            <p><b><%= link_to "Progress Tracker", root_path %></b> | <%= link_to "Users", users_path %></p>
-        <% else %>
-            <p><b><%= link_to "Progress Tracker", root_path %></b></p>
-        <% end %>
-        <% if current_user.username %>
-            Hi, <b><%= current_user.username %>!</b>
-        <% else %>
-            You are a <%= current_user.role %> signed in as <b><%= current_user.email %></b>.
-        <% end %>
-        <br>
+        <p><b>Progress Tracker | </b><%= navbar_options(current_user) %></p>
+        <p>You are a <%= current_user.role %> signed in as <b><%= current_user.email %></b>.</p>
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
         <br>
     <% end %>
-    
 </nav>
