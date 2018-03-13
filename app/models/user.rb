@@ -22,4 +22,12 @@ class User < ApplicationRecord
     end
   end
 
+  def self.filter_display(current_user)
+    if current_user.admin?
+      all
+    else
+      where(role: "student")
+    end
+  end
+
 end
