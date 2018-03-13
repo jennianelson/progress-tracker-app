@@ -1,6 +1,6 @@
 # Progress Tracker
 
-As a former middle school English teacher, I often wished for a tool that allowed students to reflect on and record their progress through their course standards. This would not only allow them to take more ownership of their learning, but also see their growth over time.  "Standards-based Grading" is also replacing traditional letter grading in many elementary and even middle schools, so this app could be an excellent way for students and teachers to discuss progress in a similar format to their report card.  I used the API for the Common Standards Project, a database of academic standards from all 50 states, organzations, districts, and schools. Check out https://github.com/commonstandardsproject/api for more information about this amazing project.  As I am just learning to code, and this this is my first Rails application, I decided to work with only one standard group to start--my home state of Alabama.
+As a former English teacher, I often wished for a tool that allowed students to reflect on and record their progress through  course standards. This would not only allow them to take more ownership of their learning, but also see their growth over time.  Additionally, standards-based grading and assessment is replacing traditional letter grading in many schools, so this tool could be beneficial in helping students and clearly understand the expecations in each of their courses.  In order to populate course standards, I used the Common Standards Project API, a database of academic standards from all 50 states, organzations, districts, and schools. Check out https://github.com/commonstandardsproject/api for more information about this amazing project.  As I am just learning to code, and this this is my first Rails application, I decided to work with only one standard group to start--those from my home state of Alabama.
 
 ## Usage
 
@@ -10,8 +10,8 @@ Please follow the instructions below to clone the Progress Tracker App repositor
 
 #### Admin: 
 
-  * Responsible for creating, updataing, and deleting subjects, sections, and standards from the app's database.
-  * Can delete student-owned subjects and standards
+  * Responsible for creating, updating, and deleting subjects, sections, and standards from the app's database.
+  * Can delete student-owned subjects and standards.
   * Can change a user's permissions or delete a user's account.
 
 #### Student: 
@@ -21,7 +21,7 @@ Please follow the instructions below to clone the Progress Tracker App repositor
 
 #### Teacher:
 
-  * Can do whatever a student can and also view the progress of individual students.
+  * Can do whatever a student can but also view the progress of individual students.
 
 ## Installation
 

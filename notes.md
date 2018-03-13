@@ -26,10 +26,12 @@
     /Task: Student subject/standard policy
 
 3/13
-    Task: Clean up authorizations (what teachers can do specificially)
+    /Task: Clean up authorizations (what teachers can do specificially)
     Task: Enable students to view the section standards by progress level
         -From section show page
             - 
+
+    Task: REFACTOR to make DRY
 
 Authorization:
     ADMIN: 
