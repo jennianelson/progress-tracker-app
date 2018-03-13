@@ -16,7 +16,11 @@ module StudentStandardsHelper
         if ss.progress_level 
             ss.progress_level
         else 
-            link_to "Add Progress", edit_student_standard_path(ss)
+            if policy(ss).update?
+                link_to "Add Progress", edit_student_standard_path(ss)
+            else
+                "Student has not entered progress."
+            end
         end 
     end
 

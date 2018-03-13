@@ -18,16 +18,18 @@
         /Task: Add student_standard show page for student to add comments, project notes etc.
 
 3/8
-    BONUS Task: Color code student_standard progress_level enum
     /Task: Teachers can view student progress 
-        Section is nested under student_subject
-    Task: Students can't view other students' standards progress
-        Halfway there; student_standards are filtered by user and section on section show page
-        Need to Student standard policy?
+        /Section is nested under student_subject
+    /Task: Students can't view or edit other students' standards progress
+    /Task: Teachers should only be able to view student progress, not edit
+    /Task: Page links for teachers and admin need to be different
+    /Task: Student subject/standard policy
+
+3/13
     Task: Clean up authorizations (what teachers can do specificially)
-        Teachers should only be able to view student progress, not edit
-        Page for teachers and admin need to be different
-    Task: Student subject/standard policy
+    Task: Enable students to view the section standards by progress level
+        -From section show page
+            - 
 
 Authorization:
     ADMIN: 

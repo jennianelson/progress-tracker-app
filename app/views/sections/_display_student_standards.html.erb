@@ -9,7 +9,7 @@
             <tr>
                 <td><%= dot_notation(ss) %></td>
                 <td><%= description(ss) %> </td>
-                <td><%= progress_column_options(ss) %> <%= link_to "View", student_standard_path(ss) if ss.progress_level %></td>
+                <td><%= progress_column_options(ss) %> <%= link_to "View", student_standard_path(ss) if ss.progress_level  %></td>
             </tr>
     <% end %>
     </table>

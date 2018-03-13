@@ -2,12 +2,14 @@ class StudentStandardsController < ApplicationController
     before_action :set_student_standard
 
     def show
+        authorize @student_standard
     end
 
     def edit
     end
 
     def update
+        authorize @student_standard
         if @student_standard.update(student_standard_params)
             redirect_to student_standard_path(@student_standard)
         else

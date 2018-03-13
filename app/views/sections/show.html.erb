@@ -1,8 +1,9 @@
 <h1><%= @section.title %></h1>
-<% if current_user.teacher? %>
-    <p>These standards belong to <b><%= student_subject_email(@student_subject) %></b>.</p>
+<% if policy(@student_subject).show? %>
+    <p><i><%= link_to "Back to all sections", student_subject_path(@student_subject) %></i></p>
+<% else %>
+    <h3>Student: <%= student_subject_email(@student_subject) %></h3>
+    <p><i><%= link_to "Back to student's subjects", user_path(@student_subject.user) %></i></p>
 <% end %>
-
-<p><i><%= link_to "Back to all sections", student_subject_path(@student_subject) %></i></p>
 
 <%= render partial: "display_student_standards", locals: {student_standards: @student_standards} %>

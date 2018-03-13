@@ -24,9 +24,9 @@ class User < ApplicationRecord
 
   def self.filter_display(current_user)
     if current_user.admin?
-      all
+      all.order(:email)
     else
-      where(role: "student")
+      where(role: "student").order(:email)
     end
   end
 

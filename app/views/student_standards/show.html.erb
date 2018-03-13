@@ -1,4 +1,10 @@
 <h1>Learning Progress</h1>
+<p><i>
+    <%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, section(@student_standard)) %>
+    <% if policy(@student_standard).update? %>
+       | <%= link_to "Edit", edit_student_standard_path(@student_standard), method: 'get' %>
+    <% end %>
+</i></p>
 <h3>
     Section: <i><%= section(@student_standard).title %></i>
     <br> <br>
@@ -19,7 +25,3 @@
         <td><%= @student_standard.evidence %></td>
     </tr>
 </table>
-<br>
-
-<p><i><%= link_to "Edit", edit_student_standard_path(@student_standard), method: 'get' %> 
-| <%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, section(@student_standard)) %></i></p>

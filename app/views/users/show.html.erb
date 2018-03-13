@@ -1,7 +1,8 @@
-<h3>Student: <%= @user.email %></h3>
+<h1>Student's Subjects:</h1>
 
-<h3>Student's Subjects:</h3>
-<p>Click on a section to view student's progress.</p>
+<h3><%= @user.email %></h3>
+<p><i><%= link_to "Back to all students", users_path %></i></p>
+<p>Click on a section to view progress.</p>
 <table>
         <% @user.student_subjects.each do |ss| %>
             <tr>
