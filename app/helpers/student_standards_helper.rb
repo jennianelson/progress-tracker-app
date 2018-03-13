@@ -1,15 +1,19 @@
 module StudentStandardsHelper
 
-    def description(student_standard)
+    def student_standard_description(student_standard)
         student_standard.standard.description
     end
 
-    def dot_notation(student_standard)
+    def student_standard_dot_notation(student_standard)
         student_standard.standard.dot_notation
     end
 
-    def section(student_standard)
+    def student_standard_section(student_standard)
         student_standard.standard.section
+    end
+
+    def student_standard_subject(student_standard)
+        student_standard.standard.subject
     end
 
     def progress_column_options(ss)

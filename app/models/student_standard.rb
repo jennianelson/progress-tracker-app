@@ -10,9 +10,9 @@ class StudentStandard < ApplicationRecord
     #     student_standards.joins(:standard).where(standards: { section: section} ).order('standards.dot_notation')
     # end
 
-    # def self.user(current_user)
-    #     where(user: current_user)
-    # end
+    def self.filter_by_user_progress(user)
+        where(user: user).where.not(progress_level: nil).order(:progress_level)
+    end
 
     def self.section(section)
         joins(:standard).where(standards: { section: section} ).order('standards.dot_notation')

@@ -1,0 +1,22 @@
+<table id= "student_standard_show">
+    <tr>
+        <th><b>Subject/Section</b></th>
+        <td><%= student_standard_subject(student_standard).title %> / <%= student_standard_section(student_standard).title %></td>
+    </tr>
+    <tr>
+        <th><b>Standard</b></th>
+        <td><%= student_standard_description(student_standard) %></td>
+    </tr>
+    <tr>
+        <th><b>Current Progress Level</b></th>
+        <td> <%= student_standard.progress_level.titleize if student_standard.progress_level %> </td>
+    </tr>
+    <tr>
+        <th><b>Comments</b></th>
+        <td> <%= student_standard.comments %> </td> <br>
+    </tr>
+    <tr>
+        <th><b>Evidence of Learning</b></th>
+        <td><%= student_standard.evidence %></td>
+    </tr>
+</table>

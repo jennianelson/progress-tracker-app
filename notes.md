@@ -55,3 +55,37 @@ Admin Routes
     Section Show: /sections/:id                 section_path(section)
 
 -----
+
+root GET      /                                                            student_subjects#index
+           edit_student_standard GET      /student_standards/:id/edit(.:format)                        student_standards#edit
+                student_standard GET      /student_standards/:id(.:format)                             student_standards#show
+                                 PATCH    /student_standards/:id(.:format)                             student_standards#update
+                                 PUT      /student_standards/:id(.:format)                             student_standards#update
+         student_subject_section GET      /student_subjects/:student_subject_id/sections/:id(.:format) sections#show
+                student_subjects GET      /student_subjects(.:format)                                  student_subjects#index
+                                 POST     /student_subjects(.:format)                                  student_subjects#create
+                 student_subject GET      /student_subjects/:id(.:format)                              student_subjects#show
+                                 DELETE   /student_subjects/:id(.:format)                              student_subjects#destroy
+                    edit_section GET      /sections/:id/edit(.:format)                                 sections#edit
+                         section PATCH    /sections/:id(.:format)                                      sections#update
+                                 PUT      /sections/:id(.:format)                                      sections#update
+                       standards POST     /standards(.:format)                                         standards#create
+                        standard PATCH    /standards/:id(.:format)                                     standards#update
+                                 PUT      /standards/:id(.:format)                                     standards#update
+                                 DELETE   /standards/:id(.:format)                                     standards#destroy
+                           users GET      /users(.:format)                                             users#index
+                            user GET      /users/:id(.:format)                                         users#show
+                                 PATCH    /users/:id(.:format)                                         users#update
+                                 PUT      /users/:id(.:format)                                         users#update
+                                 DELETE   /users/:id(.:format)                                         users#destroy
+            new_subject_standard GET      /subjects/:subject_id/standards/new(.:format)                standards#new
+           edit_subject_standard GET      /subjects/:subject_id/standards/:id/edit(.:format)           standards#edit
+                subject_standard GET      /subjects/:subject_id/standards/:id(.:format)                standards#show
+                        subjects GET      /subjects(.:format)                                          subjects#index
+                                 POST     /subjects(.:format)                                          subjects#create
+                     new_subject GET      /subjects/new(.:format)                                      subjects#new
+                    edit_subject GET      /subjects/:id/edit(.:format)                                 subjects#edit
+                         subject GET      /subjects/:id(.:format)                                      subjects#show
+                                 PATCH    /subjects/:id(.:format)                                      subjects#update
+                                 PUT      /subjects/:id(.:format)                                      subjects#update
+                                 DELETE   /subjects/:id(.:format)                                      subjects#destroy

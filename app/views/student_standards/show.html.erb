@@ -1,27 +1,9 @@
 <h1>Learning Progress</h1>
 <p><i>
-    <%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, section(@student_standard)) %>
+    <%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, student_standard_section(@student_standard)) %>
     <% if policy(@student_standard).update? %>
        | <%= link_to "Edit", edit_student_standard_path(@student_standard), method: 'get' %>
     <% end %>
 </i></p>
-<h3>
-    Section: <i><%= section(@student_standard).title %></i>
-    <br> <br>
-    Standard: <i><%= description(@student_standard) %></i>
-</h3>
 
-<table id= "student_standard_show">
-    <tr>
-        <th><b>Current Progress Level</b></th>
-        <td> <%= @student_standard.progress_level.titleize if @student_standard.progress_level %> </td>
-    </tr>
-    <tr>
-        <th><b>Comments</b></th>
-        <td> <%= @student_standard.comments %> </td> <br>
-    </tr>
-    <tr>
-        <th><b>Evidence of Learning</b></th>
-        <td><%= @student_standard.evidence %></td>
-    </tr>
-</table>
+<%= render partial: "student_standard_table", locals: {student_standard: @student_standard} %>

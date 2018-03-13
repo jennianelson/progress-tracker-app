@@ -1,18 +1,30 @@
 <h2>Update Your Progress</h2>
-<p><i><%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, section(@student_standard)) %></i></p>
-<h3>
-    Section: <i><%= section(@student_standard).title %></i>
-    <br> <br>
-    Standard: <i><%= description(@student_standard) %></i>
-</h3>
+<p><i><%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, student_standard_section(@student_standard)) %></i></p>
 
-<%= form_for [@section, @student_standard] do |f| %>
-
-    <h4>Which of the following best describes your current progress with this skill or concept?</h4>
-        <%= f.select :progress_level, StudentStandard.progress_levels.keys %>
-    <h4>Comments (For example, how would you explain this skill or concept?):</h4>
-        <%= f.text_area :comments %>
-    <h4>What projects, labs, tests, class activities, etc. relate to this standard?</h4>
-        <%= f.text_area :evidence %> <br>
-    <%= f.submit "Save Progress" %>
+<%= form_for @student_standard do |f| %>
+<table id= "student_standard_show">
+    <tr>
+        <th>Subject / Section</th>
+        <td><%= student_standard_subject(@student_standard).title %> / <%= student_standard_section(@student_standard).title %></td>
+    </tr>
+    <tr>
+        <th>Standard</th>
+        <td><%= student_standard_description(@student_standard) %></td>
+    </tr>
+    
+    <tr>
+        <th>Which word best describes your current progress with this standard?</th>
+        <td> <%= f.select :progress_level, StudentStandard.progress_levels.keys %> </td>
+    </tr>
+    <tr>
+        <th>Comments: (For example, how might you explain this skill or concept?)</th>
+        <td> <%= f.text_area :comments %> </td> <br>
+    </tr>
+    <tr>
+        <th>What projects, labs, tests, class activities, etc. relate to this standard?</th>
+        <td> <%= f.text_area :evidence %> </td>
+    </tr>
+     
+</table>
+<%= f.submit "Save Progress" %>
 <% end %>

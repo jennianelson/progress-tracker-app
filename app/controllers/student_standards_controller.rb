@@ -1,6 +1,12 @@
 class StudentStandardsController < ApplicationController
-    before_action :set_student_standard
+    before_action :set_student_standard, only: [:show, :edit, :update]
 
+    def index
+        student_subject = StudentSubject.find(params[:student_subject_id])
+        user = student_subject.user
+        @student_standards = StudentStandard.filter_by_user_progress(user)
+    end
+    
     def show
         authorize @student_standard
     end
