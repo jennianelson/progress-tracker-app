@@ -39,6 +39,12 @@
         -ActiveRecord class Scopes! (see below)
             -look into order/sorting especially
             -deal with standards that don't have asn_id
+            # standards.map {|s| s.subject_id}
+            # sorted_standards = standards.sort_by {|s| s.dot_notation}
+            # sorted_standards.each do |standard|
+            #     number = number + 10
+            #     standard.update(asn_id: number.to_s)
+            # end
         -Should I namespace routes?
         -includes vs. joins 
             -If I need to display data from the associated model, use includes; otherwise, joins

@@ -9,6 +9,7 @@ class SectionsController < ApplicationController
     def edit
         @subject = @section.subject
         standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
+        #Chain some Standard scope methods
         @standards_not_added = Section.find_standards_not_added(standards_array, @subject)
     end
 
