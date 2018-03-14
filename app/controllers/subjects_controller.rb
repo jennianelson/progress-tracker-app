@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
     before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
     def index
-        @subjects = Subject.sort_by_set_id
+        @subjects = Subject.order(:set_id)
         if params["subjects"] && !params["subjects"].empty?
             subject = Subject.find(params["subjects"])
             redirect_to subject_path(subject)

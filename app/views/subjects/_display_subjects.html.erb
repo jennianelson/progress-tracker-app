@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Sections</th>
+    </tr>
+        <% subjects.each do |subject|%>
+    <tr>
+        <td> 
+            <%= link_to subject.title, subject_path(subject) %> <br> <br>
+            <% if subject.standards.empty? %>
+                <i><%= link_to "Add Standards", new_subject_standard_path(subject) if policy(subject).update? %></i>
+            <% end %>
+        </td>
+        <td>
+            <ul>
+                <% subject.sections.each do |section| %>
+                    <li><%= section.title %></li>
+                <% end %>
+            </ul>
+        </td>
+    </tr>
+    <% end %>
+</table>

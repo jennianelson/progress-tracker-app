@@ -33,12 +33,16 @@
     Task: Add authorization to new student_standards#index
 
 3/15
+    Task: Ability to delete subjects?
     Task: REFACTOR to make DRY
         -Use Modules for resuable class methods/scopes? (see screen shot example)
-        -ActiveRecord class Scopes!
+        -ActiveRecord class Scopes! (see below)
             -look into order/sorting especially
             -deal with standards that don't have asn_id
         -Should I namespace routes?
+        -includes vs. joins 
+            -If I need to display data from the associated model, use includes; otherwise, joins
+
 
         class Article < ApplicationRecord
             scope :published, -> { where(published: true) }

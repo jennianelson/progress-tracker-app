@@ -1,7 +1,6 @@
 class Subject < ApplicationRecord
     has_many :sections, dependent: :destroy
-    # accepts_nested_attributes_for :sections, allow_destroy: true
-    has_many :standards
+    has_many :standards, dependent: :destroy
     
     has_many :student_subjects, dependent: :destroy
     has_many :users, through: :student_subjects
@@ -29,6 +28,7 @@ class Subject < ApplicationRecord
         end
     end
 
+    #Used in
     def self.filter_subject_display(params)
         if !params["subjects"] || params["subjects"].empty?
             sort_by_set_id
@@ -38,14 +38,12 @@ class Subject < ApplicationRecord
         end
     end
 
-    def self.sort_by_set_id
-        order(:set_id)
-    end
-
+    #Used in 
     def self.find_subjects_with_standards
         joins(:standards).distinct
     end
 
+    #Used in
     def self.find_subjects_without_standards
         includes(:standards).where(standards: {id: nil})
     end
