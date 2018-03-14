@@ -25,14 +25,30 @@
     /Task: Page links for teachers and admin need to be different
     /Task: Student subject/standard policy
 
-3/13
+3/13-3/14
     /Task: Clean up authorizations (what teachers can do specificially)
-    Task: Enable students to view the section standards by progress level
-        -From section show page
-            - 
+    /Task: Enable students to view the subject standards by progress level
+        - student_subject/:id/student_standards 
+            -dropdown filter
+    Task: Add authorization to new student_standards#index
 
+3/15
     Task: REFACTOR to make DRY
+        -Use Modules for resuable class methods/scopes? (see screen shot example)
+        -ActiveRecord class Scopes!
+            -look into order/sorting especially
+            -deal with standards that don't have asn_id
+        -Should I namespace routes?
 
+        class Article < ApplicationRecord
+            scope :published, -> { where(published: true) }
+        end
+        *IS SAME AS*
+        def self.published
+            where(published: true)
+        end
+        **CAN add arguments in scope but frowned upon?
+ 
 Authorization:
     ADMIN: 
         -Create, edit, delete all subjects and sections

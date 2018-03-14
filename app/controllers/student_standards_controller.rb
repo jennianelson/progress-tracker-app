@@ -2,9 +2,9 @@ class StudentStandardsController < ApplicationController
     before_action :set_student_standard, only: [:show, :edit, :update]
 
     def index
-        student_subject = StudentSubject.find(params[:student_subject_id])
-        user = student_subject.user
-        @student_standards = StudentStandard.filter_by_user_progress(user)
+        @student_subject = StudentSubject.find(params[:student_subject_id])
+        @student_standards = @student_subject.student_standards.has_progress_level
+        @student_standards = @student_standards.filter_by_progress_level(params[:progress_level]) if params[:progress_level].present?
     end
     
     def show
