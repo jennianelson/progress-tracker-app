@@ -9,8 +9,11 @@ class SectionsController < ApplicationController
     def edit
         @subject = @section.subject
         standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
-        #Chain some Standard scope methods
+         #Chain some Standard scope methods
         @standards_not_added = Section.find_standards_not_added(standards_array, @subject)
+        @standards = @standards_not_added.map do |standard_hash|
+            @section.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id])
+        end
     end
 
     def update

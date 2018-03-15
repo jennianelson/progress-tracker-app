@@ -30,9 +30,9 @@
     /Task: Enable students to view the subject standards by progress level
         - student_subject/:id/student_standards 
             -dropdown filter
+3/15 -
+    Task: Make root path sign in and then redirect?
     Task: Add authorization to new student_standards#index
-
-3/15
     Task: Ability to delete subjects?
     Task: REFACTOR to make DRY
         -Use Modules for resuable class methods/scopes? (see screen shot example)
@@ -115,3 +115,25 @@ root GET      /                                                            stude
                                  PATCH    /subjects/:id(.:format)                                      subjects#update
                                  PUT      /subjects/:id(.:format)                                      subjects#update
                                  DELETE   /subjects/:id(.:format)                                      subjects#destroy
+
+
+    <%= form_for @section do |f| %>
+        <table>
+        <tr>
+            <th>Number</th>
+            <th>Standard Text</th>
+        </tr>
+        <% @standards_not_added.each_with_index do |standard_hash, index| %>
+        <tr>
+            <td><%= text_field_tag "section[standards_attributes][#{index}][dot_notation]" %></td>
+            <td>
+            <%= check_box_tag "section[standards_attributes][#{index}][description]", standard_hash[:description] %> 
+            <%= label_tag "section[standards_attributes][#{index}][description]", standard_hash[:description] %>
+            <%= hidden_field_tag "section[standards_attributes][#{index}][subject_id]", @subject.id %>
+            <%= hidden_field_tag "section[standards_attributes][#{index}][asn_id]", standard_hash[:asn_id] %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    <%= f.submit %>
+    <% end %>

@@ -1,28 +1,36 @@
 <h1>Edit "<%=@section.title %>" section in <%=@subject.title %></h1>
 <%= button_to "Back", subject_path(@subject), method: "get" %>
+
 <% if @standards_not_added.empty? %>
     <h3><i>All available standards have been added.</i></h3>
 <% else %>
-    <p>Check the standards that you would like to add to this section.</p>
+    <ul>
+        <b><li>Check the standards that you would like to add to this section.</li>
+        <li>Assign each one a number to indicate which standards are sub-standards of others.</li>
+        <ul>
+            <li>For example, a substandard of 7.1 would be 7.1a</li> 
+        </ul>
+        <li>You will be able to edit the text of each standard on the the section's page.</li><b>
+    </ul>
 
     <%= form_for @section do |f| %>
         <table>
         <tr>
-            <th>Number</th>
+            <th></th>
+            <th>Assign Number</th>
             <th>Standard Text</th>
         </tr>
-        <% @standards_not_added.each_with_index do |standard_hash, index| %>
+        <%= f.fields_for :standards do |sf| %>
+            <%= sf.hidden_field :subject_id, :value=> @subject.id %>
+            <%= sf.hidden_field :asn_id %>
         <tr>
-            <td><%= text_field_tag "section[standards_attributes][#{index}][dot_notation]" %></td>
-            <td>
-            <%= check_box_tag "section[standards_attributes][#{index}][description]", standard_hash[:description] %> 
-            <%= label_tag "section[standards_attributes][#{index}][description]", standard_hash[:description] %>
-            <%= hidden_field_tag "section[standards_attributes][#{index}][subject_id]", @subject.id %>
-            <%= hidden_field_tag "section[standards_attributes][#{index}][asn_id]", standard_hash[:asn_id] %>
-            </td>
+            <td> <%= sf.check_box :description, {checked: false}, sf.object.description %></td>
+            <td><%= sf.text_field :dot_notation %> </td>
+            <td><%= sf.label :description, sf.object.description %></td>
         </tr>
         <% end %>
-    </table>
+        </table>
     <%= f.submit %>
     <% end %>
+
 <% end %>
