@@ -20,10 +20,10 @@
             <th>Assign Number</th>
             <th>Standard Text</th>
         </tr>
-        <%= f.fields_for :standards do |sf| %>
+        <tr>
+            <%= f.fields_for :standards, @standards do |sf| %>
             <%= sf.hidden_field :subject_id, :value=> @subject.id %>
             <%= sf.hidden_field :asn_id %>
-        <tr>
             <td> <%= sf.check_box :description, {checked: false}, sf.object.description %></td>
             <td><%= sf.text_field :dot_notation %> </td>
             <td><%= sf.label :description, sf.object.description %></td>
