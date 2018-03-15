@@ -39,9 +39,9 @@ class Subject < ApplicationRecord
     end
 
     #Used in 
-    def self.find_subjects_with_standards
-        joins(:standards).distinct
-    end
+    # def self.find_subjects_with_standards
+    #     joins(:standards).distinct
+    # end
 
     #Used in
     def self.find_subjects_without_standards

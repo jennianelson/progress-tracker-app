@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
     def index
         @subjects = Subject.order(:set_id)
-        if params["subjects"] && !params["subjects"].empty?
+        if params["subjects"].present?
             subject = Subject.find(params["subjects"])
             redirect_to subject_path(subject)
         end
