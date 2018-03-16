@@ -38,16 +38,6 @@ class Subject < ApplicationRecord
         end
     end
 
-    #Used in
-    def self.filter_subject_display(params)
-        if !params["subjects"] || params["subjects"].empty?
-            sort_by_set_id
-        elsif
-            !params["subjects"].empty?
-            find(params["subjects"])
-        end
-    end
-
     def standards_not_added(standards_array)
         description_array = self.standards.map {|standard| standard.description}
         standards_array.select do |standard_hash|
@@ -74,8 +64,18 @@ class Subject < ApplicationRecord
     # end
 
     #Used in
-    def self.find_subjects_without_standards
-        includes(:standards).where(standards: {id: nil})
-    end
+    # def self.find_subjects_without_standards
+    #     includes(:standards).where(standards: {id: nil})
+    # end
+
+      #Used in
+    # def self.filter_subject_display(params)
+    #     if !params["subjects"] || params["subjects"].empty?
+    #         sort_by_set_id
+    #     elsif
+    #         !params["subjects"].empty?
+    #         find(params["subjects"])
+    #     end
+    # end
 
 end

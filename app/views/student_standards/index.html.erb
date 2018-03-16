@@ -1,12 +1,15 @@
 <h1>Subject Standards by Progress Level</h1>
 <p><i><%= link_to "Back to Subject Sections", student_subject_path(@student_subject) %></i></p>
+<% if policy(@student_subject).show? %>
+    <%= form_tag student_subject_student_standards_path(@student_subject), method: 'get' %>
+        <%= select_tag "progress_level", options_from_collection_for_select(StudentStandard.progress_levels, :last, :first), prompt: "All Progress Levels" %>
+    <%= submit_tag "Filter" %>
 
-<%= form_tag student_subject_student_standards_path(@student_subject), method: 'get' %>
-    <%= select_tag "progress_level", options_from_collection_for_select(StudentStandard.progress_levels, :last, :first), prompt: "All Progress Levels" %>
-<%= submit_tag "Filter" %>
+    <br><br>
 
-<br><br>
-
-<% @student_standards.each do |student_standard| %>
-    <%= render partial: "student_standard_table", locals: {student_standard: student_standard} %>
+    <% @student_standards.each do |student_standard| %>
+        <%= render partial: "student_standard_table", locals: {student_standard: student_standard} %>
+    <% end %>
+<% else %>
+    <%= flash[:alert] = "You are not authorized to view this page" %>
 <% end %>

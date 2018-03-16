@@ -7,7 +7,7 @@
         <% @user.student_subjects.each do |ss| %>
             <tr>
                 <td>
-                    <%= student_subject_title(ss) %>
+                    <%= link_to student_subject_title(ss), student_subject_path(ss) %>
                     <ul>
                         <% student_subject_sections(ss).each do |section| %>
                             <li><%= link_to section.title, student_subject_section_path(ss, section) %></li>
