@@ -35,6 +35,7 @@ class SubjectsController < ApplicationController
 
     def update
         authorize @subject
+        binding.pry
         if @subject.update(subject_params)
             redirect_to subject_path(@subject)
         else

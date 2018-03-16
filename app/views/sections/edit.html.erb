@@ -25,7 +25,7 @@
             <%= f.fields_for :standards, standard do |sf| %>
                 <%= sf.hidden_field :subject_id, :value=> @subject.id %>
                 <%= sf.hidden_field :asn_id %>
-                <td> <%= sf.check_box :description, {checked: false}, sf.object.description %></td>
+                <td><%= sf.check_box :description, {checked: false}, sf.object.description %></td>
                 <td><%= sf.text_field :dot_notation %> </td>
                 <td><%= sf.label :description, sf.object.description %></td>
             <% end %>
