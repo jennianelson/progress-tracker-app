@@ -31,20 +31,8 @@
  input[type=submit]  {
   background-color: white;
   border-radius: 4px;
-  border: 2px solid #87ce61;
+  border: 1px solid #460c7f;
   margin-top: 2px;
- }
-
- input[type=submit].delete {
-  background-color: white;
-  border-radius: 4px;
-  border: 2px solid #ef694f;
- }
-
- input[type=submit].go {
-  background-color: white;
-  border-radius: 4px;
-  border: 2px solid #915bec;
  }
 
  #flash_alert, #flash_notice {
