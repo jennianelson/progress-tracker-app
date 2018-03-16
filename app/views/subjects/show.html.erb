@@ -13,6 +13,9 @@
     <%= f.submit "Update" %>
 </fieldset>
 <% end %>
+<div class="instructions">
+    <p>Standards can be added all at once by clicking on the "Edit Subject" link or added by section using the links below.</p>
+</div>
 
 <% @subject.sections.each do |section| %>
     <h3><%= section.title %> <i><%= link_to "Add standards to this section", edit_section_path(section) if policy(@subject).update? %></i></h3>

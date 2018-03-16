@@ -23,7 +23,8 @@ class SubjectsController < ApplicationController
         @subject = Subject.new(subject_params)
         authorize @subject
         if @subject.save
-            redirect_to new_subject_standard_path(@subject)
+            redirect_to subject_path(@subject)
+            flash[:alert] = "Subject created successfully!"
         else
             render :new
         end
@@ -39,7 +40,7 @@ class SubjectsController < ApplicationController
     def update
         authorize @subject
         if @subject.update(subject_params)
-            redirect_to edit_subject_path(@subject)
+            redirect_to subject_path(@subject)
             flash[:alert] = "Updated successfully!"
         else
             render :edit
