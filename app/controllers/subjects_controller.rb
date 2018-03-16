@@ -14,7 +14,6 @@ class SubjectsController < ApplicationController
 
     def new
         @subject = Subject.new
-        authorize @subject
         5.times { @subject.sections.build } 
     end
 
@@ -29,15 +28,14 @@ class SubjectsController < ApplicationController
     end
 
     def edit
-        authorize @subject
         5.times { @subject.sections.build }
     end
 
     def update
         authorize @subject
-        binding.pry
         if @subject.update(subject_params)
             redirect_to subject_path(@subject)
+            flash[:alert] = "Updated successfully!"
         else
             render :edit
         end

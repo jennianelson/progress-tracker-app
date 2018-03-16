@@ -12,12 +12,4 @@ class Section < ApplicationRecord
         end
     end
 
-    #Try to use active record queries?
-    def self.find_standards_not_added(standards_array, subject)
-        description_array = subject.standards.map {|standard| standard.description}
-        standards_array.select do |standard_hash|
-            description_array.exclude?(standard_hash[:description])
-        end
-    end
-
 end

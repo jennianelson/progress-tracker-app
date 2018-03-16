@@ -1,10 +1,12 @@
 <table>
     <tr>
+        <th id="skinny-column">Available to Students?</th>
         <th>Title</th>
         <th>Sections</th>
     </tr>
         <% subjects.each do |subject|%>
     <tr>
+        <td id="skinny-column"><%= check_box("subject", "ready", {checked: subject.ready?, disabled: true}) %></td>
         <td> 
             <%= link_to subject.title, subject_path(subject) %> <br> <br>
             <% if subject.standards.empty? %>
