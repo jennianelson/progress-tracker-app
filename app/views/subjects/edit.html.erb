@@ -13,10 +13,5 @@
 <% if @subject.errors.any? %>
     <%=link_to "OK", edit_subject_path(@subject)%>
 <% else %>
-    <%= form_for @subject do |f| %>
-        <%= render layout: "subjects/form", locals: {f: f} do %>
-            <legend><b>Edit Sections</b></legend>
-            <b>*Note: Removing a section will also remove all associated standards. Any student progress associated with these standards will be deleted.</b>
-        <% end %>
-    <% end %>
+    <%= render partial: "sections/add_standards", locals: {subject: @subject, new_standards: @new_standards} %>
 <%end%>

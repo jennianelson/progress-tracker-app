@@ -1,0 +1,40 @@
+<div class="instructions">
+<p>The following text comes from the Common Standards Project. If the standard has already been given a number, you can use it to help determine if it is actually a standard (or just a heading), which section it belongs to, and whether or not you want to include it.</p>
+    <ul>
+        <li>Check the standards that you would like to add.</li>
+        <li>If the standard does not have a number, add one to indicate how it should be organized and whether or not it is a sub-standard. </li>
+        <ul>
+            <li>For example, a substandard of 7.1 would be 7.1a</li> 
+        </ul>
+        <li>You will be able to edit the text of each standard on the subject's homepage page.</li>
+    </ul>
+</div>
+
+    <%= form_for subject do |f| %>
+        <table>
+        <tr>
+            <th></th>
+            <th>Choose or Add New Section</th>
+            <th>Assign Number</th>
+            <th>Standard Text</th>
+        </tr>
+        
+        <% new_standards.each do |standard| %>
+            <%= f.fields_for :standards, standard do |sf| %>
+            <tr>
+                <%#= sf.hidden_field :subject_id, :value=> subject.id %>
+                <%= sf.hidden_field :asn_id %>
+                <td><%= sf.check_box :description, {checked: false}, sf.object.description %></td>
+                <td>
+                    <%= sf.collection_select :section, subject.sections, :id, :title %> <br>
+                    <%= sf.text_field :section %>
+                </td>
+                <td><%= sf.text_field :dot_notation %> </td>
+                <td><%= sf.object.description %></td>
+            </tr>
+            <% end %>
+        <% end %>
+        
+        </table>
+    <%= f.submit %>
+    <% end %>

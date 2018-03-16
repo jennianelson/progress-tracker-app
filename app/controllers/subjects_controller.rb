@@ -14,7 +14,7 @@ class SubjectsController < ApplicationController
 
     def new
         @subject = Subject.new
-        5.times { @subject.sections.build } 
+        5.times { @subject.sections.build }
     end
 
     def create
@@ -28,7 +28,10 @@ class SubjectsController < ApplicationController
     end
 
     def edit
-        5.times { @subject.sections.build }
+        # 5.times { @subject.sections.build }
+        @standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
+        #Need to remove standards already added?
+        @new_standards = @subject.build_new_standards(@standards_array)
     end
 
     def update

@@ -115,7 +115,17 @@ root GET      /                                                            stude
                                  PUT      /subjects/:id(.:format)                                      subjects#update
                                  DELETE   /subjects/:id(.:format)                                      subjects#destroy
 
+FROM SUBJECT#EDIT
+    <%= form_for @subject do |f| %>
+        <%= render layout: "subjects/form", locals: {f: f} do %>
+            <legend><b>Edit Sections</b></legend>
+            <b>*Note: Removing a section will also remove all associated standards. Any student progress associated with these standards will be deleted.</b>
+        <% end %>
+    <% end %>
 
+---
+
+FROM SECTION#EDIT
     <%= form_for @section do |f| %>
         <table>
         <tr>
