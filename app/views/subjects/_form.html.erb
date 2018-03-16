@@ -1,12 +1,16 @@
 
         <fieldset>
+        <div class="instructions">
         <legend><b>Subject Title</b></legend>
         <%= f.label :title, "What would you like to name this subject?" %>
+        </div>
         <%= f.text_field :title %>
         </fieldset>
         <br>
         <fieldset>
+        <div class="instructions">
             <%= yield %>
+        </div>
             <%= f.fields_for :sections do |section_form| %>
             <p>
                 <%= section_form.label :title %>
@@ -15,6 +19,7 @@
                 <%= section_form.hidden_field :subject_id %>
             </p>
             <% end %>
+        <%= f.submit %>
         </fieldset>
         <br>
-        <%= f.submit %>
+        

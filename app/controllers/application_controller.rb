@@ -30,6 +30,12 @@ class ApplicationController < ActionController::Base
           end
       end.compact
     end
+
+  def get_subjects_array(parsed_api)
+    @subjects_array = parsed_api.map do |s| 
+      [ s["title"] + " " + s["subject"], s["id"] ]
+    end 
+  end
  
   private
 

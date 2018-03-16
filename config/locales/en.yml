@@ -43,3 +43,8 @@ en:
     attributes:
       subject:
         set_id: "Subject"
+
+en:
+  activerecord:
+    attributes:
+      standard: "Standard"

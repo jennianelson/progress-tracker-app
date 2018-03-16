@@ -1,5 +1,0 @@
-<i><%= link_to "Cancel", object_path %></i>
-<% if policy(object).destroy? %>
-    <i> | <%= link_to "Delete", object_path, :data => { :confirm => "Are you sure?" }, method: "delete", class: "delete" %></i>
-<% end %>
-<br>

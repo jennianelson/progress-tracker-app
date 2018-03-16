@@ -14,8 +14,19 @@
  *= require_self
  */
 
+ /* .field_with_errors {
+  padding: 2px;
+  border: 1px solid purple;
+  display: table;
+} */
+
+p.page-links {
+  font-style: italic;
+}
+
  div.instructions {
   font-size: 1.25em;
+  display: inline;
  }
 
  #skinny-column {
@@ -33,6 +44,7 @@
   border-radius: 4px;
   border: 1px solid #460c7f;
   margin-top: 2px;
+  font-weight: bold;
  }
 
  #flash_alert, #flash_notice {
@@ -43,7 +55,7 @@
 }
 
  #error_explanation, #flash_error {
-  color: red;
+  color: purple;
   font-weight: bold;
   font-style: italic;
   font-size: 16pt;

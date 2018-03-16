@@ -146,3 +146,31 @@ FROM SECTION#EDIT
     </table>
     <%= f.submit %>
     <% end %>
+
+Section#edit2
+
+    <%= form_for @section do |f| %>
+        <table>
+        <tr>
+            <th></th>
+            <th>Assign Number</th>
+            <th>Standard Text</th>
+        </tr>
+        
+        <% @new_standards.each do |standard| %>
+            <%= f.fields_for :standards, standard do |sf| %>
+            <tr>
+                <%= sf.hidden_field :subject_id, :value=> @subject.id %>
+                <%= sf.hidden_field :asn_id %>
+                <td><%= sf.check_box :description, {checked: false}, sf.object.description %></td>
+                <td><%= sf.text_field :dot_notation %> </td>
+                <td><%= sf.object.description %></td>
+            </tr>
+            <% end %>
+        <% end %>
+        
+        </table>
+    <%= f.submit %>
+    <% end %>
+
+<% end %>

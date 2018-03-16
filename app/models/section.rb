@@ -1,8 +1,8 @@
 class Section < ApplicationRecord
     belongs_to :subject
     has_many :standards, dependent: :destroy
-    # accepts_nested_attributes_for :standards
     validates :title, presence: true
+    scope :persisted, -> { where "id IS NOT NULL" }
 
     def standards_attributes=(standards_attributes)
         standards_attributes.each do |i, standards_hash|

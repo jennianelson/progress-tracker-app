@@ -1,12 +1,13 @@
 <h1>Add a New Subject</h1>
+<p class="page-links"><i><%= link_to "Back to All Subjects", subjects_path %></i></p>
 
 <%= render partial: "layouts/errors", locals: {object: @subject} %>
 
 <% if @subject.errors.any? %>
-    <%=link_to "OK", new_subject_path%>
+    <%= link_to "OK", new_subject_path %>
 <% else %>
     <%= form_for @subject do |f| %>
-        <%= f.select :set_id, options_for_select(subjects_array), prompt: "Choose Subject" %> <br> <br>
+        <%= f.select :set_id, options_for_select(@subjects_not_added), prompt: "Choose Subject" %> <br> <br>
         <%= render layout: "subjects/form", locals: {f: f} do %>
             <legend><b>Add Sections</b></legend>
         <% end %>

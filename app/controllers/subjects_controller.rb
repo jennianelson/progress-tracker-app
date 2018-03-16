@@ -13,7 +13,9 @@ class SubjectsController < ApplicationController
     end
 
     def new
+        get_subjects_array(parse_api("jurisdictions", "B838B98D043045748F3814B9E43CAC85")["data"]["standardSets"])
         @subject = Subject.new
+        @subjects_not_added = Subject.not_added(@subjects_array).sort_by {|s| s[1]}
         5.times { @subject.sections.build }
     end
 
@@ -28,16 +30,16 @@ class SubjectsController < ApplicationController
     end
 
     def edit
-        # 5.times { @subject.sections.build }
-        @standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
-        #Need to remove standards already added?
-        @new_standards = @subject.build_new_standards(@standards_array)
+        2.times { @subject.sections.build }
+        get_standards_array(parse_api("standard_sets", @subject.set_id))
+        @standards_not_added = @subject.standards_not_added(@standards_array)
+        @new_standards = @subject.build_new_standards(@standards_not_added)
     end
 
     def update
         authorize @subject
         if @subject.update(subject_params)
-            redirect_to subject_path(@subject)
+            redirect_to edit_subject_path(@subject)
             flash[:alert] = "Updated successfully!"
         else
             render :edit
@@ -53,7 +55,7 @@ class SubjectsController < ApplicationController
     private
 
     def subject_params
-        params.require(:subject).permit(:ready, :title, :set_id, sections_attributes: [:title, :id, :subject_id])
+        params.require(:subject).permit(:ready, :title, :set_id, sections_attributes: [:title, :id, :subject_id], standards_attributes: [:description, :dot_notation, :section_id, :asn_id])
     end
 
     def set_subject

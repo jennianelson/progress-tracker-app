@@ -30,6 +30,14 @@ class Subject < ApplicationRecord
         end
     end
 
+    def standards_attributes=(standards_attributes)
+        standards_attributes.each do |i, standards_hash|
+            if standards_hash[:description] != "0"
+                self.standards.create(standards_hash)
+            end
+        end
+    end
+
     #Used in
     def self.filter_subject_display(params)
         if !params["subjects"] || params["subjects"].empty?
@@ -53,6 +61,13 @@ class Subject < ApplicationRecord
         end
     end
     
+    def self.not_added(subjects_array)
+        set_ids = all.map {|subject| subject.set_id}
+        subjects_array.select do |subject|
+            set_ids.exclude?(subject[1])
+        end
+    end
+
     #Used in 
     # def self.find_subjects_with_standards
     #     joins(:standards).distinct
