@@ -33,7 +33,6 @@
 3/15 -
     Task: Make root path sign in and then redirect?
     Task: Add authorization to new student_standards#index
-    Task: Ability to delete subjects?
     Task: REFACTOR to make DRY
         -Use Modules for resuable class methods/scopes? (see screen shot example)
         -ActiveRecord class Scopes! (see below)
@@ -48,7 +47,7 @@
         -Should I namespace routes?
         -includes vs. joins 
             -If I need to display data from the associated model, use includes; otherwise, joins
-
+    Task: Change standard#new to subject#edit
 
         class Article < ApplicationRecord
             scope :published, -> { where(published: true) }

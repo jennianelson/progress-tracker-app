@@ -16,23 +16,21 @@ class Standard < ApplicationRecord
     end
 
     def self.filter_by_section(section_id)
-        where(section_id: section_id)
+        where('section_id = ?', section_id)
     end
 
     def self.filter_by_subject(subject_id)
-        where(subject_id: subject_id)
+        where('subject_id = ?', subject_id)
     end
 
     def self.sort_by_subject_and_notation
         order(:subject_id, :dot_notation)
     end
 
-    def self.filter_display(params)
-        if !params["subjects"] || params["subjects"].empty?
-            sort_by_subject_and_notation
-        elsif
-            !params["subjects"].empty?
-            filter_by_subject(params["subjects"]).sort_by_subject_and_notation
-        end
-    end
+    # def self.build_new_standards(model, array_of_standards)
+    #     array_of_standards.map do |standard_hash|
+    #         model.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
+    #     end
+    # end
+
 end

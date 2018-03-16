@@ -1,9 +1,4 @@
 class StandardsController < ApplicationController
-  
-    # def index
-    #     @subjects = Subject.find_subjects_with_standards
-    #     @standards = Standard.filter_display(params)
-    # end
 
     def new
         @subject = Subject.find(params[:subject_id])

@@ -4,14 +4,17 @@
 <% if @standards_not_added.empty? %>
     <h3><i>All available standards have been added.</i></h3>
 <% else %>
+<div class="instructions">
+<p>The following text comes from the Common Standards Project. If the standard has already been given a number, you can use it to help determine if it is actually a standard (or just a heading), which section it belongs to, and whether or not you want to include it.</p>
     <ul>
-        <b><li>Check the standards that you would like to add to this section.</li>
-        <li>Assign each one a number to indicate which standards are sub-standards of others.</li>
+        <li>Check the standards that you would like to add to this section.</li>
+        <li>Assign each standard a number to indicate which ones are sub-standards of others. </li>
         <ul>
             <li>For example, a substandard of 7.1 would be 7.1a</li> 
         </ul>
-        <li>You will be able to edit the text of each standard on the the section's page.</li><b>
+        <li>You will be able to edit the text of each standard on the section's homepage page.</li>
     </ul>
+</div>
 
     <%= form_for @section do |f| %>
         <table>
@@ -21,7 +24,7 @@
             <th>Standard Text</th>
         </tr>
         
-        <% @standards.each do |standard| %>
+        <% @new_standards.each do |standard| %>
             <%= f.fields_for :standards, standard do |sf| %>
             <tr>
                 <%= sf.hidden_field :subject_id, :value=> @subject.id %>

@@ -4,7 +4,7 @@ class StudentSubjectsController < ApplicationController
         if current_user.admin?
             redirect_to subjects_path
         end
-        @subjects = Subject.find_subjects_with_standards
+        @subjects = Subject.ready
         @student_subject = StudentSubject.new
     end
 

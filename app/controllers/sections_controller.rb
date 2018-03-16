@@ -8,12 +8,9 @@ class SectionsController < ApplicationController
 
     def edit
         @subject = @section.subject
-        standards_array = get_standards_array(parse_api("standard_sets", @subject.set_id))
-         #NEEDS WORK!
-        @standards_not_added = standards_not_added(standards_array, @subject)
-        @standards = @standards_not_added.map do |standard_hash|
-            @section.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id])
-        end
+        get_standards_array(parse_api("standard_sets", @subject.set_id))
+        @standards_not_added = @subject.standards_not_added(@standards_array)
+        @new_standards = @section.build_new_standards(@standards_not_added)
     end
 
     def update
@@ -33,13 +30,6 @@ class SectionsController < ApplicationController
 
     def set_section
         @section = Section.find(params[:id])
-    end
-
-    def standards_not_added(standards_array, subject)
-        description_array = subject.standards.map {|standard| standard.description}
-        standards_array.select do |standard_hash|
-            description_array.exclude?(standard_hash[:description])
-        end
     end
 
 end

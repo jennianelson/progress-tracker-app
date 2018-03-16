@@ -8,6 +8,8 @@ class Subject < ApplicationRecord
     validates :title, presence: true
     validates :set_id, presence: true, uniqueness: {message: "has already been added"}
 
+    scope :ready, -> { where('ready = ?', true) }
+
     def sections_attributes=(section_attributes)
         section_attributes.each do |i, section_hash|
             if section_hash[:id].present?
@@ -38,6 +40,12 @@ class Subject < ApplicationRecord
         end
     end
 
+    def standards_not_added(standards_array)
+        description_array = self.standards.map {|standard| standard.description}
+        standards_array.select do |standard_hash|
+            description_array.exclude?(standard_hash[:description])
+        end
+    end
     #Used in 
     # def self.find_subjects_with_standards
     #     joins(:standards).distinct

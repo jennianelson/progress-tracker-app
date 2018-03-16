@@ -19,13 +19,13 @@ class ApplicationController < ActionController::Base
 
   def get_standards_array(parsed_api)
     standards = parsed_api["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
-      standards.map do |standard|
+     @standards_array = standards.map do |standard|
         a = standard[1]
           if a["depth"] > 0
               if a["comments"]
-                { description: "#{a["description"]}--" + " #{a["comments"][0]}", asn_id: a["asnIdentifier"] }
+                { description: "#{a["description"]}--" + " #{a["comments"][0]}", asn_id: a["asnIdentifier"], dot_notation: a["statementNotation"] }
               else
-                { description: a["description"], asn_id: a["asnIdentifier"] }
+                { description: a["description"], asn_id: a["asnIdentifier"], dot_notation: a["statementNotation"] }
               end
           end
       end.compact
