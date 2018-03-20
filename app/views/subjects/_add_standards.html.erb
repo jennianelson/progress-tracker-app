@@ -1,16 +1,16 @@
 <fieldset>
-<div class="instructions">
-<legend><b>Add Standards</b></legend>
-<p>The following text comes from the Common Standards Project. If the standard has already been given a number, you can use it to help determine if it is actually a standard (or just a heading), which section it belongs to, and whether or not you want to include it.</p>
-    <ul>
-        <li>Check the standards that you would like to add.</li>
-        <li>If the standard does not have a number, add one to indicate how it should be organized and whether or not it is a sub-standard. </li>
+    <div class="instructions">
+        <legend><b>Add Standards</b></legend>
+    <p>The following text comes from the Common Standards Project. If the standard has already been given a number, you can use it to help determine if it is actually a standard (or just a heading), which section it belongs to, and whether or not you want to include it.</p>
         <ul>
-            <li>For example, a substandard of 7.1 would be 7.1a</li> 
+            <li>Check the standards that you would like to add.</li>
+            <li>If the standard does not have a number, add one to indicate how it should be organized and whether or not it is a sub-standard. </li>
+            <ul>
+                <li>For example, a substandard of 7.1 would be 7.1a</li> 
+            </ul>
+            <li>You will be able to edit the text of each standard on the subject's homepage page.</li>
         </ul>
-        <li>You will be able to edit the text of each standard on the subject's homepage page.</li>
-    </ul>
-</div>
+    </div>
 
     <%= form_for subject do |f| %>
         <table>
@@ -20,20 +20,19 @@
             <th>Assign Number</th>
             <th>Standard Text</th>
         </tr>
-        
-        <% new_standards.each do |standard| %>
-            <%= f.fields_for :standards, standard do |sf| %>
-            <tr>
-                <%= sf.hidden_field :asn_id %>
-                <td><%= sf.check_box :description, {checked: false}, sf.object.description %></td>
-                <td><%= sf.collection_select :section_id, subject.sections.persisted, :id, :title %> </td>
-                <td><%= sf.text_field :dot_notation %> </td>
-                <td><%= sf.object.description %></td>
-            </tr>
+            <% new_standards.each do |standard| %>
+                <%= f.fields_for :standards, standard do |sf| %>
+                <tr>
+                    <%= sf.hidden_field :asn_id %>
+                    <td><%= sf.check_box :description, {checked: false}, sf.object.description %></td>
+                    <td><%= sf.collection_select :section_id, subject.sections.persisted, :id, :title %> </td>
+                    <td><%= sf.text_field :dot_notation %> </td>
+                    <td><%= sf.object.description %></td>
+                </tr>
+                <% end %>
             <% end %>
-        <% end %>
         </table>
         <br>
-    <%= f.submit "Update Subject Standards" %>
+        <%= f.submit "Update Subject Standards" %>
     <% end %>
-    </fieldset>
+</fieldset>

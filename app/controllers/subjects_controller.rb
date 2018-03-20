@@ -34,7 +34,7 @@ class SubjectsController < ApplicationController
         2.times { @subject.sections.build }
         standards_from_csp = csp_data("standard_sets", @subject.set_id).get_standards
         @standards_not_added = @subject.standards_not_added(standards_from_csp)
-        @new_standards = @subject.build_new_standards(@standards_not_added).sort_by {|s| s.asn_id}
+        @new_standards = @subject.build_new_standards(@standards_not_added)
     end
 
     def update

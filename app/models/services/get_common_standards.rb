@@ -13,7 +13,7 @@ class GetCommonStandards
     
     def get_standards
       standards = api_call["data"]["standards"].sort_by { |s| s[1]["asnIdentifier"]}
-        @standards_array = standards.map do |standard|
+        standards.map do |standard|
           a = standard[1]
             if a["depth"] > 0
                 if a["comments"]

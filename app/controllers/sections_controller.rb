@@ -8,8 +8,8 @@ class SectionsController < ApplicationController
 
     def edit
         @subject = @section.subject
-        get_standards_array(parse_api("standard_sets", @subject.set_id))
-        @standards_not_added = @subject.standards_not_added(@standards_array)
+        csp_data = GetCommonStandards.new("standard_sets", @subject.set_id).get_standards
+        @standards_not_added = @subject.standards_not_added(csp_data)
         @new_standards = @section.build_new_standards(@standards_not_added)
     end
 
@@ -25,7 +25,7 @@ class SectionsController < ApplicationController
     private
     
     def section_params
-        params.require(:section).permit(standards_attributes: [:description, :dot_notation, :subject_id, :asn_id])
+        params.require(:section).permit(:title, standards_attributes: [:description, :dot_notation, :subject_id, :asn_id])
     end
 
     def set_section
