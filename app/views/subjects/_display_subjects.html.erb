@@ -9,6 +9,9 @@
         <td id="skinny-column"><%= check_box("subject", "ready", {checked: subject.ready?, disabled: true}) %></td>
         <td> 
             <%= link_to subject.title, subject_path(subject) %>
+            <% if subject.standards.empty? %>
+            <p>(No standards have been added.)</p>
+            <% end %>
         </td>
         <td>
             <ul>

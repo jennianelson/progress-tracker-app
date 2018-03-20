@@ -13,9 +13,9 @@ class SubjectsController < ApplicationController
     end
 
     def new
-        get_subjects_array(parse_api("jurisdictions", "B838B98D043045748F3814B9E43CAC85")["data"]["standardSets"])
         @subject = Subject.new
-        @subjects_not_added = Subject.not_added(@subjects_array).sort_by {|s| s[1]}
+        subjects_from_csp = csp_data("jurisdictions", "B838B98D043045748F3814B9E43CAC85").get_subjects
+        @subjects_not_added = Subject.not_added(subjects_from_csp).sort_by {|s| s[1]}
         5.times { @subject.sections.build }
     end
 
@@ -32,9 +32,9 @@ class SubjectsController < ApplicationController
 
     def edit
         2.times { @subject.sections.build }
-        get_standards_array(parse_api("standard_sets", @subject.set_id))
-        @standards_not_added = @subject.standards_not_added(@standards_array)
-        @new_standards = @subject.build_new_standards(@standards_not_added)
+        standards_from_csp = csp_data("standard_sets", @subject.set_id).get_standards
+        @standards_not_added = @subject.standards_not_added(standards_from_csp)
+        @new_standards = @subject.build_new_standards(@standards_not_added).sort_by {|s| s.asn_id}
     end
 
     def update
@@ -61,6 +61,10 @@ class SubjectsController < ApplicationController
 
     def set_subject
         @subject = Subject.find(params[:id])
+    end
+
+    def csp_data(resource, set_id)
+        GetCommonStandards.new(resource, set_id)
     end
 
 end
