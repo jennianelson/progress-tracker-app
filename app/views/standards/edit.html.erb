@@ -7,10 +7,14 @@
 <%= render partial: "layouts/errors", locals: {object: @standard} %>
 <br> <br>
 <%= form_for @standard do |f| %>
-    <%= f.label :dot_notation, "Number:" %>
-    <%= f.text_field :dot_notation %> <br>
-    <%= f.text_area :description %> <br>
-    <%= f.label :section_id, "Change Section" %>
-    <%= f.collection_select(:section_id, @subject.sections, :id, :title) %> <br>
-    <%= f.submit %>
+    <b><%= f.label :section_id, "Section" %></b>
+    <%= f.collection_select(:section_id, @subject.sections, :id, :title) %> <br> <br>
+    <b><%= f.label :asn_id, "ASN ID:" %></b>
+    <%= f.text_field :asn_id %> <br>
+    *This is number used by the Common Standards Project to order the standards. If the standards are not appearing in the order you would like, try changing their ASN IDs. <br> <br>
+    <b><%= f.label :dot_notation, "Number:" %></b>
+    <%= f.text_field :dot_notation %> <br> <br>
+    <b><%= f.label :description, "Standard Description:" %></b> <br>
+    <%= f.text_area :description %> <br><br>
+    <%= f.submit %> 
 <% end %>
