@@ -1,10 +1,8 @@
+<%= image_tag "logo.png", :class => "logo" %>
 <nav class="navbar">
-    <% if !current_user %>
-        <%= link_to "Sign up", new_user_registration_path %> / <%= link_to "Log in", new_user_session_path %>
-    <% else %>
-        <p><b>Progress Tracker | </b><%= navbar_options(current_user) %></p>
+    <% if current_user %>
+        <%= navbar_options(current_user) %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
         <p>You are a <%= current_user.role %> signed in as <b><%= current_user.email %></b>.</p>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
-        <br>
+        
     <% end %>
 </nav>

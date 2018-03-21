@@ -14,11 +14,31 @@
  *= require_self
  */
 
- /* .field_with_errors {
-  padding: 2px;
-  border: 1px solid purple;
-  display: table;
-} */
+body {
+  color: #525252;
+}
+
+a:link, a:visited {
+  color: #ef8b2d;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #db6606;
+}
+
+img.logo {
+  /* background: no-repeat;  */
+  width: 100px; 
+  height: 100px; 
+  float: left; 
+  text-indent: -9999px;
+}
+
+nav.navbar {
+  padding-top: 20px;
+  /* float: left; */
+}
 
 p.page-links {
   font-style: italic;
@@ -42,20 +62,20 @@ p.page-links {
  input[type=submit]  {
   background-color: white;
   border-radius: 4px;
-  border: 1px solid #460c7f;
+  border: 1px solid #ef8b2d;
   margin-top: 2px;
   font-weight: bold;
+  color: #525252;
  }
 
  #flash_alert, #flash_notice {
-  color: green;
   font-weight: bold;
   font-style: italic;
-  font-size: 16pt;
+  font-size: 1.25em;
+  padding-top: 70px;
 }
 
  #error_explanation, #flash_error {
-  color: purple;
   font-weight: bold;
   font-style: italic;
   font-size: 16pt;
@@ -80,7 +100,7 @@ p.page-links {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: #fffbb3;
   color: white;
 }
 
@@ -101,7 +121,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #b3dde5;
+  background-color: #fffbb3;
 }
 
 textarea {
