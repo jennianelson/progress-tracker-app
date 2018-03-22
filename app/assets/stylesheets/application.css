@@ -67,7 +67,6 @@ nav.main-nav {
 .column {
   width: 100%;
   margin-top: 120px;
-  /* background-color: mediumpurple; */
 }
 
 /* Clear floats after the columns */
@@ -75,7 +74,6 @@ nav.main-nav {
   content: "";
   display: table;
   clear: both;
-  /* background-color: lime; */
 }
 
 a:link, a:visited {
@@ -123,17 +121,11 @@ p.page-links {
   color: #525252;
  }
 
- #flash_alert, #flash_notice {
+ #flash_alert, #flash_notice, #error_explanation, #flash_error {
   font-weight: bold;
   font-style: italic;
   font-size: 1.25em;
-  /* padding-top: 70px; */
-}
-
- #error_explanation, #flash_error {
-  font-weight: bold;
-  font-style: italic;
-  font-size: 16pt;
+  color: gray;
 }
 
 #skinny-column {
