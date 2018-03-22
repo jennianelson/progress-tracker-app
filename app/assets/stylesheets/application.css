@@ -109,6 +109,11 @@ p.page-links {
   list-style-type: circle;
  }
 
+ ul.section-list {
+   list-style-type: none;
+   padding-left: 0;
+ }
+
  input[type=submit]  {
   background-color: white;
   border-radius: 4px;
@@ -170,12 +175,22 @@ table {
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
-tr:nth-child(even) {
+th {
   background-color: #fffbb3;
+  font-size: 20px;
 }
+
+/* tr:nth-child(even) {
+  background-color: #fffbb3;
+} */
+
+tr:hover {background-color: #fffbb3;}
 
 textarea {
   width: 50%;
