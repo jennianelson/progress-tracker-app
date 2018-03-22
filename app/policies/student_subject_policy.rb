@@ -7,7 +7,7 @@ class StudentSubjectPolicy < ApplicationPolicy
     end
 
     def show?
-        user.teacher? || student_subject.user == user 
+        user.teacher? || user.admin? || student_subject.user == user 
     end
 
 end
