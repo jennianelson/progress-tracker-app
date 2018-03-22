@@ -6,15 +6,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <br>
-    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-    <%= yield %>
+    <header><%= render 'layouts/header' %></header>
+    <div class="row">
+      <div class="column">
+        <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+        <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+        <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

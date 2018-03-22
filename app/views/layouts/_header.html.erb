@@ -1,8 +1,14 @@
-<%= image_tag "logo.png", :class => "logo" %>
-<nav class="navbar">
-    <% if current_user %>
-        <%= navbar_options(current_user) %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %> 
-        <p>You are a <%= current_user.role %> signed in as <b><%= current_user.email %></b>.</p>
-        
-    <% end %>
-</nav>
+<div class="container">
+    <%= image_tag "logo.png", :class=> "logo"%>
+    <nav class="main-nav">
+        <% if current_user %>
+            <ul>
+            <% navbar_array(current_user).each do |link| %>
+                <li class="nav-link"><%= link %></li>
+            <% end %>
+                <li class="nav-link"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+                <li class="nav-right">You are signed in as <%= current_user.email %> (<%= current_user.role %>).</li>
+            </ul> 
+        <% end %>
+    </nav>
+</div>

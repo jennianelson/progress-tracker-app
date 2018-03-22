@@ -30,24 +30,16 @@
     /Task: Enable students to view the subject standards by progress level
         - student_subject/:id/student_standards 
             -dropdown filter
-3/15 -
-    Task: Make root path sign in and then redirect?
-    Task: Add authorization to new student_standards#index
+3/15 
+    /Task: Add authorization to new student_standards#index
     Task: REFACTOR to make DRY
         -Use Modules for resuable class methods/scopes? (see screen shot example)
         -ActiveRecord class Scopes! (see below)
             -look into order/sorting especially
-            -deal with standards that don't have asn_id
-            # standards.map {|s| s.subject_id}
-            # sorted_standards = standards.sort_by {|s| s.dot_notation}
-            # sorted_standards.each do |standard|
-            #     number = number + 10
-            #     standard.update(asn_id: number.to_s)
-            # end
         -Should I namespace routes?
         -includes vs. joins 
             -If I need to display data from the associated model, use includes; otherwise, joins
-    Task: Change standard#new to subject#edit
+    /Task: Change standard#new to subject#edit
 
         class Article < ApplicationRecord
             scope :published, -> { where(published: true) }
