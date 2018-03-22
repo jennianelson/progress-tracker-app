@@ -7,12 +7,15 @@
 </p>
 
 <%= form_for @subject do |f| %>
-<fieldset>
-    <%= f.check_box :ready %>
-    <%= f.label :ready, "This subject is ready to be made available to students and teachers." %>
-    <%= f.submit "Update" %>
-</fieldset>
+    <fieldset>
+        <%= f.check_box :ready %>
+        <%= f.label :ready, "This subject is ready to be made available to students and teachers." %>
+        <%= f.submit "Update" %>
+    </fieldset>
 <% end %>
+
+<p id="flash_alert"> <%= subject_being_used_alert(@subject)%> </p>
+
 <div class="instructions">
     <p>Standards can be added all at once by clicking on the "Edit Subject" link or added by section using the links below.</p>
 </div>
