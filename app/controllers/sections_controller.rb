@@ -9,8 +9,8 @@ class SectionsController < ApplicationController
     def edit
         @subject = @section.subject
         csp_data = GetCommonStandards.new("standard_sets", @subject.set_id).get_standards
-        @standards_not_added = @subject.standards_not_added(csp_data)
-        @new_standards = @section.build_new_standards(@standards_not_added)
+        standards_not_added = @subject.standards_not_added(csp_data)
+        @new_standards = @section.build_new_standards(standards_not_added)
     end
 
     def update

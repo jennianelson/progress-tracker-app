@@ -33,14 +33,19 @@ class SubjectsController < ApplicationController
     def edit
         2.times { @subject.sections.build }
         standards_from_csp = csp_data("standard_sets", @subject.set_id).get_standards
-        @standards_not_added = @subject.standards_not_added(standards_from_csp)
-        @new_standards = @subject.build_new_standards(@standards_not_added)
+        standards_not_added = @subject.standards_not_added(standards_from_csp)
+        @new_standards = @subject.build_new_standards(standards_not_added)
     end
 
     def update
         authorize @subject
+        readiness = @subject.ready
         if @subject.update(subject_params)
-            redirect_to subject_path(@subject)
+            if @subject.ready != readiness
+                redirect_to subject_path(@subject)
+            else
+                redirect_to edit_subject_path(@subject)
+            end
             flash[:alert] = "Updated successfully!"
         else
             render :edit

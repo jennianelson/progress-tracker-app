@@ -1,7 +1,7 @@
 class Subject < ApplicationRecord
+
     has_many :sections, dependent: :destroy
     has_many :standards, dependent: :destroy
-    
     has_many :student_subjects, dependent: :destroy
     has_many :users, through: :student_subjects
 
@@ -57,25 +57,5 @@ class Subject < ApplicationRecord
             self.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
         end
     end
-
-    #Used in 
-    # def self.find_subjects_with_standards
-    #     joins(:standards).distinct
-    # end
-
-    #Used in
-    # def self.find_subjects_without_standards
-    #     includes(:standards).where(standards: {id: nil})
-    # end
-
-      #Used in
-    # def self.filter_subject_display(params)
-    #     if !params["subjects"] || params["subjects"].empty?
-    #         sort_by_set_id
-    #     elsif
-    #         !params["subjects"].empty?
-    #         find(params["subjects"])
-    #     end
-    # end
 
 end
