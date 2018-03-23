@@ -42,7 +42,6 @@ div.container {
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 15px;
-  /* background-color: gray; */
 }
 
 li.nav-right {
@@ -113,12 +112,18 @@ p.page-links {
  }
 
  input[type=submit]  {
-  background-color: white;
+  background-color: #ef8b2d;
   border-radius: 4px;
   border: 1px solid #ef8b2d;
   margin-top: 2px;
   font-weight: bold;
-  color: #525252;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  text-shadow: 1px 1px 1px gray;
+ }
+
+ select {
+  border-color: #b8bbc1;
  }
 
  #flash_alert, #flash_notice, #error_explanation, #flash_error {
