@@ -1,6 +1,9 @@
 <fieldset>
     <div class="instructions">
         <legend><b>Add Standards</b></legend>
+    <% if new_standards.empty? %>
+        <h3><i>All available standards have been added.</i></h3>
+    <% else %>
     <p>The following text comes from the Common Standards Project. If the standard has already been given a number, you can use it to help determine if it is actually a standard (or just a heading), which section it belongs to, and whether or not you want to include it.</p>
         <ul>
             <li>Check the standards that you would like to add.</li>
@@ -34,5 +37,6 @@
         </table>
         <br>
         <%= f.submit "Update Subject Standards" %>
+    <% end %>
     <% end %>
 </fieldset>

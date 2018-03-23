@@ -32,6 +32,7 @@
             -dropdown filter
 3/15 
     /Task: Add authorization to new student_standards#index
+    TASK: Lockdown subject ready form to teachers
     Task: REFACTOR to make DRY
         -Use Modules for resuable class methods/scopes? (see screen shot example)
         -ActiveRecord class Scopes! (see below)

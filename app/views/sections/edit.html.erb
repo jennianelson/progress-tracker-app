@@ -3,7 +3,7 @@
     <%= link_to "Back to Subject Page", subject_path(@subject) %>
 </p>
 
-<% if @standards_not_added.empty? %>
+<% if @new_standards.empty? %>
     <h3><i>All available standards have been added.</i></h3>
 <% else %>
     <div class="instructions">
