@@ -37,12 +37,11 @@ class SubjectsController < ApplicationController
 
     def update
         authorize @subject
-        readiness = @subject.ready
         if @subject.update(subject_params)
-            if @subject.ready != readiness
-                redirect_to subject_path(@subject)
-            else
+            if subject_params[:sections_attributes]
                 redirect_to edit_subject_path(@subject)
+            else
+                redirect_to subject_path(@subject)
             end
             flash[:alert] = "Updated successfully!"
         else
