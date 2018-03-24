@@ -7,18 +7,6 @@ class Standard < ApplicationRecord
    
     validates :description, :dot_notation, presence: true
 
-    # def self.filter_by_section(section_id)
-    #     where('section_id = ?', section_id)
-    # end
-
-    # def self.filter_by_subject(subject_id)
-    #     where('subject_id = ?', subject_id)
-    # end
-
-    # def self.sort_by_subject_and_notation
-    #     order(:subject_id, :dot_notation)
-    # end
-
     def self.collect_descriptions
         all.map {|s| s.description}
     end
