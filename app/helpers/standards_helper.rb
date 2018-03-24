@@ -8,12 +8,8 @@ module StandardsHelper
         standard.subject.title
     end
 
-    def sort_standards(standards)
-        if standards.first.asn_id
-            standards.order(:asn_id)
-        else
-            standards.order(:dot_notation)
-        end
+    def order_standards(standards)
+        standards.order(:asn_id)
     end
 
 end

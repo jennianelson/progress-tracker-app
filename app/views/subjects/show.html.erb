@@ -1,4 +1,5 @@
 <h2><%= @subject.title %></h2>
+
 <p class="page-links">
     <% if policy(@subject).update? %>
         <%= link_to "Edit Subject", edit_subject_path(@subject) %> |
@@ -6,12 +7,14 @@
     <%= link_to "Back to All Subjects", subjects_path %> 
 </p>
 
-<%= form_for @subject do |f| %>
-    <fieldset>
-        <%= f.check_box :ready %>
-        <%= f.label :ready, "This subject is ready to be made available to students and teachers." %>
-        <%= f.submit "Update" %>
-    </fieldset>
+<% if policy(@subject).update? %>
+    <%= form_for @subject do |f| %>
+        <fieldset>
+            <%= f.check_box :ready %>
+            <%= f.label :ready, "This subject is ready to be made available to students and teachers." %>
+            <%= f.submit "Update" %>
+        </fieldset>
+    <% end %>
 <% end %>
 
 <p id="flash_alert"> <%= subject_being_used_alert(@subject)%> </p>
@@ -23,7 +26,7 @@
 <% @subject.sections.each do |section| %>
     <h3><%= section.title %> <i><%= link_to "Add standards to this section", edit_section_path(section) if policy(@subject).update? %></i></h3>
     <% if section.standards.present? %>
-        <% sort_standards(section.standards).each do |standard| %>
+        <% order_standards(section.standards).each do |standard| %>
         <ul>
            <li class=<%= "sub-standard" if standard.dot_notation =~ /[a-z]/%>> <%= standard.dot_notation %> <%= standard.description %>
                 <%= link_to "edit", edit_subject_standard_path(@subject, standard) if policy(@subject).update? %> </li> 

@@ -27,10 +27,4 @@ class Standard < ApplicationRecord
         order(:subject_id, :dot_notation)
     end
 
-    # def self.build_new_standards(model, array_of_standards)
-    #     array_of_standards.map do |standard_hash|
-    #         model.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
-    #     end
-    # end
-
 end
