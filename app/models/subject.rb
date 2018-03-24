@@ -42,10 +42,4 @@ class Subject < ApplicationRecord
         end
     end
 
-    # def build_new_standards(array_from_csp)
-    #     array_from_csp.map do |standard_hash|
-    #         self.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
-    #     end
-    # end
-
 end
