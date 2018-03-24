@@ -11,7 +11,7 @@ class StudentStandard < ApplicationRecord
         where(progress_level: progress_level)
     end
 
-    def self.section(section)
+    def self.filter_by_section(section)
         joins(:standard).where(standards: { section: section} ).order('standards.dot_notation')
     end
 

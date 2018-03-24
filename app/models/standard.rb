@@ -7,14 +7,6 @@ class Standard < ApplicationRecord
    
     validates :description, :dot_notation, presence: true
 
-    def standards_attributes=(standards_attributes)
-        standards_attributes.each do |i, standard_hash|
-            if !standard_hash["include"]
-                Standard.create(standard_hash)
-            end
-        end
-    end
-
     def self.filter_by_section(section_id)
         where('section_id = ?', section_id)
     end
@@ -25,6 +17,16 @@ class Standard < ApplicationRecord
 
     def self.sort_by_subject_and_notation
         order(:subject_id, :dot_notation)
+    end
+
+    def self.collect_descriptions
+        all.map {|s| s.description}
+    end
+
+    def self.build_new_standards(array)
+        array.map do |standard_hash|
+            self.new(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
+        end.sort_by {|s| s.asn_id }
     end
 
 end

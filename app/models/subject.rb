@@ -10,11 +10,8 @@ class Subject < ApplicationRecord
 
     scope :ready, -> { where('ready = ?', true) }
 
-    def self.not_added(subjects_from_csp)
-        set_ids = all.map {|subject| subject.set_id}
-        subjects_from_csp.select do |subject|
-            set_ids.exclude?(subject[1])
-        end
+    def self.collect_set_ids
+        all.map {|subject| subject.set_id}
     end
    
     def sections_attributes=(section_attributes)
@@ -45,17 +42,10 @@ class Subject < ApplicationRecord
         end
     end
 
-    def standards_not_added(standards_array)
-        description_array = self.standards.map {|standard| standard.description}
-        standards_array.select do |standard_hash|
-            description_array.exclude?(standard_hash[:description])
-        end
-    end
-
-    def build_new_standards(array_from_csp)
-        array_from_csp.map do |standard_hash|
-            self.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
-        end
-    end
+    # def build_new_standards(array_from_csp)
+    #     array_from_csp.map do |standard_hash|
+    #         self.standards.build(description: standard_hash[:description], asn_id: standard_hash[:asn_id], dot_notation: standard_hash[:dot_notation])
+    #     end
+    # end
 
 end

@@ -21,7 +21,7 @@ class StandardsController < ApplicationController
     private
 
     def standard_params
-        params.require(:standard).permit(:description, :dot_notation, :section_id, :asn_id, standards_attributes: [:include, :description, :dot_notation, :section_id, :subject_id, :asn_id])
+        params.require(:standard).permit(:description, :dot_notation, :section_id, :asn_id)
     end
 
     def set_standard

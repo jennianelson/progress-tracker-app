@@ -1,4 +1,4 @@
-class GetCommonStandards
+class CommonStandardsProject
   include HTTParty
     
     def initialize(resource, set_id)
@@ -28,7 +28,21 @@ class GetCommonStandards
     def get_subjects
       api_call["data"]["standardSets"].map do |s| 
         [ s["title"] + " " + s["subject"], s["id"] ]
-      end 
+      end.sort_by {|s| s[1]}
+    end
+
+    def get_unadded_subjects
+      set_ids_array = Subject.collect_set_ids
+      get_subjects.select do |subject|
+        set_ids_array.exclude?(subject[1])
+      end
+    end
+
+    def get_unadded_standards(subject)
+      description_array = subject.standards.collect_descriptions
+      get_standards.select do |standard_hash|
+        description_array.exclude?(standard_hash[:description])
+      end
     end
 
 end

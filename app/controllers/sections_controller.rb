@@ -3,12 +3,12 @@ class SectionsController < ApplicationController
 
     def show
         @student_subject = StudentSubject.find(params[:student_subject_id])
-        @student_standards = @student_subject.student_standards.section(@section)
+        @student_standards = @student_subject.student_standards.filter_by_section(@section)
     end
 
     def edit
         @subject = @section.subject
-        csp_data = GetCommonStandards.new("standard_sets", @subject.set_id).get_standards
+        csp_data = CommonStandardsProject.new("standard_sets", @subject.set_id).get_standards
         standards_not_added = @subject.standards_not_added(csp_data)
         @new_standards = @section.build_new_standards(standards_not_added)
     end
