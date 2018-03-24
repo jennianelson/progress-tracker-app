@@ -22,14 +22,10 @@ class Subject < ApplicationRecord
                     section.destroy
                 else
                     section = Section.find(section_hash[:id])
-                    section.title = section_hash[:title]
-                    section.save
+                    section.update(title: section_hash[:title])
                 end
-            else
-                if section_hash[:title].present?
-                    section = Section.create(title: section_hash[:title])
-                    self.sections << section
-                end
+            elsif section_hash[:title].present?
+                self.sections.create(title: section_hash[:title])
             end
         end
     end
