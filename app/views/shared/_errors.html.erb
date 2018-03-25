@@ -1,7 +1,10 @@
 <% if object.errors.any? %>
     <div id="error_explanation">
         <% object.errors.full_messages.each do |msg| %>
-            <p><%= msg %>!</p>
+            <p><%= msg %></p>
         <% end %>
     </div>
+    <%= link_to "OK", path %>
+<% else %>
+    <%= yield %>
 <% end %>

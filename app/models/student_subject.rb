@@ -8,7 +8,7 @@ class StudentSubject < ApplicationRecord
     def create_student_standards(subject)
         current_user = self.user
         subject.standards.each do |standard|
-            current_user.student_standards.create(standard_id: standard.id ,student_subject_id: self.id)
+            current_user.student_standards.create(standard_id: standard.id, student_subject_id: self.id)
         end
     end
 end

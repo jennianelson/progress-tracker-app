@@ -1,21 +1,12 @@
 <%= form_for standard do |f| %>
-    <% standards_array.each_with_index do |standard_hash, index| %>
-        <fieldset>
-            <%= f.fields_for :standards_attributes do |s| %>
-                <i><%= s.label "[#{index}][include]", "Check if you DO NOT want to include this standard." %></i>
-                <%= check_box_tag "standard[standards_attributes][[#{index}][include]]", "no" %> <br>
-                <b><%= s.label "[#{index}][dot_notation]", "Number (required):" %></b>
-                <%= s.text_field "[#{index}][dot_notation]", :required => true %>  <br>
-                <b><%= s.label "[#{index}][section_id]", "Section:" %></b>
-                <%= s.select "[#{index}][section_id]", options_from_collection_for_select(sections, "id", "title") %> <br>
-                <b><%= s.label "[#{index}][description]", "Description:" %></b>
-                <%= standard_hash[:description] %>
-                <%= s.hidden_field "[#{index}][description]", :value => standard_hash[:description] %>
-                <%= s.hidden_field "[#{index}][asn_id]", :value => standard_hash[:asn_id] %>
-                <%= s.hidden_field "[#{index}][subject_id]", value: subject.id %>
-            <% end %>
-        </fieldset>
-    <% end %>
-    <br>
-<%= f.submit "Add These Standards"%>
+    <b><%= f.label :section_id, "Section" %></b>
+    <%= f.collection_select(:section_id, subject.sections, :id, :title) %> <br> <br>
+    <b><%= f.label :asn_id, "ASN ID:" %></b>
+    <%= f.text_field :asn_id %> <br>
+    *This is number used by the Common Standards Project to order the standards. If the standards are not appearing in the order you would like, try changing their ASN IDs. <br> <br>
+    <b><%= f.label :dot_notation, "Number:" %></b>
+    <%= f.text_field :dot_notation %> <br> <br>
+    <b><%= f.label :description, "Standard Description:" %></b> <br>
+    <%= f.text_area :description %> <br><br>
+    <%= f.submit %> 
 <% end %>

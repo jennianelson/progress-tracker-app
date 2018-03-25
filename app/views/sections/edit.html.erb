@@ -3,41 +3,10 @@
     <%= link_to "Back to Subject Page", subject_path(@subject) %>
 </p>
 
-<% if @new_standards.empty? %>
-    <h3><i>All available standards have been added.</i></h3>
-<% else %>
-    <div class="instructions">
-    <p>The following text comes from the Common Standards Project. If the standard has already been given a number, you can use it to help determine if it is actually a standard (or just a heading), which section it belongs to, and whether or not you want to include it.</p>
-        <ul>
-            <li>Check the standards that you would like to add to this section.</li>
-            <li>Assign each standard a number to indicate which ones are sub-standards of others. </li>
-            <ul>
-                <li>For example, a substandard of 7.1 would be 7.1a</li> 
-            </ul>
-            <li>You will be able to edit the text of each standard on the section's homepage page.</li>
-        </ul>
-    </div>
-
-    <%= form_for @section do |f| %>
-        <table>
-            <tr>
-                <th></th>
-                <th>Assign Number</th>
-                <th>Standard Text</th>
-            </tr>
-            <% @new_standards.each do |standard| %>
-                <%= f.fields_for :standards, standard do |sf| %>
-                <tr>
-                    <%= sf.hidden_field :subject_id, :value=> @subject.id %>
-                    <%= sf.hidden_field :asn_id %>
-                    <td><%= sf.check_box :description, {checked: false}, sf.object.description %></td>
-                    <td><%= sf.text_field :dot_notation %> </td>
-                    <td><%= sf.object.description %></td>
-                </tr>
-                <% end %>
-            <% end %>  
-        </table>
-        <br>
-        <%= f.submit %>
+<%= render layout: "shared/errors", locals: {object: @section, path: edit_section_path(@section)} do %>
+    <% if @new_standards.empty? %>
+        <h3><i>All available standards have been added.</i></h3>
+    <% else %>
+        <%= render partial: 'subjects/add_standards', locals: {subject: @subject, new_standards: @new_standards, object: @section} %>
     <% end %>
 <% end %>

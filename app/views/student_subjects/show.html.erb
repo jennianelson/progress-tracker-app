@@ -1,6 +1,6 @@
 <h2><%= student_subject_title(@student_subject) %></h2>
 <p class="page-links">
-<% if current_user.student? %>
+<% if @student_subject.user == current_user %>
     <%= link_to "Back to All Subjects", student_subjects_path %> 
 <% else %>
     <%= link_to "Back to Student's Subjects", user_path(@student_subject.user) %> 

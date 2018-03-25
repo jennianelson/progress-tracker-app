@@ -11,7 +11,7 @@
 
 <%= form_tag subjects_path, method: "get" do %>
     <%= select_tag "subjects", options_from_collection_for_select(@subjects, "id", "title"), prompt: "Choose a subject's page" %>
-    <%= submit_tag "Go", class: "go" %>
+    <%= submit_tag "Go" %>
 <% end %>
 <br>
 

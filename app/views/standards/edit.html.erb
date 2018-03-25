@@ -1,20 +1,13 @@
 <h2>Edit <%= section_title(@standard) %> Standard</h2>
 
-<i><%= link_to "Cancel", subject_path(@subject) %></i>
-<% if policy(@standard).destroy? %>
-    <i> | <%= link_to "Delete", standard_path, :data => { :confirm => "Are you sure you want to delete this standard? This action cannot be undone." }, method: "delete", class: "delete" %></i>
-<% end %>
-<%= render partial: "layouts/errors", locals: {object: @standard} %>
-<br> <br>
-<%= form_for @standard do |f| %>
-    <b><%= f.label :section_id, "Section" %></b>
-    <%= f.collection_select(:section_id, @subject.sections, :id, :title) %> <br> <br>
-    <b><%= f.label :asn_id, "ASN ID:" %></b>
-    <%= f.text_field :asn_id %> <br>
-    *This is number used by the Common Standards Project to order the standards. If the standards are not appearing in the order you would like, try changing their ASN IDs. <br> <br>
-    <b><%= f.label :dot_notation, "Number:" %></b>
-    <%= f.text_field :dot_notation %> <br> <br>
-    <b><%= f.label :description, "Standard Description:" %></b> <br>
-    <%= f.text_area :description %> <br><br>
-    <%= f.submit %> 
+<%= render layout: "shared/errors", locals: {object: @standard, path: edit_subject_standard_path(@standard.subject, @standard) } do %>
+    <i><%= link_to "Cancel", subject_path(@subject) %></i>
+    <% if policy(@standard).destroy? %>
+        <i> | <%= link_to "Delete", standard_path, :data => { :confirm => "Are you sure you want to delete this standard? This action cannot be undone." }, method: "delete", class: "delete" %></i>
+    <% end %>
+
+    <br> <br>
+
+    <%= render partial: "form", locals: {standard: @standard, subject: @subject} %>
+        
 <% end %>

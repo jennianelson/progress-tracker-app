@@ -5,7 +5,7 @@ class Standard < ApplicationRecord
     has_many :student_standards, dependent: :destroy
     has_many :users, through: :student_standards
    
-    validates :description, :dot_notation, presence: true
+    validates :description, :dot_notation, :asn_id, presence: true
 
     def self.collect_descriptions
         all.map {|s| s.description}

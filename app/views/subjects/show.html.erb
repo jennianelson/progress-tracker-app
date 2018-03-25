@@ -20,7 +20,7 @@
 <p id="flash_alert"> <%= subject_being_used_alert(@subject)%> </p>
 
 <div class="instructions">
-    <p>Standards can be added all at once by clicking on the "Edit Subject" link or added by section using the links below.</p>
+    <p>Standards can be added all at once by clicking on the <%=link_to "Edit Subject", edit_subject_path(@subject) %> link or added by section using the links below.</p>
 </div>
 
 <% @subject.sections.each do |section| %>

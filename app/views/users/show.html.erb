@@ -3,18 +3,5 @@
 <h3><%= @user.email %></h3>
 <p><i><%= link_to "Back to all students", users_path %></i></p>
 <p>Click on a section to view progress.</p>
-<table>
-        <% @user.student_subjects.each do |ss| %>
-            <tr>
-                <td>
-                    <%= link_to student_subject_title(ss), student_subject_path(ss) %>
-                    <ul>
-                        <% student_subject_sections(ss).each do |section| %>
-                            <li><%= link_to section.title, student_subject_section_path(ss, section) %></li>
-                        <% end %>
-                    </ul>
-                </td>
-                <td><%= link_to "delete", student_subject_path(ss), :data => { :confirm => "Are you sure? Deleting this subject will also delete the student's progress with the standards in this subject." }, method: "delete" if policy(@user).update? %></td>
-            </tr>
-        <% end %>
-</table>
+
+<%= render partial: "user_subjects", locals: {user: @user} %>

@@ -1,9 +1,0 @@
-<h1>Add Standards to <%=@subject.title%></h1>
-
-<% if @subject.standards.empty? %>
-
-    <%= render partial: "form", locals: {standard: @standard, standards_array: @standards_array, sections: @sections, subject: @subject} %>
-
-<% else %>
-<h2>Standards have already been added to this subject.</h2>
-<% end %>
