@@ -16,6 +16,10 @@ module StudentStandardsHelper
         student_standard.standard.subject
     end
 
+    def student_standard_user_name(student_standard)
+        student_standard.user.name
+    end
+
     def progress_column_options(ss)
         if ss.progress_level 
             ss.progress_level
@@ -23,7 +27,7 @@ module StudentStandardsHelper
             if policy(ss).update?
                 link_to "Add Progress", edit_student_standard_path(ss)
             else
-                "Student has not entered progress."
+                "#{ss.user.name} has not entered progress."
             end
         end 
     end

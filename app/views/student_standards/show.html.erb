@@ -1,4 +1,4 @@
-<h1>Learning Progress</h1>
+<h1><%= student_standard_user_name(@student_standard)%>'s Learning Progress</h1>
 <p><i>
     <%= link_to "Back to Section Standards", student_subject_section_path(@student_standard.student_subject, student_standard_section(@student_standard)) %>
     <% if policy(@student_standard).update? %>

@@ -7,7 +7,7 @@
                 <li class="nav-link"><%= link %></li>
             <% end %>
                 <li class="nav-link"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-                <li class="nav-right">You are signed in as <%= current_user.email %> (<%= current_user.role %>).</li>
+                <li class="nav-right">You are signed in as <%= current_user.name %> (<%= current_user.role %>).</li>
             </ul> 
         <% end %>
     </nav>

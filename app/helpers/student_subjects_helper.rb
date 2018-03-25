@@ -12,8 +12,8 @@ module StudentSubjectsHelper
         student_subject.subject.sections
     end
 
-    def student_subject_email(student_subject)
-        student_subject.user.email
+    def student_subject_name(student_subject)
+        student_subject.user.name
     end
 
 end
