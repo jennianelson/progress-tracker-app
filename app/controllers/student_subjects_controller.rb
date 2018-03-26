@@ -31,7 +31,7 @@ class StudentSubjectsController < ApplicationController
     def destroy
         student_subject = StudentSubject.find(params[:id])
         student_subject.destroy
-        redirect_to user_path(@user)
+        redirect_to user_path(student_subject.user)
     end
 
     private
