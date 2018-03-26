@@ -25,7 +25,8 @@ class Subject < ApplicationRecord
                     section.update(title: section_hash[:title])
                 end
             elsif section_hash[:title].present?
-                self.sections.create(title: section_hash[:title])
+                section = Section.create(title: section_hash[:title])
+                self.sections << section
             end
         end
     end
