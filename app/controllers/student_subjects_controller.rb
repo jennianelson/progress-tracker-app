@@ -11,6 +11,7 @@ class StudentSubjectsController < ApplicationController
     def show
         @student_subject = StudentSubject.find(params[:id])
         authorize @student_subject
+        render json: @student_subject
     end
 
     def create
