@@ -7,7 +7,9 @@
 
 <br>
 
+<div class="student-subject-list">
 <% current_user.student_subjects.each do |ss| %>
     <%= link_to student_subject_title(ss), student_subject_path(ss) if ss.id %>
     <br> <br>
 <% end %>
+</div>
