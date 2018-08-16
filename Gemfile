@@ -20,6 +20,7 @@ gem 'omniauth-facebook'
 gem 'httparty'
 gem 'pundit'
 gem 'jquery-rails'
+gem 'handlebars_assets'
 
 group :production do 
   gem 'pg', '~> 0.18.4'
