@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require handlebars
 //= require subjects
+//= require_tree ./templates
 
