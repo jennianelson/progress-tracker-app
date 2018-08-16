@@ -6,12 +6,19 @@ class StudentSubjectsController < ApplicationController
         end
         @subjects = Subject.ready
         @student_subject = StudentSubject.new
+        respond_to do |f|
+            f.html {render :index }
+            f.json {render json: @subjects}
+        end
     end
 
     def show
         @student_subject = StudentSubject.find(params[:id])
         authorize @student_subject
-        render json: @student_subject
+        respond_to do |f|
+            f.html {render :show}
+            f.json {render json: @student_subject}
+        end
     end
 
     def create
