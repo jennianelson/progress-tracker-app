@@ -37,26 +37,37 @@ StudentSubject.bindClickHandlers = function() {
     history.pushState(null, null, 'student_subjects/' + id)
     // get clicked student subject from API
     const link = event.target.href
-    // need to abstract this out
-    fetch(link + '.json').then(res => res.json()).then(json => {
-      let ss = new StudentSubject(json)
-      let showHtml = ss.renderShow()
-      $('.student-subject-show').append(showHtml)
+    StudentSubject.getStudentSubjectShow(link)
+  })
+
+  $('form#new_student_subject').on('submit', function (event) {
+    event.preventDefault();
+    debugger
+    let params = $(this).serialize()
+    let action = event.target.action
+    fetch(action, {
+      method: 'Post',
+      headers: {"Content-Type": "application/json"},
+      body: params
+    }).then(res => res.json()).then(json => {
+      debugger
     })
   })
 }
 
 // not working yet
-StudentSubject.getStudentSubject = async function(link) {
-  let res = fetch(link + '.json')
-  debugger
-  let json = await res.json()
-  return json
-}
+StudentSubject.getStudentSubjectShow = function(link) {
+  fetch(link + '.json').then(res => res.json()).then(json => {
+      let ss = new StudentSubject(json)
+      let showHtml = ss.renderShow()
+      $('.student-subject-show').append(showHtml)
+    })
+  }
 
 StudentSubject.ready = function() {
   StudentSubject.createTemplates()
-  StudentSubject.getIndex()
+  // StudentSubject.getIndex()
+  StudentSubject.bindClickHandlers()
 }
 
 StudentSubject.createTemplates = function () {
