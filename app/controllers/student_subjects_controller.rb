@@ -20,10 +20,7 @@ class StudentSubjectsController < ApplicationController
     def show
         @student_subject = StudentSubject.find(params[:id])
         authorize @student_subject
-        respond_to do |f|
-            f.html {render :show}
-            f.json {render json: @student_subject}
-        end
+        render json: @student_subject
     end
 
     def create
