@@ -5,12 +5,29 @@ function StudentSubject({id, subject, user}) {
   this.user = user
 }
 
-
-StudentSubject.prototype.renderShow = function() {
-  return StudentSubject.template(this)
+StudentSubject.getIndex = async function() {
+  // debugger
+  await fetch('/student_subjects.json').then(res => res.json()).then(json => {
+    let ssArray = json.map(ss => new StudentSubject(ss))
+    ssArray.forEach(ss => {
+      let indexHtml = ss.renderIndex()
+      $('.student-subject-index').append(indexHtml)
+    }) 
+  })
+  await StudentSubject.bindClickHandlers()
 }
 
-StudentSubject.handleOnClick = function() {
+StudentSubject.prototype.renderShow = function() {
+  return StudentSubject.showTemplate(this)
+}
+
+StudentSubject.prototype.renderIndex = function() {
+  // debugger
+  return StudentSubject.indexTemplate(this)
+}
+
+StudentSubject.bindClickHandlers = function() {
+  // debugger
   $('.student-subject-link').on("click", (event) => {
     event.preventDefault();
     // clear DOM
@@ -20,6 +37,7 @@ StudentSubject.handleOnClick = function() {
     history.pushState(null, null, 'student_subjects/' + id)
     // get clicked student subject from API
     const link = event.target.href
+    // need to abstract this out
     fetch(link + '.json').then(res => res.json()).then(json => {
       let ss = new StudentSubject(json)
       let showHtml = ss.renderShow()
@@ -28,6 +46,7 @@ StudentSubject.handleOnClick = function() {
   })
 }
 
+// not working yet
 StudentSubject.getStudentSubject = async function(link) {
   let res = fetch(link + '.json')
   debugger
@@ -36,9 +55,16 @@ StudentSubject.getStudentSubject = async function(link) {
 }
 
 StudentSubject.ready = function() {
-  StudentSubject.templateSource = $('#student-subject-show-template').html();
-  StudentSubject.template = Handlebars.compile(StudentSubject.templateSource)
-  StudentSubject.handleOnClick()
+  StudentSubject.createTemplates()
+  StudentSubject.getIndex()
+}
+
+StudentSubject.createTemplates = function () {
+  StudentSubject.showSource = $('#student-subject-show-template').html();
+  StudentSubject.showTemplate = Handlebars.compile(StudentSubject.showSource)
+
+  StudentSubject.indexSource = $('#student-subject-index-template').html();
+  StudentSubject.indexTemplate = Handlebars.compile(StudentSubject.indexSource)
 }
 
 // When document ready

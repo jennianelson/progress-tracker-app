@@ -5,16 +5,12 @@ class StudentSubjectsController < ApplicationController
             redirect_to subjects_path
         end
         @subjects = Subject.ready
+        @student_subjects = current_user.student_subjects
         @student_subject = StudentSubject.new
         respond_to do |f|
             f.html {render :index }
-            f.json {render json: @subjects}
+            f.json {render json: @student_subjects}
         end
-    end
-
-    def current_user_subjects
-        binding.pry
-        @student_subjects = current_user.student_subjects
     end
 
     def show

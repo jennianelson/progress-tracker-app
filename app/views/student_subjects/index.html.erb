@@ -5,19 +5,21 @@
             <%= f.submit "Add Subject" %>
         <% end %>
     <br>
-    <div class="index">
+    <div class="student-subject-index"></div>
+
+    <!--<div class="index">
         <% current_user.student_subjects.each do |ss| %>
             <% if ss.id %>
                 <p><%= link_to student_subject_title(ss), student_subject_path(ss), class: "student-subject-link", data: {id: ss.id}%></p>
             <%end%>
         <% end %>
-    </div>
+    </div> -->
 </div>
 
-<div class="student-subject-index"></div>
 <div class="student-subject-show"></div>
 
 <script id="student-subject-index-template" type="text/x-handlebars-template">
+    <p><a class="student-subject-link" data-id={{id}} href="/student_subjects/{{id}}">{{subject.title}}</a></p>
 </script>
 
 <script id="student-subject-show-template" type="text/x-handlebars-template">
