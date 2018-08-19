@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "users/omniauth_callbacks" }
 
   root 'student_subjects#index'
+  get '/subjects/ready', to: 'subjects#ready'
 
   resources :student_subjects, only: [:index, :show, :create, :destroy] do 
     resources :sections, only: [:show]
