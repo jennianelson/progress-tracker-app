@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require handlebars-v4.0.11.js
-//= require subjects
+//= require student_subjects
 
