@@ -12,6 +12,11 @@ class StudentSubjectsController < ApplicationController
         end
     end
 
+    def current_user_subjects
+        binding.pry
+        @student_subjects = current_user.student_subjects
+    end
+
     def show
         @student_subject = StudentSubject.find(params[:id])
         authorize @student_subject

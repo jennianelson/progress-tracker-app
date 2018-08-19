@@ -1,20 +1,31 @@
-<h1>Your Subjects</h1>
-
-    <%= form_for @student_subject do |f| %>
-        <%= f.select :subject_id, @subjects.map {|s| [s.title, s.id] }, include_blank: true %>
-        <%= f.submit "Add Subject" %>
-    <% end %>
-
-<br>
-
 <div class="student-subject-list">
-<% current_user.student_subjects.each do |ss| %>
-    <p><%= link_to student_subject_title(ss), student_subject_path(ss) if ss.id %></p>
-    <%#= link_to student_subject_title(ss), student_subject_path(ss) if ss.id %>
-<% end %>
+    <h1>Your Subjects</h1>
+        <%= form_for @student_subject do |f| %>
+            <%= f.select :subject_id, @subjects.map {|s| [s.title, s.id] }, include_blank: true %>
+            <%= f.submit "Add Subject" %>
+        <% end %>
+    <br>
+    <% current_user.student_subjects.each do |ss| %>
+        <% if ss.id %>
+            <p><%= link_to student_subject_title(ss), student_subject_path(ss), class: "student-subject-link", data: {id: ss.id}%></p>
+        <%end%>
+    <% end %>
 </div>
 
-<div id="test"></div>
+<div class="student-subject-show"></div>
 
-<script id="student-subject-home" type="text/x-handlebars-template">
+<script id="student-subject-show-template" type="text/x-handlebars-template">
+  <h2>{{subject.title}}</h2>
+
+  <p class="page-links">
+    <a href="/">Back to All Subjects</a> 
+    | <a href="/student_subjects/{{id}}/student_standards">View Standards by Progress Level</a>
+  </p>
+
+  <ul>
+    {{#each subject.sections}}
+    <li><a href="/student_subjects/{{../id}}/sections/{{this.id}}">{{this.title}}</a> </li> <br>
+    {{/each}}
+  </ul>
+  
 </script>
