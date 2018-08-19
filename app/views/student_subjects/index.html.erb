@@ -6,14 +6,13 @@
         <% end %>
     <br>
     <div class="student-subject-index"></div>
-
-    <!--<div class="index">
+    <div class="index">
         <% current_user.student_subjects.each do |ss| %>
             <% if ss.id %>
                 <p><%= link_to student_subject_title(ss), student_subject_path(ss), class: "student-subject-link", data: {id: ss.id}%></p>
             <%end%>
         <% end %>
-    </div> -->
+    </div>
 </div>
 
 <div class="student-subject-show"></div>
