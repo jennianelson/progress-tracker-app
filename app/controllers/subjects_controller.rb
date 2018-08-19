@@ -9,6 +9,11 @@ class SubjectsController < ApplicationController
         end
     end
 
+    def ready
+        @subjects = Subject.ready
+        render json: @subjects
+    end
+
     def show
     end
 
