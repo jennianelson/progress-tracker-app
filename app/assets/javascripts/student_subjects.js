@@ -14,7 +14,7 @@ StudentSubject.handleOnClick = function() {
   $('.student-subject-link').on("click", (event) => {
     event.preventDefault();
     // clear DOM
-    $('.student-subject-list').html("")
+    $('.student-subject-home').html("")
     // set url
     const id = event.target.dataset.id
     history.pushState(null, null, 'student_subjects/' + id)
