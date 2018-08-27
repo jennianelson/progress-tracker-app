@@ -5,13 +5,26 @@ function StudentSubject({id, subject, user}) {
   this.user = user
 }
 
+function Subject({id, title}) {
+  this.id = id
+  this.title = title
+}
+
 StudentSubject.getIndex = async function() {
   await fetch('/student_subjects.json').then(res => res.json()).then(json => {
     let ssArray = json.map(ss => new StudentSubject(ss))
     let html = StudentSubject.indexTemplate(ssArray)
-    $('.student-subject-home').append(html)
+    $('.student-subject-index').append(html)
   })
   await StudentSubject.bindClickHandlers()
+}
+
+StudentSubject.getForm =  function() {
+   fetch('/subjects/ready.json').then(res => res.json()).then(json => {
+    let subArray = json.map(sub => new Subject(sub))
+    let html = StudentSubject.newTemplate(subArray)
+    $('.student-subject-new').append(html)
+  })
 }
 
 StudentSubject.prototype.renderShow = function() {
@@ -54,12 +67,16 @@ StudentSubject.getStudentSubjectShow = function(link) {
 StudentSubject.ready = function() {
   StudentSubject.createTemplates()
   StudentSubject.getIndex()
+  StudentSubject.getForm()
   StudentSubject.bindClickHandlers()
 }
 
 StudentSubject.createTemplates = function () {
   StudentSubject.showSource = $('#student-subject-show-template').html();
   StudentSubject.showTemplate = Handlebars.compile(StudentSubject.showSource)
+
+  StudentSubject.newSource = $('#student-subject-new-template').html()
+  StudentSubject.newTemplate = Handlebars.compile(StudentSubject.newSource)
 
   StudentSubject.indexSource = $('#student-subject-index-template').html();
   StudentSubject.indexTemplate = Handlebars.compile(StudentSubject.indexSource)
