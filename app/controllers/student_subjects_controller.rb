@@ -3,13 +3,15 @@ class StudentSubjectsController < ApplicationController
     def index
         if current_user.admin?
             redirect_to subjects_path
-        end
-        @subjects = Subject.ready
-        @student_subjects = current_user.student_subjects
-        @student_subject = StudentSubject.new
-        respond_to do |f|
-            f.html {render :index }
-            f.json {render json: @student_subjects}
+        
+        else 
+            @subjects = Subject.ready
+            @student_subjects = current_user.student_subjects
+            @student_subject = StudentSubject.new
+            respond_to do |f|
+                f.html {render :index }
+                f.json {render json: @student_subjects}
+            end
         end
     end
 
@@ -27,7 +29,8 @@ class StudentSubjectsController < ApplicationController
             @student_subject = current_user.student_subjects.build(student_subject_params)
             if @student_subject.save
                 @student_subject.create_student_standards(subject)
-                redirect_to student_subject_path(@student_subject)
+                # redirect_to student_subject_path(@student_subject)
+                render json: @student_subject
             else
                 render :index
             end
