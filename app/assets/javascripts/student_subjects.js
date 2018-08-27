@@ -6,13 +6,10 @@ function StudentSubject({id, subject, user}) {
 }
 
 StudentSubject.getIndex = async function() {
-  // debugger
   await fetch('/student_subjects.json').then(res => res.json()).then(json => {
     let ssArray = json.map(ss => new StudentSubject(ss))
-    ssArray.forEach(ss => {
-      let indexHtml = ss.renderIndex()
-      $('.student-subject-index').append(indexHtml)
-    }) 
+    let html = StudentSubject.indexTemplate(ssArray)
+    $('.student-subject-home').append(html)
   })
   await StudentSubject.bindClickHandlers()
 }
@@ -21,13 +18,7 @@ StudentSubject.prototype.renderShow = function() {
   return StudentSubject.showTemplate(this)
 }
 
-StudentSubject.prototype.renderIndex = function() {
-  // debugger
-  return StudentSubject.indexTemplate(this)
-}
-
 StudentSubject.bindClickHandlers = function() {
-  // debugger
   $('.student-subject-link').on("click", (event) => {
     event.preventDefault();
     // clear DOM
@@ -42,20 +33,16 @@ StudentSubject.bindClickHandlers = function() {
 
   $('form#new_student_subject').on('submit', function (event) {
     event.preventDefault();
-    debugger
     let params = $(this).serialize()
     let action = event.target.action
     fetch(action, {
       method: 'Post',
-      headers: {"Content-Type": "application/json"},
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: params
-    }).then(res => res.json()).then(json => {
-      debugger
     })
   })
 }
 
-// not working yet
 StudentSubject.getStudentSubjectShow = function(link) {
   fetch(link + '.json').then(res => res.json()).then(json => {
       let ss = new StudentSubject(json)
@@ -66,7 +53,7 @@ StudentSubject.getStudentSubjectShow = function(link) {
 
 StudentSubject.ready = function() {
   StudentSubject.createTemplates()
-  // StudentSubject.getIndex()
+  StudentSubject.getIndex()
   StudentSubject.bindClickHandlers()
 }
 
