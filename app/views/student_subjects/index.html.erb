@@ -1,24 +1,32 @@
-<div class="student-subject-home">
-    <h1>Your Subjects</h1>
-        <%= form_for @student_subject do |f| %>
-            <%= f.select :subject_id, @subjects.map {|s| [s.title, s.id] }, include_blank: true %>
-            <%= f.submit "Add Subject" %>
-        <% end %>
-    <br>
-    <div class="student-subject-index"></div>
-    <div class="index">
-        <% current_user.student_subjects.each do |ss| %>
-            <% if ss.id %>
-                <p><%= link_to student_subject_title(ss), student_subject_path(ss), class: "student-subject-link", data: {id: ss.id}%></p>
-            <%end%>
-        <% end %>
-    </div>
-</div>
+<div class="student-subject-home"></div>
 
 <div class="student-subject-show"></div>
 
 <script id="student-subject-index-template" type="text/x-handlebars-template">
-    <p><a class="student-subject-link" data-id={{id}} href="/student_subjects/{{id}}">{{subject.title}}</a></p>
+    <h1>Your Subjects</h1>
+        <form class="new_student_subject" id="new_student_subject" action="/student_subjects" accept-charset="UTF-8" method="post">
+            <input name="utf8" type="hidden" value="✓">
+            <input type="hidden" name="authenticity_token" value="uJ8/luO4LXmDujRXzSrseCr19/DajSDi6leV5v1zWKAy6Pt4At4AX0sq2W/eR4t2hiGcWxaTlvBmWDTVENgt7w==">
+            <select name="student_subject[subject_id]" id="student_subject_subject_id">
+            <option value=""></option>
+            <option value="12">3rd Grade P.E.</option>
+            <option value="14">9th Grade English</option>
+            <option value="21">6th Grade English Language Arts</option>
+            <option value="20">8th Grade Math</option>
+            <option value="22">8th Grade Science</option>
+            <option value="34">5th Grade PE</option>
+            <option value="18">6th Grade Math</option>
+            <option value="26">5th Grade Math</option>
+            <option value="4">8th Grade English</option>
+            <option value="1">7th Grade Math</option>
+            <option value="28">8th Grade Social Studies</option></select>
+            <input type="submit" name="commit" value="Add Subject" data-disable-with="Add Subject">
+    </form>    <br>
+    <div class="student-subject-list">
+    {{#each this}}
+        <p><a class="student-subject-link" data-id="{{this.id}}" href="/student_subjects/{{this.id}}">{{subject.title}}</a></p>
+    {{/each}}
+    </div>
 </script>
 
 <script id="student-subject-show-template" type="text/x-handlebars-template">
@@ -35,3 +43,20 @@
     {{/each}}
   </ul>  
 </script>
+
+<!--    
+    <h1>Your Subjects</h1>
+        <%= form_for @student_subject do |f| %>
+            <%= f.select :subject_id, @subjects.map {|s| [s.title, s.id] }, include_blank: true, required: true %>
+            <%= f.submit "Add Subject" %>
+        <% end %>
+    <br>
+    <div class="student-subject-index"></div>
+    <div class="index">
+        <% current_user.student_subjects.each do |ss| %>
+            <% if ss.id %>
+                <p><%= link_to student_subject_title(ss), student_subject_path(ss), class: "student-subject-link", data: {id: ss.id}%></p>
+            <%end%>
+        <% end %>
+    </div>
+ -->
